@@ -1,0 +1,500 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<style>
+		/*обнуленение стилей*/
+
+		* {
+			padding: 0;
+			margin: 0;
+			border: 0;
+		}
+
+		*,
+		*:before,
+		*:after {
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		:focus,
+		:active {
+			outline: none;
+		}
+
+		a:focus,
+		a:active {
+			outline: none;
+		}
+
+		nav,
+		footer,
+		header,
+		aside {
+			display: block;
+		}
+
+		html,
+		body {
+			height: 100%;
+			width: 100%;
+			font-style: 100%;
+			line-height: 1;
+			font-style: 16px;
+			-ms-text-size-adjust: 100%;
+			-moz-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
+
+		input,
+		button,
+		textarea {
+			font-family: inherit;
+		}
+
+		input::-ms-clear {
+			display: none;
+		}
+
+		button {
+			cursor: pointer;
+		}
+
+		button::-moz-focus-inner {
+			padding: 0;
+			border: 0;
+		}
+
+		a,
+		a:visited {
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+
+		ul li {
+			list-style-type: none;
+		}
+
+		img {
+			vertical-align: top;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-style: inherit;
+			font-weight: 400;
+		}
+
+		/*-----------------------------------------------------------*/
+
+hr {
+			border: none;
+			background-color: #6b6e70;
+			height: 1px;
+			margin: 1;
+		}
+
+		.wrapper {
+			min-height: 100%;
+			overflow: hidden;
+			background-color: rgb(51, 51, 61);
+			display: flex;
+			flex-direction: column;
+			font-family: 'Franklin Gothic Book', 'Arial Narrow', Arial, sans-serif;
+			font-weight: normal;
+			font-size: 12px;
+			color: lightgray;
+		}
+
+		.container {
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+
+		.content {
+			flex: 1 1 100%;
+			color: lightgray;
+		}
+
+		.header {
+			background-color: rgb(66, 66, 80);
+			padding: 10px 0;
+			height: 5%;
+
+		}
+
+		.header__row {
+			display: flex;
+		}
+
+		.header__buttons {
+			flex: 1 1 33.333%;
+			/*height: 100%;*/
+		}
+
+		.header__buttons form {
+			margin-left: 3px;
+			margin-right: 3px;
+		}
+
+		.header__buttons button {
+			width: 100%;
+			border-radius: 3px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			background-color: #8BC34A;
+			color: rgb(51, 51, 61);
+			font-size: 1.1rem;
+			font-weight: bold;
+			box-shadow:0 5px 0px #222629;
+			transition-duration: 500ms;
+		}
+
+		.header__buttons button:hover {
+			/*box-shadow: 0px 5px 10px 0px #222629;*/
+			top: 2px;
+			box-shadow:0 3px 0px #222629;
+			background-color: #61892f;
+			color: #222629;
+		}
+
+		.header__buttons button.header__active {
+			background-color: #61892f;
+		}
+		.header__buttons button.header__active:hover {
+			/*box-shadow: 0px 5px 10px 0px #222629;*/
+			top: 2px;
+			box-shadow:0 3px 0px #222629;
+			background-color: #3b531d;
+			color: #222629;
+		}
+
+
+		.param h2{
+			padding: 10px 0 10px 5px;
+			font-weight: bold;
+			font-size: 1.1rem;
+		}
+
+		.param td{
+			width: 20%;
+			padding: 5px;
+			text-align: center;
+		}
+
+		.param td p{
+			text-align: left;
+			color: lightgray;
+		}
+
+		.param button {
+			width: 90%;
+			margin-left: 15px;
+			border-radius: 3px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			background-color: #8BC34A;
+			color: rgb(51, 51, 61);
+			font-size: 1.0rem;
+			font-weight: bold;
+			box-shadow:0 5px 0px #222629;
+			transition-duration: 500ms;
+		}
+
+		.param button:hover {
+			top: 2px;
+			box-shadow:0 3px 0px #222629;
+			background-color: #61892f;
+			color: #222629;
+		}
+
+		.footer {
+			background-color: rgb(66, 66, 80);
+		}
+
+		.footer__row {
+			display: flex;
+			height: 40px;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.footer__text {
+			color: #fff;
+		}
+
+
+		/*tooltip всплывающие подстказки*/
+		[data-tooltip] {
+			position: relative;
+		}
+
+		[data-tooltip]::after {
+			content: attr(data-tooltip);
+			position: absolute;
+			width: 300px;
+			top: -8px;
+			left: 120%;
+			background: #61892f;
+			color: lightgray;
+			padding: 0.5em;
+			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+			pointer-events: none;
+			opacity: 0;
+			transition: 1s;
+			border-radius: 5px;
+			text-align: center;
+		}
+
+		[data-tooltip]:hover::after {
+			opacity: 1;
+			z-index: 2;
+		}
+	</style>
+	<title>Калибровка</title>
+</head>
+
+<body>
+	
+	
+	<div class="wrapper">
+		<header class="header">
+			<div class="container">
+				<div class="header__row">
+					<div class="header__buttons">
+						<form method="get" action="/main_conf.shtml">
+							<button type="submit">Управление</button>
+						</form>
+					</div>
+					<div class="header__buttons">
+						<form method="get" action="/config_eth.shtml">
+							<button type="submit">Ethernet</button>
+						</form>
+					</div>
+					<div class="header__buttons">
+						<form method="get" action="/calibrate.shtml">
+							<button type="submit" class = "header__active">Калибровка</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="content">
+			<div class="container">
+				<div class="param">
+						<h2>Калибровка диапазона №1</h2>
+						<form name="write_border" method="GET" action="/calibrate.shtml">
+							<table rules="none" width="100%">
+								<tbody>
+									<tr>
+										<td><p>Замкнуть клещи</p></td>
+										<td><button type="submit" name="k1_offset"
+												>Калибровка смещения</button></td>
+										<td ><p>Подключить резистор 30 мОм</p></td>
+										<td><button type="submit" name="k1_gain"
+												>Калибровка усиления</button></td>
+										<td><button type="submit" name="k1_save"
+												>Записать</button></td>
+			
+									</tr>
+								</tbody>
+							</table>
+						</form>
+			
+						<h2>Калибровка диапазона №2</h2>
+						<form name="write_border" method="GET" action="/calibrate.shtml">
+							<table rules="none" width="100%">
+								<tbody>
+									<tr>
+										<td><p>Замкнуть клещи</p></td>
+										<td><button type="submit" name="k2_offset"
+												>Калибровка смещения</button></td>
+										<td ><p>Подключить резистор 70 мОм</p></td>
+										<td><button type="submit" name="k2_gain"
+												>Калибровка усиления</button></td>
+										<td><button type="submit" name="k2_save"
+												>Записать</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+			
+						<h2>Калибровка диапазона №3</h2>
+						<form name="write_border" method="GET" action="/calibrate.shtml">
+							<table rules="none" width="100%">
+								<tbody>
+									<tr>
+										<td><p>Замкнуть клещи</p></td>
+										<td><button type="submit" name="k3_offset"
+												>Калибровка смещения</button></td>
+										<td ><p>Подключить р езистор 200 мОм</p></td>
+										<td><button type="submit" name="k3_gain"
+												>Калибровка усиления</button></td>
+										<td><button type="submit" name="k3_save"
+												>Записать</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+			
+						<h2>Калибровка диапазона №4</h2>
+						<form name="write_border" method="GET" action="/calibrate.shtml">
+							<table rules="none" width="100%">
+								<tbody>
+									<tr>
+										<td><p>Замкнуть клещи</p></td>
+										<td><button type="submit" name="k4_offset"
+												>Калибровка смещения</button></td>
+										<td ><p>Подключить резистор 400 мОм</p></td>
+										<td><button type="submit" name="k4_gain"
+												>Калибровка усиления</button></td>
+										<td><button type="submit" name="k4_save"
+												>Записать</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+			
+						<h2>Калибровка диапазона №5</h2>
+						<form name="write_border" method="GET" action="/calibrate.shtml">
+							<table rules="none" width="100%">
+								<tbody>
+									<tr>
+										<td><p>Замкнуть клещи</p></td>
+										<td><button type="submit" name="k5_offset"
+												>Калибровка смещения</button></td>
+										<td><p>Подключить резистор 900 мОм</p></td>
+										<td><button type="submit" name="k5_gain"
+												>Калибровка усиления</button></td>
+										<td><button type="submit" name="k5_save"
+												>Записать</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+			
+						<h2>Калибровка диапазона №6</h2>
+						<form name="write_border" method="GET" action="/calibrate.shtml">
+							<table rules="none" width="100%">
+								<tbody>
+									<tr>
+										<td><p>Замкнуть клещи</p></td>
+										<td><button type="submit" name="k6_offset"
+												>Калибровка смещения</button></td>
+										<td><p>Подключить резистор 2000 мОм</p></td>
+										<td><button type="submit" name="k6_gain"
+												>Калибровка усиления</button></td>
+										<td><button type="submit" name="k6_save"
+												>Записать</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+			
+						<h2>Калибровка диапазона №7</h2>
+						<form name="write_border" method="GET" action="/calibrate.shtml">
+							<table rules="none" width="100%">
+								<tbody>
+									<tr>
+										<td><p>Замкнуть клещи</p></td>
+										<td><button type="submit" name="k7_offset"
+												>Калибровка смещения</button></td>
+										<td><p>Подключить резистор 4000 мОм</p></td>
+										<td><button type="submit" name="k7_gain"
+												>Калибровка усиления</button></td>
+										<td><button type="submit" name="k7_save"
+												>Записать</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+			
+						<h2>Калибровка диапазона №8</h2>
+						<form name="write_border" method="GET" action="/calibrate.shtml">
+							<table rules="none" width="100%">
+								<tbody>
+									<tr>
+										<td><p>Подключить датчик магнитного поля</p></td>
+										<td><button type="submit" name="k8_offset"
+												>Калибровка смещения</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+
+						<h2>Калибровка диапазона герконового модуля №9</h2>
+						<form name="write_border" method="GET" action="/calibrate.shtml">
+							<table rules="none" width="100%">
+								<tbody>
+									<tr>
+										<td><p>Подключить резистор 4800 Ом</p></td>
+										<td><button type="submit" name="k9_gain"
+											>Калибровка усиления</button></td>
+										<td><button type="submit" name="k9_save">Записать</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+
+						<h2>Калибровка диапазона герконового модуля №10</h2>
+						<form name="write_border" method="GET" action="/calibrate.shtml">
+							<table rules="none" width="100%">
+								<tbody>
+									<tr>
+										<td><p>Подключить резистор 3000 Ом</p></td>
+										<td><button type="submit" name="k10_gain"
+											>Калибровка усиления</button></td>
+										<td><button type="submit" name="k10_save">Записать</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+
+						<h2>Калибровка диапазона герконового модуля №11</h2>
+						<form name="write_border" method="GET" action="/calibrate.shtml">
+							<table rules="none" width="100%">
+								<tbody>
+									<tr>
+										<td><p>Подключить резистор 2200 Ом</p></td>
+										<td><button type="submit" name="k11_gain"
+											>Калибровка усиления</button></td>
+										<td><button type="submit" name="k11_save">Записать</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<div class="container">
+				<div class="footer__row">
+					<div class="footer__text">
+						<p>
+							Мобильная установка тестирования СУЖ МУ-01 ©️ ТОМЗЭЛ
+						</p>
+						<p>
+							Для связи
+							тел.:(8-3822) 27-64-90,
+							МАТС: (6111) 64-90,
+							E-mail: srv@tom.transneft.ru.
+						</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+</body>
+
+</html>

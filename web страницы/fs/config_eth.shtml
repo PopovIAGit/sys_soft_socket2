@@ -1,0 +1,466 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<style>
+		/*обнуленение стилей*/
+
+		* {
+			padding: 0;
+			margin: 0;
+			border: 0;
+		}
+
+		*,
+		*:before,
+		*:after {
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		:focus,
+		:active {
+			outline: none;
+		}
+
+		a:focus,
+		a:active {
+			outline: none;
+		}
+
+		nav,
+		footer,
+		header,
+		aside {
+			display: block;
+		}
+
+		html,
+		body {
+			height: 100%;
+			width: 100%;
+			font-style: 100%;
+			line-height: 1;
+			font-style: 16px;
+			-ms-text-size-adjust: 100%;
+			-moz-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
+
+		input,
+		button,
+		textarea {
+			font-family: inherit;
+		}
+
+		input::-ms-clear {
+			display: none;
+		}
+
+		button {
+			cursor: pointer;
+		}
+
+		button::-moz-focus-inner {
+			padding: 0;
+			border: 0;
+		}
+
+		a,
+		a:visited {
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+
+		ul li {
+			list-style-type: none;
+		}
+
+		img {
+			vertical-align: top;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-style: inherit;
+			font-weight: 400;
+		}
+
+		/*-----------------------------------------------------------*/
+
+		hr {
+			border: none;
+			background-color: #6b6e70;
+			height: 1px;
+			margin: 1;
+		}
+
+		.wrapper {
+			min-height: 100%;
+			overflow: hidden;
+			background-color: rgb(51, 51, 61);
+			display: flex;
+			flex-direction: column;
+			font-family: 'Franklin Gothic Book', 'Arial Narrow', Arial, sans-serif;
+			font-weight: normal;
+			font-size: 12px;
+			color: lightgray;
+		}
+
+		.container {
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+
+		.content {
+			flex: 1 1 100%;
+			color: lightgray;
+		}
+
+		.header {
+			background-color: rgb(66, 66, 80);
+			padding: 10px 0;
+			height: 5%;
+
+		}
+
+		.header__row {
+			display: flex;
+		}
+
+		.header__buttons {
+			flex: 1 1 33.333%;
+			/*height: 100%;*/
+		}
+
+		.header__buttons form {
+			margin-left: 3px;
+			margin-right: 3px;
+		}
+
+		.header__buttons button {
+			width: 100%;
+			border-radius: 3px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			background-color: #8BC34A;
+			color: rgb(51, 51, 61);
+			font-size: 1.1rem;
+			font-weight: bold;
+			box-shadow: 0 5px 0px #222629;
+			transition-duration: 500ms;
+		}
+
+		.header__buttons button:hover {
+			/*box-shadow: 0px 5px 10px 0px #222629;*/
+			top: 2px;
+			box-shadow: 0 3px 0px #222629;
+			background-color: #61892f;
+			color: #222629;
+		}
+		.header__buttons button.header__active {
+			background-color: #61892f;
+		}
+		.header__buttons button.header__active:hover {
+			/*box-shadow: 0px 5px 10px 0px #222629;*/
+			top: 2px;
+			box-shadow:0 3px 0px #222629;
+			background-color: #3b531d;
+			color: #222629;
+		}
+
+		.param{}
+		.param h2{
+			padding: 10px 0 10px 5px;
+			font-weight: bold;
+			font-size: 1.1rem;
+		}
+		.param tr:first-child td:first-child {
+  /* Ваше свойство для изменения */
+ 		 width: 20%;
+}
+		.param td{
+			width: 10%;
+			padding: 5px;
+			text-align: right;
+		}
+
+		.param td p{
+			text-align: left;
+			color: lightgray;
+		}
+
+		.param input {
+			width: 100%;
+			padding: 5px;
+			border: #8BC34A solid 1px;
+			color: lightgray;
+			border-radius: 3px;
+			background-color: #212121;
+			transition-duration: 500ms;
+		}
+
+		.param input:hover {
+			border: #61892f solid 1px;
+			background-color:  #2b2b2b;
+			box-shadow:0 5px 0px #222629;
+		}
+		.param button {
+			width: 20%;
+			margin-left: 15px;
+			border-radius: 3px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			background-color: #8BC34A;
+			color: rgb(51, 51, 61);
+			font-size: 1.0rem;
+			font-weight: bold;
+			box-shadow:0 5px 0px #222629;
+			transition-duration: 500ms;
+		}
+
+		.param button:hover {
+			top: 2px;
+			box-shadow:0 3px 0px #222629;
+			background-color: #61892f;
+			color: #222629;
+		}
+
+		.footer {
+			background-color: rgb(66, 66, 80);
+		}
+
+		.footer__row {
+			display: flex;
+			height: 40px;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.footer__text {
+			color: #fff;
+		}
+
+		[data-tooltip] {
+			position: relative;
+		}
+
+		[data-tooltip]::after {
+			content: attr(data-tooltip);
+			position: absolute;
+			width: 300px;
+			top: -8px;
+			left: 60%;
+			background: #61892f;
+			color: lightgray;
+			padding: 0.5em;
+			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+			pointer-events: none;
+			opacity: 0;
+			transition: 1s;
+			border-radius: 5px;
+			text-align: center;
+		}
+
+		[data-tooltip]:hover::after {
+			opacity: 1;
+			z-index: 2;
+		}
+	</style>
+	<title>Ethernet parameters</title>
+</head>
+
+<script>
+	let xhr;
+	let body;
+
+	function onload_page() {
+		xhr = new (XMLHttpRequest);
+		xhr.open("GET", "config_eth.shtml/parametres", true);
+		xhr.responseType = "json";
+		xhr.onload = function () {
+			console.log(xhr.body);
+			if ((xhr.readyState === xhr.DONE) && (xhr.status === 200)) {
+				let jsonResponse = xhr.response;
+				document.getElementById('macaddr0').value = jsonResponse.macaddr0;
+				document.getElementById('macaddr1').value = jsonResponse.macaddr1;
+				document.getElementById('macaddr2').value = jsonResponse.macaddr2;
+				document.getElementById('macaddr3').value = jsonResponse.macaddr3;
+				document.getElementById('macaddr4').value = jsonResponse.macaddr4;
+				document.getElementById('macaddr5').value = jsonResponse.macaddr5;
+
+				document.getElementById('dev_ip_ad0').value = jsonResponse.dev_ip_ad0;
+				document.getElementById('dev_ip_ad1').value = jsonResponse.dev_ip_ad1;
+				document.getElementById('dev_ip_ad2').value = jsonResponse.dev_ip_ad2;
+				document.getElementById('dev_ip_ad3').value = jsonResponse.dev_ip_ad3;
+
+				document.getElementById('gw_ip_ad0').value = jsonResponse.gw_ip_ad0;
+				document.getElementById('gw_ip_ad1').value = jsonResponse.gw_ip_ad1;
+				document.getElementById('gw_ip_ad2').value = jsonResponse.gw_ip_ad2;
+				document.getElementById('gw_ip_ad3').value = jsonResponse.gw_ip_ad3;
+
+				document.getElementById('mk_ip_ad0').value = jsonResponse.mk_ip_ad0;
+				document.getElementById('mk_ip_ad1').value = jsonResponse.mk_ip_ad1;
+				document.getElementById('mk_ip_ad2').value = jsonResponse.mk_ip_ad2;
+				document.getElementById('mk_ip_ad3').value = jsonResponse.mk_ip_ad3;
+			}
+		}
+		xhr.send();
+	}	
+</script>
+
+<body onload="onload_page()">
+
+	<div class="wrapper">
+		<header class="header">
+			<div class="container">
+				<div class="header__row">
+					<div class="header__buttons">
+						<form method="get" action="/main_conf.shtml">
+							<button type="submit">Управление</button>
+						</form>
+					</div>
+					<div class="header__buttons">
+						<form method="get" action="/config_eth.shtml">
+							<button type="submit" class = "header__active">Ethernet</button>
+						</form>
+					</div>
+					<div class="header__buttons">
+						<form method="get" action="/calibrate.shtml">
+							<button type="submit">Калибровка</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="content">
+			<div class="container">
+				<div class="param">
+					<h2> Настройка параметров Ethernet</h2>
+				<form name="set_param_mac" method="GET" action="/config_eth.shtml">
+					<table rules="none" width="100%">
+						<tbody>
+							<tr>
+								<td class="td" data-tooltip="По умолчанию используется MAC адрес, установленный на заводе: 16.195.123.16.16.16">
+									<p>MAC адрес:</p></td>
+								<td><input name="macaddr0" id="macaddr0" size="3" maxlength="3" type="text"
+										class="input"></td>
+								<td><input name="macaddr1" id="macaddr1" size="3" maxlength="3" type="text"
+										class="input"></td>
+								<td><input name="macaddr2" id="macaddr2" size="3" maxlength="3" type="text"
+										class="input"></td>
+								<td ><input name="macaddr3" id="macaddr3" size="3" maxlength="3" type="text"
+										class="input"></td>
+								<td ><input name="macaddr4" id="macaddr4" size="3" maxlength="3" type="text"
+										class="input"></td>
+								<td ><input name="macaddr5" id="macaddr5" size="3" maxlength="3" type="text"
+										class="input"></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="6"><button type="submit"name="eth_smac">Сохранить</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+				<hr>
+				<form name="set_param_ip" method="GET" action="/config_eth.shtml">
+					<table rules="none" width="100%">
+						<tbody>
+							<tr>
+								<td data-tooltip="По умолчанию 192.168.0.10"><p>IP адрес:</p></td>
+								<td><input name="dev_ip_ad0" id="dev_ip_ad0" size="9" maxlength="3"
+										type="text" class="input"></td>
+								<td><input name="dev_ip_ad1" id="dev_ip_ad1" size="9" maxlength="3"
+										type="text" class="input"></td>
+								<td><input name="dev_ip_ad2" id="dev_ip_ad2" size="9" maxlength="3"
+										type="text" class="input"></td>
+								<td><input name="dev_ip_ad3" id="dev_ip_ad3" size="9" maxlength="3"
+										type="text" class="input"></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="4"><button type="submit" name="eth_sip">Сохранить</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+				<hr>
+				<form name="set_param_gw" method="GET" action="/config_eth.shtml">
+					<table rules="none" width="100%">
+						<tbody>
+							<tr>
+								<td data-tooltip="По умолчанию 192.168.0.2"><p>Шлюз:</p></td>
+								<td><input name="gw_ip_ad0" id="gw_ip_ad0" size="9" maxlength="3"
+										type="text" class="input"></td>
+								<td><input name="gw_ip_ad1" id="gw_ip_ad1" size="9" maxlength="3"
+										type="text" class="input"></td>
+								<td><input name="gw_ip_ad2" id="gw_ip_ad2" size="9" maxlength="3"
+										type="text" class="input"></td>
+								<td><input name="gw_ip_ad3" id="gw_ip_ad3" size="9" maxlength="3"
+										type="text" class="input"></td>
+							</tr>
+							<tr>
+								<td width="30%"></td>
+								<td colspan="4"><button type="submit"
+										name="eth_sgw">Сохранить</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+				<hr>
+				<form name="set_param_mask" method="GET" action="/config_eth.shtml">
+					<table rules="none" width="100%">
+						<tbody>
+							<tr>
+								<td data-tooltip="По умолчанию 255.255.255.0"><p>Маска подсети:</p>
+								</td>
+								<td><input name="mk_ip_ad0" id="mk_ip_ad0" size="9" maxlength="3"
+										type="text" class="input"></td>
+								<td><input name="mk_ip_ad1" id="mk_ip_ad1" size="9" maxlength="3"
+										type="text" class="input"></td>
+								<td><input name="mk_ip_ad2" id="mk_ip_ad2" size="9" maxlength="3"
+										type="text" class="input"></td>
+								<td><input name="mk_ip_ad3" id="mk_ip_ad3" size="9" maxlength="3"
+										type="text" class="input"></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="4"><button type="submit" name="eth_smk">Сохранить</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<div class="container">
+				<div class="footer__row">
+					<div class="footer__text">
+						<p>
+							Мобильная установка тестирования СУЖ МУ-01 ©️ ТОМЗЭЛ
+						</p>
+						<p>
+							Для связи
+							тел.:(8-3822) 27-64-90,
+							МАТС: (6111) 64-90,
+							E-mail: srv@tom.transneft.ru.
+						</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+</body>
+
+</html>
