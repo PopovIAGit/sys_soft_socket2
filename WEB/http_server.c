@@ -385,7 +385,7 @@ void http_server(){
                         if(mean == NULL) return;
                         cJSON_AddItemToObject(json, "Iwork", mean);
 
-                        mean = cJSON_CreateNumber(GetCoilPWMFreq());
+                        mean = cJSON_CreateNumber(/*GetCoilPWMFreq()*/ devparam.testparam.Fcoil);
                         if(mean == NULL) return;
                         cJSON_AddItemToObject(json, "Freq", mean);
 			
@@ -445,7 +445,7 @@ void http_server(){
                         if(ParseHTTPGetValuesTextType(jbuffer, "cyc_tststart=", value, len)){
                             SetCycleTestMode();
                             StartRSTest();
-			     SetStatus(st_CYCLEMODE);
+			    SetStatus(st_CYCLEMODE);
                         }
                         if(ParseHTTPGetValuesTextType(jbuffer, "cyc_tststop=", value, len)){
                             StopRSTest(); 
@@ -453,9 +453,18 @@ void http_server(){
 			     SetStatus(st_READY);
                         }      
                         if(ParseHTTPGetValuesTextType(jbuffer, "single_tststart=", value, len)){
-                            SetSignleTestMode();
-                            StartRSTest();
-			    SetStatus(st_SIGNEMODE);
+                           if (GetSuzType()==0) // если суж “ќћ«ЁЋ
+			   {
+			      SetOnContinuously(); 
+                              SetFindR(true);
+			      SetStatus(st_SIGNEMODE);
+			   }
+			   else { // если все остальные сужи
+				SetSignleTestMode();
+				StartRSTest();
+				SetStatus(st_SIGNEMODE);
+			   }
+
                         }
 			if(ParseHTTPGetValuesTextType(jbuffer, "mag_tststart=", value, len)){
 				StartMagnitTest();  

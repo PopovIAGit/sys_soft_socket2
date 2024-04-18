@@ -607,7 +607,10 @@
 
 				if ((xhr.readyState === xhr.DONE) && (xhr.status === 200)) {
 					let jsonResponse = xhr.response;
-					document.getElementById('dataRSon').value = jsonResponse.RSon;
+					if(jsonResponse.RSon < 7000){
+						document.getElementById('dataRSon').value = jsonResponse.RSon;
+					}else document.getElementById('dataRSon').value = jsonResponse.RSon + " Обрыв/превышение макс. сопротивления";
+
 					document.getElementById('dataDispersion').value = jsonResponse.Dispersion.toFixed(3);
 					document.getElementById('dataRstat').value = jsonResponse.Rstat;
 					document.getElementById('dataField').value = jsonResponse.Field;
@@ -646,11 +649,22 @@
 					document.getElementById('maxDispersion').value = jsonResponse.MaxDispertion;
 					document.getElementById('maxHs').value = jsonResponse.MaxHs;
 
-					//console.log(jsonResponse.Time);
+					// красим вывод при тестах
+					if (document.getElementById('dataDispersion').value > document.getElementById('maxDispersion').value) document.getElementById('dataDispersion').style.color = "red";
+					else document.getElementById('dataDispersion').style.color = "green";
 
+					if (document.getElementById('dataField').value > document.getElementById('maxHs').value) document.getElementById('dataField').style.color = "red";
+					else document.getElementById('dataField').style.color = "green";
+
+					if (document.getElementById('dataRSon').value > document.getElementById('maxRs').value) document.getElementById('dataRSon').style.color = "red";
+					else document.getElementById('dataDispersion').style.color = "green";
+
+					if (document.getElementById('dataRstat').value > 2500) document.getElementById('dataRstat').style.color = "red";
+					else document.getElementById('dataRstat').style.color = "green";
+
+					//console.log(jsonResponse.Time);
 					GetDataFromServerAndUpdateMainField();
 				}
-				
 			}
 			xhr.send();
 		}
@@ -697,16 +711,34 @@
 						oldStatus = jsonResponse.Status;
 					}
 
-                document.getElementById('dataRSon').value = jsonResponse.RSon;
-                document.getElementById('dataDispersion').value = jsonResponse.Dispersion.toFixed(3);
-                document.getElementById('dataRstat').value = jsonResponse.Rstat;
-                document.getElementById('dataField').value = jsonResponse.Field;
-                document.getElementById('dataIwork').value = jsonResponse.Iwork;
-                document.getElementById('dataFreq').value = jsonResponse.Freq;
-                document.getElementById('dataIcoil').value = jsonResponse.Icoil;
-                document.getElementById('dataTime').value = jsonResponse.Time;
-                document.getElementById('dataSUJType').value = jsonResponse.SUJType > 0 ? 'Сторонние производители' : 'ТОМЗЭЛ';
-                document.getElementById('dataVersion').value = jsonResponse.Version;
+					if(jsonResponse.RSon < 7000){
+						document.getElementById('dataRSon').value = jsonResponse.RSon;
+					}else 	document.getElementById('dataRSon').value = jsonResponse.RSon + " Обрыв/превышение макс. сопротивления";
+							
+					document.getElementById('dataDispersion').value = jsonResponse.Dispersion.toFixed(3);
+					document.getElementById('dataRstat').value = jsonResponse.Rstat;
+					document.getElementById('dataField').value = jsonResponse.Field;
+					document.getElementById('dataIwork').value = jsonResponse.Iwork;
+					document.getElementById('dataFreq').value = jsonResponse.Freq;
+					document.getElementById('dataIcoil').value = jsonResponse.Icoil;
+					document.getElementById('dataTime').value = jsonResponse.Time;
+					document.getElementById('dataSUJType').value = jsonResponse.SUJType > 0 ? 'Сторонние производители' : 'ТОМЗЭЛ';
+					document.getElementById('dataVersion').value = jsonResponse.Version;
+
+					// красим вывод при тестах
+					if (document.getElementById('dataDispersion').value > document.getElementById('maxDispersion').value) document.getElementById('dataDispersion').style.color = "red";
+					else document.getElementById('dataDispersion').style.color = "green";
+
+					if (document.getElementById('dataField').value > document.getElementById('maxHs').value) document.getElementById('dataField').style.color = "red";
+					else document.getElementById('dataField').style.color = "green";
+
+					if (document.getElementById('dataRSon').value > document.getElementById('maxRs').value) document.getElementById('dataRSon').style.color = "red";
+					else document.getElementById('dataDispersion').style.color = "green";
+
+					if (document.getElementById('dataRstat').value > 2500) document.getElementById('dataRstat').style.color = "red";
+					else document.getElementById('dataRstat').style.color = "green";
+
+
 				if (flagStatus == 1){
 					document.getElementById('CurrKatushki').value = jsonResponse.Icoil;
 					flagStatus = 0;
@@ -1536,12 +1568,12 @@
 							<table rules="none" width="100%">
 								<tbody>
 									<tr>
-										<td><p>Ток опроса СУЖ:</p></td>
+										<td><p>Ток опроса СУЖ, мА:</p></td>
 										<td>
 												<select id="soflow" name="rscurr" width="30%">
-													<option value="1" name="parity">1 мА</option>
-													<option value="50" name="parity">50 мА</option>
-													<option value="500" name="parity">500 мА</option>
+													<option value="1" name="parity">1</option>
+													<option value="50" name="parity">50</option>
+													<option value="500" name="parity">500</option>
 												</select>
 										</td>
 										<td>

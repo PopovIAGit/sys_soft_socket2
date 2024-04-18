@@ -159,11 +159,15 @@ void DisableCoilDrivePulses(){
 
 void SetCoilPWMFreq(uint16_t freq){ /*in Hz*/
  if(freq > 100) freq = 100; 
+ 
+ 
  htim1.Instance->ARR =  40000 / freq;
 }
 
 uint32_t GetCoilPWMFreq(){
- if(htim1.Instance->ARR != 0) return (40000 / htim1.Instance->ARR);
+  uint32_t Freq = 0;
+  Freq = (40000 / htim1.Instance->ARR);
+ if(htim1.Instance->ARR != 0) return Freq;
  return 0; 
 }
 

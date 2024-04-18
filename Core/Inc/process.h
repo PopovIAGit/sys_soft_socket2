@@ -93,6 +93,9 @@ uint32_t GetStatus();
 double GetSavedDispertion();
 void SetStatus(TStatusType);
 uint32_t GetConnectStatus();
+uint32_t GetSuzType();
+void SetFindR(bool findR);
+
 
 void TempObserverInit(TTempObserver *);
 void TempObserverUpdate (TTempObserver *);
