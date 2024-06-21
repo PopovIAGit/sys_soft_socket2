@@ -96,9 +96,7 @@
 			font-style: inherit;
 			font-weight: 400;
 		}
-
-		/*-----------------------------------------------------------*/
-
+		
 		hr {
 			border: none;
 			background-color: #6b6e70;
@@ -611,6 +609,7 @@
 						document.getElementById('dataRSon').value = jsonResponse.RSon;
 					}else document.getElementById('dataRSon').value = jsonResponse.RSon + " Обрыв/превышение макс. сопротивления";
 
+					document.getElementById('dataRSoff').value = jsonResponse.RSoff;
 					document.getElementById('dataDispersion').value = jsonResponse.Dispersion.toFixed(3);
 					document.getElementById('dataRstat').value = jsonResponse.Rstat;
 					document.getElementById('dataField').value = jsonResponse.Field;
@@ -714,7 +713,8 @@
 					if(jsonResponse.RSon < 7000){
 						document.getElementById('dataRSon').value = jsonResponse.RSon;
 					}else 	document.getElementById('dataRSon').value = jsonResponse.RSon + " Обрыв/превышение макс. сопротивления";
-							
+
+					document.getElementById('dataRSoff').value = jsonResponse.RSoff;
 					document.getElementById('dataDispersion').value = jsonResponse.Dispersion.toFixed(3);
 					document.getElementById('dataRstat').value = jsonResponse.Rstat;
 					document.getElementById('dataField').value = jsonResponse.Field;
@@ -812,7 +812,7 @@
 					};
 					const ReadyText = [
 						`Статическое сопротивление замкнутых контактов геркона, мОм: ${document.getElementById('dataRSon').value}`,
-						`Статическое сопротивление разомкнутых контактов геркона, мОм: ${document.getElementById('dataDispersion').value}`,
+						`Статическое сопротивление разомкнутых контактов геркона, мОм: ${document.getElementById('dataRSoff').value}`,
 						`Дисперсия сопротивление контактов геркона, мОм: ${document.getElementById('dataDispersion').value}`,
 						`Статическое сопротивление герконового модуля, Ом: ${document.getElementById('dataRstat').value}`,
 						`Магнитное поле, мкТл: ${document.getElementById('dataField').value}`,
@@ -1447,6 +1447,12 @@
 										<output id="dataRSon"> </output>
 									</td>
 								</tr>
+								<tr hidden>
+									<td> Cопротивление замкнутых контактов геркона, мОм</td>
+									<td>
+										<output id="dataRSoff"> </output>
+									</td>
+								</tr>
 								<tr id="tr_Disp">
 									<td> Дисперсия сопротивление контактов геркона, мОм
 									</td>
@@ -1559,6 +1565,21 @@
 							</div>
 							<div class="control__buttons">
 
+							</div>
+						</div>
+						<div class="control__row">
+							<div class="control__buttons">
+								<form method="get" action="/main_conf.shtml">
+									<button type="submit" class="button button-save" name="mag_serch_down"> Определение макимального магнитного поля N ↓ </button>
+								</form>
+							</div>
+							<div class="control__buttons">
+								<form method="get" action="/main_conf.shtml">
+									<button type="submit" class="button button-save" name="mag_serch_up">Определение макимального магнитного поля N ↑</button>
+								</form>
+							</div>
+							<div class="control__buttons">
+								<button type="submit" class="button button-save" name="tst_serch">Поиск минимального сопротивление</button>
 							</div>
 						</div>
 					</div>

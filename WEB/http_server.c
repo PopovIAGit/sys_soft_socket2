@@ -470,6 +470,19 @@ void http_server(){
 				StartMagnitTest();  
 				SetStatus(st_FLOAT_TEST);
 			} 
+			// запуск поиска поплавка и геркона
+			if(ParseHTTPGetValuesTextType(jbuffer, "mag_serch_down=", value, len)){
+  
+			    SetStatus(st_CYCLEMODE);
+                        }
+			if(ParseHTTPGetValuesTextType(jbuffer, "mag_serch_up=", value, len)){
+                 
+			    SetStatus(st_CYCLEMODE);
+                        }
+			if(ParseHTTPGetValuesTextType(jbuffer, "tst_serch=", value, len)){
+      
+			    SetStatus(st_CYCLEMODE);
+                        }
 			  
                         if(ParseHTTPGetValuesTextType(jbuffer, "s_rscurr=", value, len)){
                             SetRSCurrent(rscurr); 
