@@ -472,16 +472,31 @@ void http_server(){
 			} 
 			// запуск поиска поплавка и геркона
 			if(ParseHTTPGetValuesTextType(jbuffer, "mag_serch_down=", value, len)){
+			  
+			  SetPoplovokCalib();
   
-			    SetStatus(st_CYCLEMODE);
+			    SetStatus(st_POPLOVOK_CALIB);
                         }
 			if(ParseHTTPGetValuesTextType(jbuffer, "mag_serch_up=", value, len)){
                  
-			    SetStatus(st_CYCLEMODE);
+			 	 SetPoplovokCalib();
+			    SetStatus(st_POPLOVOK_CALIB);
                         }
 			if(ParseHTTPGetValuesTextType(jbuffer, "tst_serch=", value, len)){
       
-			    SetStatus(st_CYCLEMODE);
+			    
+			    if (GetSuzType()==0) // если суж “ќћ«ЁЋ
+			   {
+			      SetOnContinuously(); 
+                              SetFindMinR(true);
+			      SetStatus(st_FIND_GERKON_MODUL);
+			   }
+			   else { // если все остальные сужи
+				SetCycleTestMode();
+	  			StartRSTest();
+				SetFindMinR(true);
+				SetStatus(st_FIND_GERKON);
+			   }
                         }
 			  
                         if(ParseHTTPGetValuesTextType(jbuffer, "s_rscurr=", value, len)){

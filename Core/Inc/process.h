@@ -95,6 +95,9 @@ void SetStatus(TStatusType);
 uint32_t GetConnectStatus();
 uint32_t GetSuzType();
 void SetFindR(bool findR);
+bool GetPoplovokCalib();
+void SetPoplovokCalib();
+void SetFindMinR(bool set);
 
 
 void TempObserverInit(TTempObserver *);

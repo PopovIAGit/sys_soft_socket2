@@ -1,1824 +1,2399 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>МУ-01</title>
-	<style>
-		/*обнуленение стилей*/
-		
-		* {
-			padding: 0;
-			margin: 0;
-			border: 0;
-		}
-
-		*,
-		*:before,
-		*:after {
-			-moz-box-sizing: border-box;
-			-webkit-box-sizing: border-box;
-			box-sizing: border-box;
-		}
-
-		:focus,
-		:active {
-			outline: none;
-		}
-
-		a:focus,
-		a:active {
-			outline: none;
-		}
-
-		nav,
-		footer,
-		header,
-		aside {
-			display: block;
-		}
-
-		html,
-		body {
-			height: 100%;
-			width: 100%;
-			font-style: 100%;
-			line-height: 1;
-			font-style: 16px;
-			-ms-text-size-adjust: 100%;
-			-moz-text-size-adjust: 100%;
-			-webkit-text-size-adjust: 100%;
-		}
-
-		input,
-		button,
-		textarea {
-			font-family: inherit;
-		}
-
-		input::-ms-clear {
-			display: none;
-		}
-
-		button {
-			cursor: pointer;
-		}
-
-		button::-moz-focus-inner {
-			padding: 0;
-			border: 0;
-		}
-
-		a,
-		a:visited {
-			text-decoration: none;
-		}
-
-		a:hover {
-			text-decoration: none;
-		}
-
-		ul li {
-			list-style-type: none;
-		}
-
-		img {
-			vertical-align: top;
-		}
-
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
-			font-style: inherit;
-			font-weight: 400;
-		}
-		
-		hr {
-			border: none;
-			background-color: #6b6e70;
-			height: 1px;
-			margin: 1;
-		}
-
-		.wrapper {
-			min-height: 100%;
-			overflow: hidden;
-			background-color: rgb(51, 51, 61);
-			display: flex;
-			flex-direction: column;
-			font-family: 'Franklin Gothic Book', 'Arial Narrow', Arial, sans-serif;
-			font-weight: normal;
-			font-size: 12px;
-			color: lightgray;
-		}
-		/*заготовка под адаптивную верстку*/
-		.container {
-			max-width: 1200px;
-			margin: 0 auto;
-		}
-
-		@media (max-width:1200px) {
-			.container{
-				max-width: 970px;
-			}
-		}
-		@media (max-width:992px) {
-			.container{
-				max-width: 750px;
-			}
-		}
-		@media (max-width:767px) {
-			.container{
-				max-width: none;
-			}
-		}
-
-		.content {
-			flex: 1 1 100%;
-			color: lightgray;
-		}
-
-		.header {
-			background-color: rgb(66, 66, 80);
-			padding: 10px 0;
-			height: 5%;
-
-		}
-
-		.header__row {
-			display: flex;
-		}
-
-		.header__buttons {
-			flex: 1 1 33.333%;
-			/*height: 100%;*/
-		}
-
-		.header__buttons form {
-			margin-left: 3px;
-			margin-right: 3px;
-		}
-
-		.header__buttons button {
-			width: 100%;
-			border-radius: 3px;
-			padding-top: 5px;
-			padding-bottom: 5px;
-			background-color: #8BC34A;
-			color: rgb(51, 51, 61);
-			font-size: 1.1rem;
-			font-weight: bold;
-			box-shadow:0 5px 0px #222629;
-			transition-duration: 500ms;
-		}
-
-
-
-		.header__buttons button:hover {
-			/*box-shadow: 0px 5px 10px 0px #222629;*/
-			top: 2px;
-			box-shadow:0 3px 0px #222629;
-			background-color: #61892f;
-			color: #222629;
-		}
-		.header__buttons button.header__active {
-			background-color: #61892f;
-		}
-		.header__buttons button.header__active:hover {
-			/*box-shadow: 0px 5px 10px 0px #222629;*/
-			top: 2px;
-			box-shadow:0 3px 0px #222629;
-			background-color: #3b531d;
-			color: #222629;
-		}
-
-		.content__row {
-			display: flex;
-			flex-direction: column;
-			height: 100%;
-		}
-
-		.data {
-			padding-left: 10px;
-		}
-
-		.data h2 {
-			padding: 10px 0 10px 5px;
-			font-weight: bold;
-			font-size: 1.1rem;
-			
-
-		}
-
-		.data tr {
-			color: lightgray;
-			border-bottom: solid 2px rgb(66, 66, 80);
-		}
-
-		.data td {
-			padding: 5px 10px;
-			text-align: left;
-		}
-
-		.svg-container {
-			fill: #8BC34A;
-			float: right;
-			border: 0px;
-			background-color: rgb(51, 51, 61);
-		}
-
-		.svg-container:hover svg path {
-			fill: #61892f;
-		}
-
-		.control {}
-
-		.control tbody {
-			color: lightgray;
-		}
-
-		.control h2 {
-			padding: 10px 0 10px 5px;
-			font-weight: bold;
-			font-size: 1.1rem;
-		}
-
-		.control__row {
-			display: flex;
-		}
-
-		.control__buttons {
-			flex: 1 1 30.333%;
-			/*height: 100%;*/
-		}
-
-		.control__buttons form {
-			margin: 3px;
-		}
-
-		.control__buttons button {
-			width: 100%;
-			border-radius: 3px;
-			padding-top: 5px;
-			padding-bottom: 5px;
-			background-color: #8BC34A;
-			color: rgb(51, 51, 61);
-			font-size: 1rem;
-			font-weight: bold;
-			box-shadow:0 5px 0px #222629;
-			transition-duration: 500ms;
-
-		}
-
-		.control__buttons button:hover {
-			top: 2px;
-			box-shadow:0 3px 0px #222629;
-			background-color: #61892f;
-			color: #222629;
-		}
-
-		#button__stop {
-			background-color: #D32F2F;
-		}
-
-		#button__stop:hover {
-			background-color: #8f2121;
-		}
-
-
-		.param{
-			
-		}
-
-		.param tr{
-			
-		}
-		.param h2{
-			padding: 10px 0 10px 5px;
-			font-weight: bold;
-			font-size: 1.1rem;
-		}
-
-		.param td{
-			width: 30%;
-			padding: 5px;
-			text-align: right;
-		}
-
-		.param td p{
-			text-align: left;
-			color: lightgray;
-		}
-
-		.param select {
-			border: #8BC34A solid 1px;
-			border-radius: 3px;
-			color: lightgray;
-			background-color: #212121;
-			padding: 5px;
-			margin-right: 5px;
-			width: 100%;
-			cursor: pointer;
-			transition-duration: 500ms;
-		}
-		.param select:hover {
-			border: #61892f solid 1px;
-			background-color:  #2b2b2b;
-			box-shadow:0 5px 0px #222629;
-		}
-
-		.param option:hover,
-		.param option:checked {
-			background-color: #61892f;
-		}
-
-		.param input {
-			width: 100%;
-			padding: 5px;
-			border: #8BC34A solid 1px;
-			color: lightgray;
-			border-radius: 3px;
-			background-color: #212121;
-			transition-duration: 500ms;
-		}
-
-		.param input:hover {
-			border: #61892f solid 1px;
-			background-color:  #2b2b2b;
-			box-shadow:0 5px 0px #222629;
-		}
-		.param button {
-			width: 50%;
-			margin-left: 15px;
-			border-radius: 3px;
-			padding-top: 5px;
-			padding-bottom: 5px;
-			background-color: #8BC34A;
-			color: rgb(51, 51, 61);
-			font-size: 1.0rem;
-			font-weight: bold;
-			box-shadow:0 5px 0px #222629;
-			transition-duration: 500ms;
-		}
-
-		.param button:hover {
-			top: 2px;
-			box-shadow:0 3px 0px #222629;
-			background-color: #61892f;
-			color: #222629;
-		}
-
-
-
-		.save {}
-
-		.save h2{
-			padding: 10px 0 10px 5px;
-			font-weight: bold;
-			font-size: 1.1rem;
-		}
-
-		.save td {
-			width: 30%;
-			padding: 2px;
-		}
-
-		.save select {
-			border: #8BC34A solid 1px;
-			border-radius: 3px;
-			color: lightgray;
-			background-color: #212121;
-			padding: 5px;
-			margin-right: 5px;
-			width: 100%;
-			cursor: pointer;
-			transition-duration: 500ms;
-		}
-
-		.save select:hover {
-			border: #61892f solid 1px;
-			background-color:  #2b2b2b;
-			box-shadow:0 5px 0px #222629;
-		}
-
-		.save option:hover,
-		.save option:checked {
-			background-color: #61892f;
-		}
-
-		.save input {
-			width: 100%;
-			padding: 5px;
-			border: #8BC34A solid 1px;
-			color: lightgray;
-			border-radius: 3px;
-			background-color: #212121;
-			transition-duration: 500ms;
-		}
-
-		.save input:hover {
-			border: #61892f solid 1px;
-			background-color:  #2b2b2b;
-			box-shadow:0 5px 0px #222629;
-		}
-
-		.save button {
-			width: 100%;
-			border-radius: 3px;
-			padding-top: 5px;
-			padding-bottom: 5px;
-			background-color: #8BC34A;
-			color: rgb(51, 51, 61);
-			font-size: 1.0rem;
-			font-weight: bold;
-			box-shadow:0 5px 0px #222629;
-			transition-duration: 500ms;
-		}
-
-		.save button:hover {
-			top: 2px;
-			box-shadow:0 3px 0px #222629;
-			background-color: #61892f;
-			color: #222629;
-		}
-
-		.footer {
-			background-color: rgb(66, 66, 80);
-		}
-
-		.footer__row {
-			display: flex;
-			height: 40px;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.footer__text {
-			color: #fff;
-		}
-
-		/*tooltip всплывающие подстказки*/
-		[data-tooltip] {
-			position: relative;
-		}
-
-		[data-tooltip]::after {
-			content: attr(data-tooltip);
-			position: absolute;
-			width: 300px;
-			top: -8px;
-			left: 120%;
-			background: #61892f;
-			color: lightgray;
-			padding: 0.5em;
-			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-			pointer-events: none;
-			opacity: 0;
-			transition: 1s;
-			border-radius: 5px;
-			text-align: center;
-		}
-
-		[data-tooltip]:hover::after {
-			opacity: 1;
-			z-index: 2;
-		}
-
-			.tooltip {
-				visibility: hidden;
-			position: relative;
-			display: inline-block;
-			border-bottom: 1px dotted black;
-			}
-
-			.tooltip .tooltiptext {
-			visibility: hidden;
-			width: 300px;
-			background: #61892f;
-			color: lightgray;
-			text-align: left;
-			border-radius: 6px;
-			padding: 5px;
-			
-
-			/* Position the tooltip */
-			position: absolute;
-			z-index: 1;
-			}
-
-			.tooltip:hover .tooltiptext {
-			visibility: visible;
-			}
-
-
-		#scroll-to-top-btn {
-			display: none;
-			position: fixed;
-			bottom: 50%;
-			left: 3%;
-			z-index: 99;
-			font-size: 18px;
-			border: none;
-			outline: none;
-			background-color:#61892f;
-			color: rgb(51, 51, 61);
-			cursor: pointer;
-			padding: 15px;
-			border-radius: 4px;
-			font-weight: bold;
-			width: 50px;
-			box-shadow:0 5px 0px #222629;
-			transition-duration: 500ms;
-		}
-
-		#scroll-to-top-btn:hover {
-			color: #222629;
-			border: 1px solid #222629;
-			box-shadow:0 3px 0px #222629;
-			background-color: #61892f;
-			color: #222629;
-		}
-
-		#scroll-to-top-btn.show {
-			display: block;
-		}
-
-	</style>
-	<script>
-		let date = new Date();
-		let fileName;
-		// Создаем новый объект связанных списков
-		var syncList1 = new syncList;
-		var name = "МУ СУЖ";
-		let idPeriodicFunc;
-
-		const options = {
-			multiple: true,
-			suggestedName: 'SUZ' + ':' + date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear(),
-			types: [
-				{
-					description: 'Text',
-					accept: {
-						'text/plain': '.txt'
-					}
-				}
-			],
-			excludeAcceptAllOption: true
-		}
-
-		function toBinary(string) {
-			const codeUnits = new Uint16Array(string.length);
-			for (let i = 0; i < codeUnits.length; i++) {
-				codeUnits[i] = string.charCodeAt(i);
-			}
-			const charCodes = new Uint8Array(codeUnits.buffer);
-			let result = '';
-			for (let i = 0; i < charCodes.byteLength; i++) {
-				result += String.fromCharCode(charCodes[i]);
-			}
-			return result;
-		}
-
-		function fromBinary(binary) {
-			const bytes = new Uint8Array(binary.length);
-			for (let i = 0; i < bytes.length; i++) {
-				bytes[i] = binary.charCodeAt(i);
-			}
-			const charCodes = new Uint16Array(bytes.buffer);
-			let result = '';
-			for (let i = 0; i < charCodes.length; i++) {
-				result += String.fromCharCode(charCodes[i]);
-			}
-			return result;
-		}
-		 
-
-		function GetDataFromServerAndUpdateAllFields() {
-			xhr = new (XMLHttpRequest);
-			xhr.open("GET", "main_conf.shtml/parametres", true);
-			xhr.responseType = "json";
-			xhr.onload = function () {
-
-				if ((xhr.readyState === xhr.DONE) && (xhr.status === 200)) {
-					let jsonResponse = xhr.response;
-					if(jsonResponse.RSon < 7000){
-						document.getElementById('dataRSon').value = jsonResponse.RSon;
-					}else document.getElementById('dataRSon').value = jsonResponse.RSon + " Обрыв/превышение макс. сопротивления";
-
-					document.getElementById('dataRSoff').value = jsonResponse.RSoff;
-					document.getElementById('dataDispersion').value = jsonResponse.Dispersion.toFixed(3);
-					document.getElementById('dataRstat').value = jsonResponse.Rstat;
-					document.getElementById('dataField').value = jsonResponse.Field;
-					document.getElementById('dataIwork').value = jsonResponse.Iwork;
-					document.getElementById('dataFreq').value = jsonResponse.Freq;
-					document.getElementById('dataIcoil').value = jsonResponse.Icoil;
-					document.getElementById('dataTime').value = jsonResponse.Time;
-
-					document.getElementById('dataStatus').value = jsonResponse.Status;
-					document.getElementById('dataConnect').value = jsonResponse.Connect;
-
-					document.getElementById('dataSUJType').value = jsonResponse.SUJType > 0 ? 'Сторонние производители' : 'ТОМЗЭЛ';
-
-					if (jsonResponse.SUJType === 0) {
-						document.getElementById('tr_RSon').style.display = 'none';
-						document.getElementById('tr_Disp').style.display = 'none';
-						document.getElementById('tr_Rstat').style.display = '';
-					/*	document.getElementById('p-gercon').style.display = 'none';
-						document.getElementById('p-sborka').style.display = '';*/
-					}
-					else {
-						document.getElementById('tr_RSon').style.display = '';
-						document.getElementById('tr_Disp').style.display = '';
-						document.getElementById('tr_Rstat').style.display = 'none';
-						/*document.getElementById('p-gercon').style.display = '';
-						document.getElementById('p-sborka').style.display = 'none';*/
-					}
-
-					document.getElementById('dataVersion').value = jsonResponse.Version;
-
-					document.getElementById('soflow').selectedIndex = jsonResponse.Iwork < 50 ? 0 : jsonResponse.Iwork === 50 ? 1 : 2;
-					document.getElementById('soflow1').value = jsonResponse.SUJType;
-					document.getElementById('testInputId').value = jsonResponse.Freq;
-					document.getElementById('CurrKatushki').value = jsonResponse.Icoil;
-					document.getElementById('maxRs').value = jsonResponse.MaxRs;
-					document.getElementById('maxDispersion').value = jsonResponse.MaxDispertion;
-					document.getElementById('maxHs').value = jsonResponse.MaxHs;
-
-					// красим вывод при тестах
-					if (document.getElementById('dataDispersion').value > document.getElementById('maxDispersion').value) document.getElementById('dataDispersion').style.color = "red";
-					else document.getElementById('dataDispersion').style.color = "green";
-
-					if (document.getElementById('dataField').value > document.getElementById('maxHs').value) document.getElementById('dataField').style.color = "red";
-					else document.getElementById('dataField').style.color = "green";
-
-					if (document.getElementById('dataRSon').value > document.getElementById('maxRs').value) document.getElementById('dataRSon').style.color = "red";
-					else document.getElementById('dataDispersion').style.color = "green";
-
-					if (document.getElementById('dataRstat').value > 2500) document.getElementById('dataRstat').style.color = "red";
-					else document.getElementById('dataRstat').style.color = "green";
-
-					//console.log(jsonResponse.Time);
-					GetDataFromServerAndUpdateMainField();
-				}
-			}
-			xhr.send();
-		}
-
-		const Status = {
-			0: "Готов к работе",
-			1: "Поиск поплавка",
-			2: "Поиск герконового модуля",
-			3: "Определение сопротивления герконового модуля",
-			4: "Запущен однократно",
-			5: "Запущен циклически",
-			6: "Запущен постоянно",
-			7: "Поиск геркона",
-			8: "Определение сопротивления геркона",
-			9: "Определение магнитног поля поплавка"
-		}
-
-		function SetStatus(set){
-
-			return Status[set];
-		}
-
-		let oldStatus;
-		let flagStatus;
-
-	async function GetDataFromServerAndUpdateMainField() {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "main_conf.shtml/parametres", true);
-    xhr.responseType = "json";
-   
-    xhr.onload = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                var jsonResponse = xhr.response;
-
-				if (oldStatus === 1 && jsonResponse.Status === 0)
-					{
-						flagStatus = 1;
-						oldStatus = jsonResponse.Status;
-					}
-
-					if (oldStatus != jsonResponse.Status)
-					{
-						oldStatus = jsonResponse.Status;
-					}
-
-					if(jsonResponse.RSon < 7000){
-						document.getElementById('dataRSon').value = jsonResponse.RSon;
-					}else 	document.getElementById('dataRSon').value = jsonResponse.RSon + " Обрыв/превышение макс. сопротивления";
-
-					document.getElementById('dataRSoff').value = jsonResponse.RSoff;
-					document.getElementById('dataDispersion').value = jsonResponse.Dispersion.toFixed(3);
-					document.getElementById('dataRstat').value = jsonResponse.Rstat;
-					document.getElementById('dataField').value = jsonResponse.Field;
-					document.getElementById('dataIwork').value = jsonResponse.Iwork;
-					document.getElementById('dataFreq').value = jsonResponse.Freq;
-					document.getElementById('dataIcoil').value = jsonResponse.Icoil;
-					document.getElementById('dataTime').value = jsonResponse.Time;
-					document.getElementById('dataSUJType').value = jsonResponse.SUJType > 0 ? 'Сторонние производители' : 'ТОМЗЭЛ';
-					document.getElementById('dataVersion').value = jsonResponse.Version;
-
-					// красим вывод при тестах
-					if (document.getElementById('dataDispersion').value > document.getElementById('maxDispersion').value) document.getElementById('dataDispersion').style.color = "red";
-					else document.getElementById('dataDispersion').style.color = "green";
-
-					if (document.getElementById('dataField').value > document.getElementById('maxHs').value) document.getElementById('dataField').style.color = "red";
-					else document.getElementById('dataField').style.color = "green";
-
-					if (document.getElementById('dataRSon').value > document.getElementById('maxRs').value) document.getElementById('dataRSon').style.color = "red";
-					else document.getElementById('dataDispersion').style.color = "green";
-
-					if (document.getElementById('dataRstat').value > 2500) document.getElementById('dataRstat').style.color = "red";
-					else document.getElementById('dataRstat').style.color = "green";
-
-
-				if (flagStatus == 1){
-					document.getElementById('CurrKatushki').value = jsonResponse.Icoil;
-					flagStatus = 0;
-				}
-                document.getElementById('dataStatus').value = SetStatus(jsonResponse.Status);
-                document.getElementById('dataConnect').value = "Связь есть"; // Устанавливаем значение связи
-            } else {
-                document.getElementById('dataConnect').value = "Связи нет"; // Устанавливаем значение связи
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>МУ-01</title>
+        <style>
+            /*обнуленение стилей*/
+
+            * {
+                padding: 0;
+                margin: 0;
+                border: 0;
             }
-        }
-    };
-    xhr.onerror = function() {
-        document.getElementById('dataConnect').value = "Связи нет"; // Устанавливаем значение связи
-    };
-	
 
-    xhr.send();
+            *,
+            *:before,
+            *:after {
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
 
-    var idPeriodicFunc = setTimeout(GetDataFromServerAndUpdateMainField, 900);
-}
+            :focus,
+            :active {
+                outline: none;
+            }
 
+            a:focus,
+            a:active {
+                outline: none;
+            }
 
-		function createBlob(data) {
-			return new Blob([data], { type: "text/plain" });
-		}
+            nav,
+            footer,
+            header,
+            aside {
+                display: block;
+            }
 
-		async function buttonSave() {
+            html,
+            body {
+                height: 100%;
+                width: 100%;
+                font-style: 100%;
+                line-height: 1;
+                font-style: 16px;
+                -ms-text-size-adjust: 100%;
+                -moz-text-size-adjust: 100%;
+                -webkit-text-size-adjust: 100%;
+            }
 
-			const form = document.getElementById('write_border');
-			form.addEventListener('submit', function (event) {
-				const requiredFields = form.querySelectorAll('[required]');
-				let isValid = true;
-				for (let i = 0; i < requiredFields.length; i++) {
-					if (!requiredFields[i].value) {
-						isValid = false;
-						break;
-					}
-				}
-				if (!isValid) {
-					event.preventDefault();
-				}
-				else {
-					let objSelOst = document.getElementById("ListOst");
-					let objSelNps = document.getElementById("ListNps");
-					let objDataSuzType = document.getElementById("SUZType");
-					let objDataSuzNum = document.getElementById("SUZ_num");
-					let objSelGerkonNum = document.getElementById("ListGerkonNum");
-					let objSelTestNum = document.getElementById("ListTestNum");
-					let objDataSuzGod = document.getElementById("SUZ_god");
+            input,
+            button,
+            textarea {
+                font-family: inherit;
+            }
 
-					sessionStorage.setItem("ListOstText", objSelOst.selectedIndex);
-					sessionStorage.setItem("ListNpsText", objSelNps.selectedIndex);
-					sessionStorage.setItem("TextSuzType", objDataSuzType.value);
-					sessionStorage.setItem("TextSuzNum", objDataSuzNum.value);
-					sessionStorage.setItem("ListGerkonNumText", objSelGerkonNum.selectedIndex);
-					sessionStorage.setItem("ListTestNumText", objSelTestNum.selectedIndex);
-					sessionStorage.setItem("TextSuzGod", objDataSuzGod.value);
+            input::-ms-clear {
+                display: none;
+            }
 
-					const DataSuzNum = 'СУЖ № ' + objDataSuzNum.value;
-					const SelGerkonNum = ' Геркон №: ' + (objSelGerkonNum.selectedIndex + 1);
-					const SelTestNum = ' Тест №: ' + (objSelTestNum.selectedIndex + 1);
-					const DataSuzGod = ' Год изготовления: ' + objDataSuzGod.value;
-					const SelOst = ' ОСТ: ' + objSelOst.options[objSelOst.selectedIndex].text;
-					const SelNps = ' ОТП: ' + objSelNps.options[objSelNps.selectedIndex].text;
-					const DataSuzType = ' ТИП СУЖ: ' + objDataSuzType.value;
+            button {
+                cursor: pointer;
+            }
 
-					const dateNow = new Date();
-					const formattedDate = `${dateNow.getDate()}-${dateNow.getMonth() + 1}-${dateNow.getFullYear()}-${dateNow.getHours()}-${dateNow.getMinutes()}`;
-					const options = {
-						suggestedName: `${DataSuzNum}${SelGerkonNum}${SelTestNum} Дата: ${formattedDate}`,
-					};
-					const ReadyText = [
-						`Статическое сопротивление замкнутых контактов геркона, мОм: ${document.getElementById('dataRSon').value}`,
-						`Статическое сопротивление разомкнутых контактов геркона, мОм: ${document.getElementById('dataRSoff').value}`,
-						`Дисперсия сопротивление контактов геркона, мОм: ${document.getElementById('dataDispersion').value}`,
-						`Статическое сопротивление герконового модуля, Ом: ${document.getElementById('dataRstat').value}`,
-						`Магнитное поле, мкТл: ${document.getElementById('dataField').value}`,
-						`Ток опроса, мА: ${document.getElementById('dataIwork').value}`,
-						`Частота следования тестовых импульсов, Гц: ${document.getElementById('dataFreq').value}`,
-						`Ток катушки, мкА: ${document.getElementById('dataIcoil').value}`,
-						`Время переходного процесса, мкс: ${document.getElementById('dataTime').value}`,
-						`Тип СУЖ: ${document.getElementById('dataSUJType').value}`,
-						`Версия программного обеспечения: ${document.getElementById('dataVersion').value}`
-					].join('\n');
+            button::-moz-focus-inner {
+                padding: 0;
+                border: 0;
+            }
 
-					const innerText = `${formattedDate}\n${SelOst}\n${SelNps}\n${DataSuzType}\n${DataSuzGod}\n${DataSuzNum}\n${SelGerkonNum}\n${SelTestNum}\n Данные: \n${ReadyText}`;
+            a,
+            a:visited {
+                text-decoration: none;
+            }
 
-					//шифрование
-					const converted = toBinary(innerText);
-					const encrypted_text = btoa(converted);
-					//дешифрование
-					const decoded = atob(encrypted_text);
-					const decrypted_string = fromBinary(decoded);
-					const toBlob_string = innerText + '\n' + 'encrypted_text:\n' + encrypted_text;
-					const blob = new Blob([toBlob_string], { type: 'text/plain' });
-					const url = URL.createObjectURL(blob);
-					const a = document.createElement('a');
-					a.href = url;
-					a.download = options.suggestedName;
-					a.click();
-				}
-			});
-		}
+            a:hover {
+                text-decoration: none;
+            }
 
-		async function loadDataFromseSsionStorage() {
-			let objSelOst = document.getElementById("ListOst");
-			let objSelNps = document.getElementById("ListNps");
-			let objDataSuzType = document.getElementById("SUZType");
-			let objDataSuzNum = document.getElementById("SUZ_num");
-			let objSelGerkonNum = document.getElementById("ListGerkonNum");
-			let objSelTestNum = document.getElementById("ListTestNum");
-			let objDataSuzGod = document.getElementById("SUZ_god");
+            ul li {
+                list-style-type: none;
+            }
 
-			let textOst = sessionStorage.getItem("ListOstText");
-			let textNps = sessionStorage.getItem("ListNpsText");
-			let textSuzType = sessionStorage.getItem("TextSuzType");
-			let textSuzNum = sessionStorage.getItem("TextSuzNum");
-			let textGerkonNum = sessionStorage.getItem("ListGerkonNumText");
-			let textTestNum = sessionStorage.getItem("ListTestNumText");
-			let textTestGod = sessionStorage.getItem("TextSuzGod");
-			GetDataFromServerAndUpdateAllFields();
-			objSelOst.selectedIndex = textOst;
-			syncList1.sync("ListOst", "ListNps");
-			objSelNps.selectedIndex = textNps;
-			objSelGerkonNum.selectedIndex = textGerkonNum;
-			objSelTestNum.selectedIndex = textTestNum;
-			objDataSuzType.value = textSuzType;
-			objDataSuzNum.value = textSuzNum;
-			objDataSuzGod.value = textTestGod;
-			document.getElementById('testInputId').value = document.getElementById('dataFreq').value;
-			document.getElementById('CurrKatushki').value = document.getElementById('dataIcoil').value;
-		}
+            img {
+                vertical-align: top;
+            }
 
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-style: inherit;
+                font-weight: 400;
+            }
 
-		window.addEventListener('scroll', function () {
-			var scrollBtn = document.getElementById('scroll-to-top-btn');
-			if (window.pageYOffset > 30) {
-				scrollBtn.classList.add('show');
-			} else {
-				scrollBtn.classList.remove('show');
-			}
-		});
+            hr {
+                border: none;
+                background-color: #6b6e70;
+                height: 1px;
+                margin: 1;
+            }
 
-		function scrollToTop() {
-			window.scrollTo({ top: 0, behavior: 'smooth' });
-		}
+            .wrapper {
+                min-height: 100%;
+                overflow: hidden;
+                background-color: rgb(51, 51, 61);
+                display: flex;
+                flex-direction: column;
+                font-family: 'Franklin Gothic Book', 'Arial Narrow', Arial,
+                    sans-serif;
+                font-weight: normal;
+                font-size: 12px;
+                color: lightgray;
+            }
+            /*заготовка под адаптивную верстку*/
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
 
+            @media (max-width: 1200px) {
+                .container {
+                    max-width: 970px;
+                }
+            }
+            @media (max-width: 992px) {
+                .container {
+                    max-width: 750px;
+                }
+            }
+            @media (max-width: 767px) {
+                .container {
+                    max-width: none;
+                }
+            }
 
-		function openInfo() {
+            .content {
+                flex: 1 1 100%;
+                color: lightgray;
+            }
 
-			const a = document.getElementById('sidebar-right');
+            .header {
+                background-color: rgb(66, 66, 80);
+                padding: 10px 0;
+                height: 5%;
+            }
 
-			if (a.style.display == 'none') a.style.display = '';
-			else a.style.display = 'none';
-		}
+            .header__row {
+                display: flex;
+            }
 
-		function syncList() { }
+            .header__buttons {
+                flex: 1 1 33.333%;
+                /*height: 100%;*/
+            }
 
-		syncList.prototype.sync = function () {
-			for (var i = 0; i < arguments.length - 1; i++)	document.getElementById(arguments[i]).onchange = (function (o, id1, id2) { return function () { o._sync(id1, id2); }; })(this, arguments[i], arguments[i + 1]);
-			document.getElementById(arguments[0]).onchange();
-		}
+            .header__buttons form {
+                margin-left: 3px;
+                margin-right: 3px;
+            }
 
-		syncList.prototype._sync = function (firstSelectId, secondSelectId) {
-			var firstSelect = document.getElementById(firstSelectId);
-			var secondSelect = document.getElementById(secondSelectId);
+            .header__buttons button {
+                width: 100%;
+                border-radius: 3px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                background-color: #8bc34a;
+                color: rgb(51, 51, 61);
+                font-size: 1.1rem;
+                font-weight: bold;
+                box-shadow: 0 5px 0px #222629;
+                transition-duration: 500ms;
+            }
 
-			secondSelect.length = 0;
+            .header__buttons button:hover {
+                /*box-shadow: 0px 5px 10px 0px #222629;*/
+                top: 2px;
+                box-shadow: 0 3px 0px #222629;
+                background-color: #61892f;
+                color: #222629;
+            }
+            .header__buttons button.header__active {
+                background-color: #61892f;
+            }
+            .header__buttons button.header__active:hover {
+                /*box-shadow: 0px 5px 10px 0px #222629;*/
+                top: 2px;
+                box-shadow: 0 3px 0px #222629;
+                background-color: #3b531d;
+                color: #222629;
+            }
 
-			if (firstSelect.length > 0) {
-				var optionData = this.dataList[firstSelect.options[firstSelect.selectedIndex == -1 ? 0 : firstSelect.selectedIndex].value];
-				for (var key in optionData || null) secondSelect.options[secondSelect.length] = new Option(optionData[key], key);
+            .content__row {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
 
-				/*if (firstSelect.selectedIndex == -1) setTimeout( function(){ firstSelect.options[0].selected = true;}, 1 ); убрал автообновление
+            .data {
+                padding-left: 10px;
+            }
+
+            .data h2 {
+                padding: 10px 0 10px 5px;
+                font-weight: bold;
+                font-size: 1.1rem;
+            }
+
+            .data tr {
+                color: lightgray;
+                border-bottom: solid 2px rgb(66, 66, 80);
+            }
+
+            .data td {
+                padding: 5px 10px;
+                text-align: left;
+            }
+
+            .svg-container {
+                fill: #8bc34a;
+                float: right;
+                border: 0px;
+                background-color: rgb(51, 51, 61);
+            }
+
+            .svg-container:hover svg path {
+                fill: #61892f;
+            }
+
+            .control {
+            }
+
+            .control tbody {
+                color: lightgray;
+            }
+
+            .control h2 {
+                padding: 10px 0 10px 5px;
+                font-weight: bold;
+                font-size: 1.1rem;
+            }
+
+            .control__row {
+                display: flex;
+            }
+
+            .control__buttons {
+                flex: 1 1 30.333%;
+                /*height: 100%;*/
+            }
+
+            .control__buttons form {
+                margin: 3px;
+            }
+
+            .control__buttons button {
+                width: 100%;
+                border-radius: 3px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                background-color: #8bc34a;
+                color: rgb(51, 51, 61);
+                font-size: 1rem;
+                font-weight: bold;
+                box-shadow: 0 5px 0px #222629;
+                transition-duration: 500ms;
+            }
+
+            .control__buttons button:hover {
+                top: 2px;
+                box-shadow: 0 3px 0px #222629;
+                background-color: #61892f;
+                color: #222629;
+            }
+
+            #button__stop {
+                background-color: #d32f2f;
+            }
+
+            #button__stop:hover {
+                background-color: #8f2121;
+            }
+
+            .param {
+            }
+
+            .param tr {
+            }
+            .param h2 {
+                padding: 10px 0 10px 5px;
+                font-weight: bold;
+                font-size: 1.1rem;
+            }
+
+            .param td {
+                width: 30%;
+                padding: 5px;
+                text-align: right;
+            }
+
+            .param td p {
+                text-align: left;
+                color: lightgray;
+            }
+
+            .param select {
+                border: #8bc34a solid 1px;
+                border-radius: 3px;
+                color: lightgray;
+                background-color: #212121;
+                padding: 5px;
+                margin-right: 5px;
+                width: 100%;
+                cursor: pointer;
+                transition-duration: 500ms;
+            }
+            .param select:hover {
+                border: #61892f solid 1px;
+                background-color: #2b2b2b;
+                box-shadow: 0 5px 0px #222629;
+            }
+
+            .param option:hover,
+            .param option:checked {
+                background-color: #61892f;
+            }
+
+            .param input {
+                width: 100%;
+                padding: 5px;
+                border: #8bc34a solid 1px;
+                color: lightgray;
+                border-radius: 3px;
+                background-color: #212121;
+                transition-duration: 500ms;
+            }
+
+            .param input:hover {
+                border: #61892f solid 1px;
+                background-color: #2b2b2b;
+                box-shadow: 0 5px 0px #222629;
+            }
+            .param button {
+                width: 50%;
+                margin-left: 15px;
+                border-radius: 3px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                background-color: #8bc34a;
+                color: rgb(51, 51, 61);
+                font-size: 1rem;
+                font-weight: bold;
+                box-shadow: 0 5px 0px #222629;
+                transition-duration: 500ms;
+            }
+
+            .param button:hover {
+                top: 2px;
+                box-shadow: 0 3px 0px #222629;
+                background-color: #61892f;
+                color: #222629;
+            }
+
+            .save {
+            }
+
+            .save h2 {
+                padding: 10px 0 10px 5px;
+                font-weight: bold;
+                font-size: 1.1rem;
+            }
+
+            .save td {
+                width: 30%;
+                padding: 2px;
+            }
+
+            .save select {
+                border: #8bc34a solid 1px;
+                border-radius: 3px;
+                color: lightgray;
+                background-color: #212121;
+                padding: 5px;
+                margin-right: 5px;
+                width: 100%;
+                cursor: pointer;
+                transition-duration: 500ms;
+            }
+
+            .save select:hover {
+                border: #61892f solid 1px;
+                background-color: #2b2b2b;
+                box-shadow: 0 5px 0px #222629;
+            }
+
+            .save option:hover,
+            .save option:checked {
+                background-color: #61892f;
+            }
+
+            .save input {
+                width: 100%;
+                padding: 5px;
+                border: #8bc34a solid 1px;
+                color: lightgray;
+                border-radius: 3px;
+                background-color: #212121;
+                transition-duration: 500ms;
+            }
+
+            .save input:hover {
+                border: #61892f solid 1px;
+                background-color: #2b2b2b;
+                box-shadow: 0 5px 0px #222629;
+            }
+
+            .save button {
+                width: 100%;
+                border-radius: 3px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                background-color: #8bc34a;
+                color: rgb(51, 51, 61);
+                font-size: 1rem;
+                font-weight: bold;
+                box-shadow: 0 5px 0px #222629;
+                transition-duration: 500ms;
+            }
+
+            .save button:hover {
+                top: 2px;
+                box-shadow: 0 3px 0px #222629;
+                background-color: #61892f;
+                color: #222629;
+            }
+
+            .footer {
+                background-color: rgb(66, 66, 80);
+            }
+
+            .footer__row {
+                display: flex;
+                height: 40px;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .footer__text {
+                color: #fff;
+            }
+
+            /*tooltip всплывающие подстказки*/
+            [data-tooltip] {
+                position: relative;
+            }
+
+            [data-tooltip]::after {
+                content: attr(data-tooltip);
+                position: absolute;
+                width: 300px;
+                top: -8px;
+                left: 120%;
+                background: #61892f;
+                color: lightgray;
+                padding: 0.5em;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+                pointer-events: none;
+                opacity: 0;
+                transition: 1s;
+                border-radius: 5px;
+                text-align: center;
+            }
+
+            [data-tooltip]:hover::after {
+                opacity: 1;
+                z-index: 2;
+            }
+
+            .tooltip {
+                visibility: hidden;
+                position: relative;
+                display: inline-block;
+                border-bottom: 1px dotted black;
+            }
+
+            .tooltip .tooltiptext {
+                visibility: hidden;
+                width: 300px;
+                background: #61892f;
+                color: lightgray;
+                text-align: left;
+                border-radius: 6px;
+                padding: 5px;
+
+                /* Position the tooltip */
+                position: absolute;
+                z-index: 1;
+            }
+
+            .tooltip:hover .tooltiptext {
+                visibility: visible;
+            }
+
+            #scroll-to-top-btn {
+                display: none;
+                position: fixed;
+                bottom: 50%;
+                left: 3%;
+                z-index: 99;
+                font-size: 18px;
+                border: none;
+                outline: none;
+                background-color: #61892f;
+                color: rgb(51, 51, 61);
+                cursor: pointer;
+                padding: 15px;
+                border-radius: 4px;
+                font-weight: bold;
+                width: 50px;
+                box-shadow: 0 5px 0px #222629;
+                transition-duration: 500ms;
+            }
+
+            #scroll-to-top-btn:hover {
+                color: #222629;
+                border: 1px solid #222629;
+                box-shadow: 0 3px 0px #222629;
+                background-color: #61892f;
+                color: #222629;
+            }
+
+            #scroll-to-top-btn.show {
+                display: block;
+            }
+        </style>
+        <script>
+            let date = new Date();
+            let fileName;
+            // Создаем новый объект связанных списков
+            var syncList1 = new syncList();
+            var name = 'МУ СУЖ';
+            let idPeriodicFunc;
+
+            const options = {
+                multiple: true,
+                suggestedName:
+                    'SUZ' +
+                    ':' +
+                    date.getDate() +
+                    '-' +
+                    date.getMonth() +
+                    '-' +
+                    date.getFullYear(),
+                types: [
+                    {
+                        description: 'Text',
+                        accept: {
+                            'text/plain': '.txt',
+                        },
+                    },
+                ],
+                excludeAcceptAllOption: true,
+            };
+
+            function toBinary(string) {
+                const codeUnits = new Uint16Array(string.length);
+                for (let i = 0; i < codeUnits.length; i++) {
+                    codeUnits[i] = string.charCodeAt(i);
+                }
+                const charCodes = new Uint8Array(codeUnits.buffer);
+                let result = '';
+                for (let i = 0; i < charCodes.byteLength; i++) {
+                    result += String.fromCharCode(charCodes[i]);
+                }
+                return result;
+            }
+
+            function fromBinary(binary) {
+                const bytes = new Uint8Array(binary.length);
+                for (let i = 0; i < bytes.length; i++) {
+                    bytes[i] = binary.charCodeAt(i);
+                }
+                const charCodes = new Uint16Array(bytes.buffer);
+                let result = '';
+                for (let i = 0; i < charCodes.length; i++) {
+                    result += String.fromCharCode(charCodes[i]);
+                }
+                return result;
+            }
+
+            function GetDataFromServerAndUpdateAllFields() {
+                xhr = new XMLHttpRequest();
+                xhr.open('GET', 'main_conf.shtml/parametres', true);
+                xhr.responseType = 'json';
+                xhr.onload = function () {
+                    if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+                        let jsonResponse = xhr.response;
+                        if (jsonResponse.RSon < 7000) {
+                            document.getElementById('dataRSon').value =
+                                jsonResponse.RSon;
+                        } else
+                            document.getElementById('dataRSon').value =
+                                jsonResponse.RSon +
+                                ' Обрыв/превышение макс. сопротивления';
+
+                        document.getElementById('dataRSoff').value =
+                            jsonResponse.RSoff;
+                        document.getElementById('dataDispersion').value =
+                            jsonResponse.Dispersion.toFixed(3);
+                        document.getElementById('dataRstat').value =
+                            jsonResponse.Rstat;
+                        document.getElementById('dataField').value =
+                            jsonResponse.Field;
+                        document.getElementById('dataIwork').value =
+                            jsonResponse.Iwork;
+                        document.getElementById('dataFreq').value =
+                            jsonResponse.Freq;
+                        document.getElementById('dataIcoil').value =
+                            jsonResponse.Icoil;
+                        document.getElementById('dataTime').value =
+                            jsonResponse.Time;
+
+                        document.getElementById('dataStatus').value =
+                            jsonResponse.Status;
+                        document.getElementById('dataConnect').value =
+                            jsonResponse.Connect;
+
+                        document.getElementById('dataSUJType').value =
+                            jsonResponse.SUJType > 0
+                                ? 'Сторонние производители'
+                                : 'ТОМЗЭЛ';
+
+                        if (jsonResponse.SUJType === 0) {
+                            document.getElementById('tr_RSon').style.display =
+                                'none';
+                            document.getElementById('tr_Disp').style.display =
+                                'none';
+                            document.getElementById('tr_Rstat').style.display =
+                                '';
+                            /*	document.getElementById('p-gercon').style.display = 'none';
+						document.getElementById('p-sborka').style.display = '';*/
+                        } else {
+                            document.getElementById('tr_RSon').style.display =
+                                '';
+                            document.getElementById('tr_Disp').style.display =
+                                '';
+                            document.getElementById('tr_Rstat').style.display =
+                                'none';
+                            /*document.getElementById('p-gercon').style.display = '';
+						document.getElementById('p-sborka').style.display = 'none';*/
+                        }
+
+                        document.getElementById('dataVersion').value =
+                            jsonResponse.Version;
+
+                        document.getElementById('soflow').selectedIndex =
+                            jsonResponse.Iwork < 50
+                                ? 0
+                                : jsonResponse.Iwork === 50
+                                ? 1
+                                : 2;
+                        document.getElementById('soflow1').value =
+                            jsonResponse.SUJType;
+                        document.getElementById('testInputId').value =
+                            jsonResponse.Freq;
+                        document.getElementById('CurrKatushki').value =
+                            jsonResponse.Icoil;
+                        document.getElementById('maxRs').value =
+                            jsonResponse.MaxRs;
+                        document.getElementById('maxDispersion').value =
+                            jsonResponse.MaxDispertion;
+                        document.getElementById('maxHs').value =
+                            jsonResponse.MaxHs;
+
+                        // красим вывод при тестах
+                        if (
+                            document.getElementById('dataDispersion').value >
+                            document.getElementById('maxDispersion').value
+                        )
+                            document.getElementById(
+                                'dataDispersion',
+                            ).style.color = 'red';
+                        else
+                            document.getElementById(
+                                'dataDispersion',
+                            ).style.color = 'green';
+
+                        if (
+                            document.getElementById('dataField').value >
+                            document.getElementById('maxHs').value
+                        )
+                            document.getElementById('dataField').style.color =
+                                'red';
+                        else
+                            document.getElementById('dataField').style.color =
+                                'green';
+
+                        if (
+                            document.getElementById('dataRSon').value >
+                            document.getElementById('maxRs').value
+                        )
+                            document.getElementById('dataRSon').style.color =
+                                'red';
+                        else
+                            document.getElementById(
+                                'dataDispersion',
+                            ).style.color = 'green';
+
+                        if (document.getElementById('dataRstat').value > 2500)
+                            document.getElementById('dataRstat').style.color =
+                                'red';
+                        else
+                            document.getElementById('dataRstat').style.color =
+                                'green';
+
+                        //console.log(jsonResponse.Time);
+                        GetDataFromServerAndUpdateMainField();
+                    }
+                };
+                xhr.send();
+            }
+
+            const Status = {
+                0: 'Готов к работе',
+                1: 'Поиск поплавка',
+                2: 'Поиск герконового модуля',
+                3: 'Определение сопротивления герконового модуля',
+                4: 'Запущен однократно',
+                5: 'Запущен циклически',
+                6: 'Запущен постоянно',
+                7: 'Поиск геркона',
+                8: 'Определение сопротивления геркона',
+                9: 'Определение магнитног поля поплавка',
+            };
+
+            function SetStatus(set) {
+                return Status[set];
+            }
+
+            let oldStatus;
+            let flagStatus;
+
+            async function GetDataFromServerAndUpdateMainField() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', 'main_conf.shtml/parametres', true);
+                xhr.responseType = 'json';
+
+                xhr.onload = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            var jsonResponse = xhr.response;
+
+                            if (oldStatus === 1 && jsonResponse.Status === 0) {
+                                flagStatus = 1;
+                                oldStatus = jsonResponse.Status;
+                            }
+
+                            if (oldStatus != jsonResponse.Status) {
+                                oldStatus = jsonResponse.Status;
+                            }
+
+                            if (jsonResponse.RSon < 7000) {
+                                document.getElementById('dataRSon').value =
+                                    jsonResponse.RSon;
+                            } else
+                                document.getElementById('dataRSon').value =
+                                    jsonResponse.RSon +
+                                    ' Обрыв/превышение макс. сопротивления';
+
+                            document.getElementById('dataRSoff').value =
+                                jsonResponse.RSoff;
+                            document.getElementById('dataDispersion').value =
+                                jsonResponse.Dispersion.toFixed(3);
+                            document.getElementById('dataRstat').value =
+                                jsonResponse.Rstat;
+                            document.getElementById('dataField').value =
+                                jsonResponse.Field;
+                            document.getElementById('dataIwork').value =
+                                jsonResponse.Iwork;
+                            document.getElementById('dataFreq').value =
+                                jsonResponse.Freq;
+                            document.getElementById('dataIcoil').value =
+                                jsonResponse.Icoil;
+                            document.getElementById('dataTime').value =
+                                jsonResponse.Time;
+                            document.getElementById('dataSUJType').value =
+                                jsonResponse.SUJType > 0
+                                    ? 'Сторонние производители'
+                                    : 'ТОМЗЭЛ';
+                            document.getElementById('dataVersion').value =
+                                jsonResponse.Version;
+
+                            // красим вывод при тестах
+                            if (
+                                document.getElementById('dataDispersion')
+                                    .value >
+                                document.getElementById('maxDispersion').value
+                            )
+                                document.getElementById(
+                                    'dataDispersion',
+                                ).style.color = 'red';
+                            else
+                                document.getElementById(
+                                    'dataDispersion',
+                                ).style.color = 'green';
+
+                            if (
+                                document.getElementById('dataField').value >
+                                document.getElementById('maxHs').value
+                            )
+                                document.getElementById(
+                                    'dataField',
+                                ).style.color = 'red';
+                            else
+                                document.getElementById(
+                                    'dataField',
+                                ).style.color = 'green';
+
+                            if (
+                                document.getElementById('dataRSon').value >
+                                document.getElementById('maxRs').value
+                            )
+                                document.getElementById(
+                                    'dataRSon',
+                                ).style.color = 'red';
+                            else
+                                document.getElementById(
+                                    'dataDispersion',
+                                ).style.color = 'green';
+
+                            if (
+                                document.getElementById('dataRstat').value >
+                                2500
+                            )
+                                document.getElementById(
+                                    'dataRstat',
+                                ).style.color = 'red';
+                            else
+                                document.getElementById(
+                                    'dataRstat',
+                                ).style.color = 'green';
+
+                            if (flagStatus == 1) {
+                                document.getElementById('CurrKatushki').value =
+                                    jsonResponse.Icoil;
+                                flagStatus = 0;
+                            }
+                            document.getElementById('dataStatus').value =
+                                SetStatus(jsonResponse.Status);
+                            document.getElementById('dataConnect').value =
+                                'Связь есть'; // Устанавливаем значение связи
+                        } else {
+                            document.getElementById('dataConnect').value =
+                                'Связи нет'; // Устанавливаем значение связи
+                        }
+                    }
+                };
+                xhr.onerror = function () {
+                    document.getElementById('dataConnect').value = 'Связи нет'; // Устанавливаем значение связи
+                };
+
+                xhr.send();
+
+                var idPeriodicFunc = setTimeout(
+                    GetDataFromServerAndUpdateMainField,
+                    900,
+                );
+            }
+
+            function createBlob(data) {
+                return new Blob([data], { type: 'text/plain' });
+            }
+
+            async function buttonSave() {
+                const form = document.getElementById('write_border');
+                form.addEventListener('submit', function (event) {
+                    const requiredFields = form.querySelectorAll('[required]');
+                    let isValid = true;
+                    for (let i = 0; i < requiredFields.length; i++) {
+                        if (!requiredFields[i].value) {
+                            isValid = false;
+                            break;
+                        }
+                    }
+                    if (!isValid) {
+                        event.preventDefault();
+                    } else {
+                        let objSelOst = document.getElementById('ListOst');
+                        let objSelNps = document.getElementById('ListNps');
+                        let objDataSuzType = document.getElementById('SUZType');
+                        let objDataSuzNum = document.getElementById('SUZ_num');
+                        let objSelGerkonNum =
+                            document.getElementById('ListGerkonNum');
+                        let objSelTestNum =
+                            document.getElementById('ListTestNum');
+                        let objDataSuzGod = document.getElementById('SUZ_god');
+
+                        sessionStorage.setItem(
+                            'ListOstText',
+                            objSelOst.selectedIndex,
+                        );
+                        sessionStorage.setItem(
+                            'ListNpsText',
+                            objSelNps.selectedIndex,
+                        );
+                        sessionStorage.setItem(
+                            'TextSuzType',
+                            objDataSuzType.value,
+                        );
+                        sessionStorage.setItem(
+                            'TextSuzNum',
+                            objDataSuzNum.value,
+                        );
+                        sessionStorage.setItem(
+                            'ListGerkonNumText',
+                            objSelGerkonNum.selectedIndex,
+                        );
+                        sessionStorage.setItem(
+                            'ListTestNumText',
+                            objSelTestNum.selectedIndex,
+                        );
+                        sessionStorage.setItem(
+                            'TextSuzGod',
+                            objDataSuzGod.value,
+                        );
+
+                        const DataSuzNum = 'СУЖ № ' + objDataSuzNum.value;
+                        const SelGerkonNum =
+                            ' Геркон №: ' + (objSelGerkonNum.selectedIndex + 1);
+                        const SelTestNum =
+                            ' Тест №: ' + (objSelTestNum.selectedIndex + 1);
+                        const DataSuzGod =
+                            ' Год изготовления: ' + objDataSuzGod.value;
+                        const SelOst =
+                            ' ОСТ: ' +
+                            objSelOst.options[objSelOst.selectedIndex].text;
+                        const SelNps =
+                            ' ОТП: ' +
+                            objSelNps.options[objSelNps.selectedIndex].text;
+                        const DataSuzType = ' ТИП СУЖ: ' + objDataSuzType.value;
+
+                        const dateNow = new Date();
+                        const formattedDate = `${dateNow.getDate()}-${
+                            dateNow.getMonth() + 1
+                        }-${dateNow.getFullYear()}-${dateNow.getHours()}-${dateNow.getMinutes()}`;
+                        const options = {
+                            suggestedName: `${DataSuzNum}${SelGerkonNum}${SelTestNum} Дата: ${formattedDate}`,
+                        };
+                        const ReadyText = [
+                            `Статическое сопротивление замкнутых контактов геркона, мОм: ${
+                                document.getElementById('dataRSon').value
+                            }`,
+                            `Статическое сопротивление разомкнутых контактов геркона, мОм: ${
+                                document.getElementById('dataRSoff').value
+                            }`,
+                            `Дисперсия сопротивление контактов геркона, мОм: ${
+                                document.getElementById('dataDispersion').value
+                            }`,
+                            `Статическое сопротивление герконового модуля, Ом: ${
+                                document.getElementById('dataRstat').value
+                            }`,
+                            `Магнитное поле, мкТл: ${
+                                document.getElementById('dataField').value
+                            }`,
+                            `Ток опроса, мА: ${
+                                document.getElementById('dataIwork').value
+                            }`,
+                            `Частота следования тестовых импульсов, Гц: ${
+                                document.getElementById('dataFreq').value
+                            }`,
+                            `Ток катушки, мкА: ${
+                                document.getElementById('dataIcoil').value
+                            }`,
+                            `Время переходного процесса, мкс: ${
+                                document.getElementById('dataTime').value
+                            }`,
+                            `Тип СУЖ: ${
+                                document.getElementById('dataSUJType').value
+                            }`,
+                            `Версия программного обеспечения: ${
+                                document.getElementById('dataVersion').value
+                            }`,
+                        ].join('\n');
+
+                        const innerText = `${formattedDate}\n${SelOst}\n${SelNps}\n${DataSuzType}\n${DataSuzGod}\n${DataSuzNum}\n${SelGerkonNum}\n${SelTestNum}\n Данные: \n${ReadyText}`;
+
+                        //шифрование
+                        const converted = toBinary(innerText);
+                        const encrypted_text = btoa(converted);
+                        //дешифрование
+                        const decoded = atob(encrypted_text);
+                        const decrypted_string = fromBinary(decoded);
+                        const toBlob_string =
+                            innerText +
+                            '\n' +
+                            'encrypted_text:\n' +
+                            encrypted_text;
+                        const blob = new Blob([toBlob_string], {
+                            type: 'text/plain',
+                        });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = options.suggestedName;
+                        a.click();
+                    }
+                });
+            }
+
+            async function loadDataFromseSsionStorage() {
+                let objSelOst = document.getElementById('ListOst');
+                let objSelNps = document.getElementById('ListNps');
+                let objDataSuzType = document.getElementById('SUZType');
+                let objDataSuzNum = document.getElementById('SUZ_num');
+                let objSelGerkonNum = document.getElementById('ListGerkonNum');
+                let objSelTestNum = document.getElementById('ListTestNum');
+                let objDataSuzGod = document.getElementById('SUZ_god');
+
+                let textOst = sessionStorage.getItem('ListOstText');
+                let textNps = sessionStorage.getItem('ListNpsText');
+                let textSuzType = sessionStorage.getItem('TextSuzType');
+                let textSuzNum = sessionStorage.getItem('TextSuzNum');
+                let textGerkonNum = sessionStorage.getItem('ListGerkonNumText');
+                let textTestNum = sessionStorage.getItem('ListTestNumText');
+                let textTestGod = sessionStorage.getItem('TextSuzGod');
+                GetDataFromServerAndUpdateAllFields();
+                objSelOst.selectedIndex = textOst;
+                syncList1.sync('ListOst', 'ListNps');
+                objSelNps.selectedIndex = textNps;
+                objSelGerkonNum.selectedIndex = textGerkonNum;
+                objSelTestNum.selectedIndex = textTestNum;
+                objDataSuzType.value = textSuzType;
+                objDataSuzNum.value = textSuzNum;
+                objDataSuzGod.value = textTestGod;
+                document.getElementById('testInputId').value =
+                    document.getElementById('dataFreq').value;
+                document.getElementById('CurrKatushki').value =
+                    document.getElementById('dataIcoil').value;
+            }
+
+            window.addEventListener('scroll', function () {
+                var scrollBtn = document.getElementById('scroll-to-top-btn');
+                if (window.pageYOffset > 30) {
+                    scrollBtn.classList.add('show');
+                } else {
+                    scrollBtn.classList.remove('show');
+                }
+            });
+
+            function scrollToTop() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function openInfo() {
+                const a = document.getElementById('sidebar-right');
+
+                if (a.style.display == 'none') a.style.display = '';
+                else a.style.display = 'none';
+            }
+
+            function syncList() {}
+
+            syncList.prototype.sync = function () {
+                for (var i = 0; i < arguments.length - 1; i++)
+                    document.getElementById(arguments[i]).onchange = (function (
+                        o,
+                        id1,
+                        id2,
+                    ) {
+                        return function () {
+                            o._sync(id1, id2);
+                        };
+                    })(this, arguments[i], arguments[i + 1]);
+                document.getElementById(arguments[0]).onchange();
+            };
+
+            syncList.prototype._sync = function (
+                firstSelectId,
+                secondSelectId,
+            ) {
+                var firstSelect = document.getElementById(firstSelectId);
+                var secondSelect = document.getElementById(secondSelectId);
+
+                secondSelect.length = 0;
+
+                if (firstSelect.length > 0) {
+                    var optionData =
+                        this.dataList[
+                            firstSelect.options[
+                                firstSelect.selectedIndex == -1
+                                    ? 0
+                                    : firstSelect.selectedIndex
+                            ].value
+                        ];
+                    for (var key in optionData || null)
+                        secondSelect.options[secondSelect.length] = new Option(
+                            optionData[key],
+                            key,
+                        );
+
+                    /*if (firstSelect.selectedIndex == -1) setTimeout( function(){ firstSelect.options[0].selected = true;}, 1 ); убрал автообновление
 				if (secondSelect.length>0) setTimeout( function(){ secondSelect.options[0].selected = true;}, 1 );*/
-			}
-			secondSelect.onchange && secondSelect.onchange();
-		};
+                }
+                secondSelect.onchange && secondSelect.onchange();
+            };
 
-		syncList1.dataList = {
-			'OST_1': { //Транснефтепродукт
-				'NPS1': 'ЛПДС "Дисна"',
-				'NPS2': 'НП "Гомель-3"',
-				'NPS3': 'ПС "Сенно"',
-				'NPS4': 'МПС'
-			},
-			'OST_2': { //Приморск
-				'NPS1': 'Нефтебаза1',
-				'NPS2': 'Нефтебаза2'
-			},
-			'OST_3': {//Козьмино
-				'NPS1': 'БиПС Козьмино',
-				'NPS2': 'ППН Козьмино',
-				'NPS3': 'РЭЦ Козьмино',
-				'NPS4': 'НБ Козьмино'
-			},
-			'OST_4': {//Дальний Восток
-				'NPS1': 'АУ РНУ "Белогорск"',
-				'NPS2': 'АУ РНУ "Дальнереченск"',
-				'NPS3': 'БПО "Белогорск"',
-				'NPS4': 'ЛЭУ "Биробиджан"',
-				'NPS5': 'ЛЭУ "Сковородино"',
-				'NPS6': 'НПС №23',
-				'NPS7': 'НПС №24',
-				'NPS8': 'НПС №26',
-				'NPS9': 'НПС №27',
-				'NPS10': 'НПС №29',
-				'NPS11': 'НПС №30',
-				'NPS12': 'НПС №32',
-				'NPS13': 'НПС №34',
-				'NPS14': 'НПС №36',
-				'NPS15': 'НПС №38',
-				'NPS16': 'НПС №40',
-				'NPS17': 'НПС №41',
-				'NPS18': 'НПС-1 "Комсомольская"',
-				'NPS19': 'НПС-2 "Сельгон"',
-				'NPS20': 'НПС-3 "Амурская"',
-				'NPS21': 'ЦТТиСТ "Дальнереченск"'
-			},
-			'OST_5': {//Восток
-				'NPS1': 'Ангарский ЛЭУ',
-				'NPS2': 'Ангарский УНН',
-				'NPS3': 'АУ Ленского РНУ',
-				'NPS4': 'БПО "Ангарск"',
-				'NPS5': 'БПО "Братск"',
-				'NPS6': 'БПО "Нерюнгри"',
-				'NPS7': 'ГНПС-1 "Куюмба"',
-				'NPS8': 'ГНПС-1 "Тайшет"',
-				'NPS9': 'НПС "Замзор"',
-				'NPS10': 'НПС "Кимильтей" ',
-				'NPS11': 'НПС "Нижнеудинская"',
-				'NPS12': 'НПС "Тайшетская"',
-				'NPS13': 'НПС "Тулун"',
-				'NPS14': 'НПС-10 "Талакан"',
-				'NPS15': 'НПС-11 "Оргул"',
-				'NPS16': 'НПС-12 "Ленск"',
-				'NPS17': 'НПС-13 "Чапаево"',
-				'NPS18': 'НПС-14 "Олекминск"',
-				'NPS19': 'НПС-15 "Туолбочан"',
-				'NPS20': 'НПС-16 "Куранах"',
-				'NPS21': 'НПС-17 "Алдан"',
-				'NPS22': 'НПС-18 "Нимныр"',
-				'NPS23': 'НПС-19 "Нерюнгри"',
-				'NPS24': 'НПС-2 "Чуна"',
-				'NPS25': 'НПС-2 "Юрубчен"',
-				'NPS26': 'НПС-20 "Тында"',
-				'NPS27': 'НПС-21 "Сковородино"',
-				'NPS28': 'НПС-3 "Вихоревка"',
-				'NPS29': 'НПС-4 "Речушка"',
-				'NPS30': 'НПС-4 ИРНУ',
-				'NPS31': 'НПС-5 "Железногорск"',
-				'NPS32': 'НПС-6 "Янталь"',
-				'NPS33': 'НПС-7 "Марково"',
-				'NPS34': 'НПС-8 "Киренск"',
-				'NPS35': 'НПС-9 "Ичера" ',
-				'NPS36': 'ПСП "Джалинда"',
-				'NPS37': 'ЦРС "Ангарский"',
-				'NPS38': 'ЦРС "Олекминск"'
-			},
-			'OST_6': { // Балтика
-				'NPS1': 'АУП Ярославского РНУ',
-				'NPS2': 'БПТОиКО ООО "Транснефть - Балтика"',
-				'NPS3': 'ГПС Кириши',
-				'NPS4': 'ГПС Ярославль',
-				'NPS5': 'ЛПДС Быково',
-				'NPS6': 'ЛПДС Кириши',
-				'NPS7': 'ЛПДС Красный Бор',
-				'NPS8': 'ЛПДС Невская',
-				'NPS9': 'ЛПДС Песь',
-				'NPS10': 'ЛПДС Правдино',
-				'NPS11': 'ЛПДС Торжок',
-				'NPS12': 'ЛПДС Ярославль',
-				'NPS13': 'Нефтебаза "Усть - Луга"',
-				'NPS14': 'НПС Андреаполь',
-				'NPS15': 'НПС Борисово',
-				'NPS16': 'НПС Великие Луки',
-				'NPS17': 'НПС Инякино',
-				'NPS18': 'НПС Невель',
-				'NPS19': 'НПС Палкино',
-				'NPS20': 'НПС Сестрорецкая',
-				'NPS21': 'НПС Тучево',
-				'NPS22': 'НПС Ярославль-3',
-				'NPS23': 'НПС-3',
-				'NPS24': 'НПС-7',
-				'NPS25': 'ППС Невская',
-				'NPS26': 'ПСП ГПС Ярославль',
-				'NPS27': 'ПСП Кириши',
-				'NPS28': 'ПСП Невель',
-				'NPS29': 'ПСП Пулково',
-				'NPS30': 'ПСП Ярославль',
-				'NPS31': 'ПСП Ярославль-3',
-				'NPS32': 'ТО МН ООО "Транснефть - Балтика"',
-				'NPS33': 'ЦРС Новгородского РНУ'
-			},
-			'OST_7': { // Нафта
-				'NPS1': 'ООО "Тихорецк-Нафта"'
-			},
-			'OST_8': { //Черномортранснефть
-				'NPS1': 'БПО АО "Черномортранснефть"',
-				'NPS2': 'БПО Афипская"',
-				'NPS3': 'ЛПДС Крымская',
-				'NPS4': 'ЛПДС Пшехская',
-				'NPS5': 'ЛПДС Сулак',
-				'NPS6': 'ЛПДС Тихорецкая',
-				'NPS6': 'ЛПДС Хадыженская',
-				'NPS6': 'НПС Заречье',
-				'NPS6': 'НПС Карская',
-				'NPS6': 'НПС Кущевская',
-				'NPS6': 'НПС Махачкала',
-				'NPS6': 'НПС Нововеличковская',
-				'NPS6': 'НПС Подкумок',
-				'NPS6': 'НПС Псекупская',
-				'NPS6': 'НПС Родионовская',
-				'NPS6': 'НПС Самур',
-				'NPS6': 'НПС Тарасовская',
-				'NPS6': 'ПК "Шесхарис"',
-				'NPS6': 'ПП Грушовая',
-				'NPS6': 'ПП Шесхарис',
-				'NPS6': 'ПСП Краснодарский',
-				'NPS6': 'ПСП МНПП Волгоград-Тихорецк',
-				'NPS6': 'ТО МН "81 км МН Хадыженск-Краснодар - Афипский НПЗ" АО ЧТН"',
-				'NPS6': 'ТО МН "Тихорецк-Новороссийск-2" АО "ЧТН"',
-				'NPS6': 'ТО МН "Тихорецк-Туапсе" АО "ЧТН"',
-				'NPS6': 'ТО МН "Хадыженск - Краснодар" АО "ЧТН"',
-				'NPS6': 'ТУ "Подкумок - Тихорецк" МН МТ АО "ЧТН"'
-			},
-			'OST_9': { //Урал
-				'NPS1': 'АУП Курганское НУ',
-				'NPS2': 'АУП Челябинское НУ',
-				'NPS3': 'АУП Черкасское НУ',
-				'NPS4': 'БПО Туймазинского НУ',
-				'NPS5': 'ЛПДС Бердяуш',
-				'NPS6': 'ЛПДС Георгиевка-ПП',
-				'NPS7': 'ЛПДС Еткуль',
-				'NPS8': 'ЛПДС Калтасы',
-				'NPS9': 'ЛПДС Кропачево',
-				'NPS10': 'ЛПДС Ленинск',
-				'NPS11': 'ЛПДС Медведское',
-				'NPS12': 'ЛПДС Нурлино',
-				'NPS13': 'ЛПДС Петропавловск',
-				'NPS14': 'ЛПДС Салават',
-				'NPS15': 'ЛПДС Субханкулово',
-				'NPS16': 'ЛПДС Суслово',
-				'NPS17': 'ЛПДС Травники',
-				'NPS18': 'ЛПДС Тюрино-ПП',
-				'NPS19': 'ЛПДС Улу-Теляк',
-				'NPS20': 'ЛПДС Хохлы',
-				'NPS21': 'ЛПДС Чекмагуш',
-				'NPS22': 'ЛПДС Челябинск',
-				'NPS23': 'ЛПДС Черкассы',
-				'NPS24': 'ЛПДС Черкассы-2',
-				'NPS25': 'ЛПДС Юргамыш',
-				'NPS26': 'ЛПДС Языково',
-				'NPS27': 'ЛЭПСУ Орск',
-				'NPS28': 'НПС Андреевка-ПП',
-				'NPS29': 'НПС Варгаши',
-				'NPS30': 'НПС Канаши',
-				'NPS31': 'НПС Мишкино',
-				'NPS32': 'НПС Мраково',
-				'NPS33': 'НПС Субханкулово-ПП',
-				'NPS34': 'НПС Черкассы-ПП',
-				'NPS35': 'НПС Чернушка',
-				'NPS36': 'НПС Шкапово',
-				'NPS37': 'ПСП Уфа',
-				'NPS38': 'ЦТТиСТ Курганского НУ',
-				'NPS39': 'Челябинское НУ'
-			},
-			'OST_10': { // Терминал
-				'NPS1': 'Транснефть - Терминал'
+            syncList1.dataList = {
+                OST_1: {
+                    //Транснефтепродукт
+                    NPS1: 'ЛПДС "Дисна"',
+                    NPS2: 'НП "Гомель-3"',
+                    NPS3: 'ПС "Сенно"',
+                    NPS4: 'МПС',
+                },
+                OST_2: {
+                    //Приморск
+                    NPS1: 'Нефтебаза1',
+                    NPS2: 'Нефтебаза2',
+                },
+                OST_3: {
+                    //Козьмино
+                    NPS1: 'БиПС Козьмино',
+                    NPS2: 'ППН Козьмино',
+                    NPS3: 'РЭЦ Козьмино',
+                    NPS4: 'НБ Козьмино',
+                },
+                OST_4: {
+                    //Дальний Восток
+                    NPS1: 'АУ РНУ "Белогорск"',
+                    NPS2: 'АУ РНУ "Дальнереченск"',
+                    NPS3: 'БПО "Белогорск"',
+                    NPS4: 'ЛЭУ "Биробиджан"',
+                    NPS5: 'ЛЭУ "Сковородино"',
+                    NPS6: 'НПС №23',
+                    NPS7: 'НПС №24',
+                    NPS8: 'НПС №26',
+                    NPS9: 'НПС №27',
+                    NPS10: 'НПС №29',
+                    NPS11: 'НПС №30',
+                    NPS12: 'НПС №32',
+                    NPS13: 'НПС №34',
+                    NPS14: 'НПС №36',
+                    NPS15: 'НПС №38',
+                    NPS16: 'НПС №40',
+                    NPS17: 'НПС №41',
+                    NPS18: 'НПС-1 "Комсомольская"',
+                    NPS19: 'НПС-2 "Сельгон"',
+                    NPS20: 'НПС-3 "Амурская"',
+                    NPS21: 'ЦТТиСТ "Дальнереченск"',
+                },
+                OST_5: {
+                    //Восток
+                    NPS1: 'Ангарский ЛЭУ',
+                    NPS2: 'Ангарский УНН',
+                    NPS3: 'АУ Ленского РНУ',
+                    NPS4: 'БПО "Ангарск"',
+                    NPS5: 'БПО "Братск"',
+                    NPS6: 'БПО "Нерюнгри"',
+                    NPS7: 'ГНПС-1 "Куюмба"',
+                    NPS8: 'ГНПС-1 "Тайшет"',
+                    NPS9: 'НПС "Замзор"',
+                    NPS10: 'НПС "Кимильтей" ',
+                    NPS11: 'НПС "Нижнеудинская"',
+                    NPS12: 'НПС "Тайшетская"',
+                    NPS13: 'НПС "Тулун"',
+                    NPS14: 'НПС-10 "Талакан"',
+                    NPS15: 'НПС-11 "Оргул"',
+                    NPS16: 'НПС-12 "Ленск"',
+                    NPS17: 'НПС-13 "Чапаево"',
+                    NPS18: 'НПС-14 "Олекминск"',
+                    NPS19: 'НПС-15 "Туолбочан"',
+                    NPS20: 'НПС-16 "Куранах"',
+                    NPS21: 'НПС-17 "Алдан"',
+                    NPS22: 'НПС-18 "Нимныр"',
+                    NPS23: 'НПС-19 "Нерюнгри"',
+                    NPS24: 'НПС-2 "Чуна"',
+                    NPS25: 'НПС-2 "Юрубчен"',
+                    NPS26: 'НПС-20 "Тында"',
+                    NPS27: 'НПС-21 "Сковородино"',
+                    NPS28: 'НПС-3 "Вихоревка"',
+                    NPS29: 'НПС-4 "Речушка"',
+                    NPS30: 'НПС-4 ИРНУ',
+                    NPS31: 'НПС-5 "Железногорск"',
+                    NPS32: 'НПС-6 "Янталь"',
+                    NPS33: 'НПС-7 "Марково"',
+                    NPS34: 'НПС-8 "Киренск"',
+                    NPS35: 'НПС-9 "Ичера" ',
+                    NPS36: 'ПСП "Джалинда"',
+                    NPS37: 'ЦРС "Ангарский"',
+                    NPS38: 'ЦРС "Олекминск"',
+                },
+                OST_6: {
+                    // Балтика
+                    NPS1: 'АУП Ярославского РНУ',
+                    NPS2: 'БПТОиКО ООО "Транснефть - Балтика"',
+                    NPS3: 'ГПС Кириши',
+                    NPS4: 'ГПС Ярославль',
+                    NPS5: 'ЛПДС Быково',
+                    NPS6: 'ЛПДС Кириши',
+                    NPS7: 'ЛПДС Красный Бор',
+                    NPS8: 'ЛПДС Невская',
+                    NPS9: 'ЛПДС Песь',
+                    NPS10: 'ЛПДС Правдино',
+                    NPS11: 'ЛПДС Торжок',
+                    NPS12: 'ЛПДС Ярославль',
+                    NPS13: 'Нефтебаза "Усть - Луга"',
+                    NPS14: 'НПС Андреаполь',
+                    NPS15: 'НПС Борисово',
+                    NPS16: 'НПС Великие Луки',
+                    NPS17: 'НПС Инякино',
+                    NPS18: 'НПС Невель',
+                    NPS19: 'НПС Палкино',
+                    NPS20: 'НПС Сестрорецкая',
+                    NPS21: 'НПС Тучево',
+                    NPS22: 'НПС Ярославль-3',
+                    NPS23: 'НПС-3',
+                    NPS24: 'НПС-7',
+                    NPS25: 'ППС Невская',
+                    NPS26: 'ПСП ГПС Ярославль',
+                    NPS27: 'ПСП Кириши',
+                    NPS28: 'ПСП Невель',
+                    NPS29: 'ПСП Пулково',
+                    NPS30: 'ПСП Ярославль',
+                    NPS31: 'ПСП Ярославль-3',
+                    NPS32: 'ТО МН ООО "Транснефть - Балтика"',
+                    NPS33: 'ЦРС Новгородского РНУ',
+                },
+                OST_7: {
+                    // Нафта
+                    NPS1: 'ООО "Тихорецк-Нафта"',
+                },
+                OST_8: {
+                    //Черномортранснефть
+                    NPS1: 'БПО АО "Черномортранснефть"',
+                    NPS2: 'БПО Афипская"',
+                    NPS3: 'ЛПДС Крымская',
+                    NPS4: 'ЛПДС Пшехская',
+                    NPS5: 'ЛПДС Сулак',
+                    NPS6: 'ЛПДС Тихорецкая',
+                    NPS6: 'ЛПДС Хадыженская',
+                    NPS6: 'НПС Заречье',
+                    NPS6: 'НПС Карская',
+                    NPS6: 'НПС Кущевская',
+                    NPS6: 'НПС Махачкала',
+                    NPS6: 'НПС Нововеличковская',
+                    NPS6: 'НПС Подкумок',
+                    NPS6: 'НПС Псекупская',
+                    NPS6: 'НПС Родионовская',
+                    NPS6: 'НПС Самур',
+                    NPS6: 'НПС Тарасовская',
+                    NPS6: 'ПК "Шесхарис"',
+                    NPS6: 'ПП Грушовая',
+                    NPS6: 'ПП Шесхарис',
+                    NPS6: 'ПСП Краснодарский',
+                    NPS6: 'ПСП МНПП Волгоград-Тихорецк',
+                    NPS6: 'ТО МН "81 км МН Хадыженск-Краснодар - Афипский НПЗ" АО ЧТН"',
+                    NPS6: 'ТО МН "Тихорецк-Новороссийск-2" АО "ЧТН"',
+                    NPS6: 'ТО МН "Тихорецк-Туапсе" АО "ЧТН"',
+                    NPS6: 'ТО МН "Хадыженск - Краснодар" АО "ЧТН"',
+                    NPS6: 'ТУ "Подкумок - Тихорецк" МН МТ АО "ЧТН"',
+                },
+                OST_9: {
+                    //Урал
+                    NPS1: 'АУП Курганское НУ',
+                    NPS2: 'АУП Челябинское НУ',
+                    NPS3: 'АУП Черкасское НУ',
+                    NPS4: 'БПО Туймазинского НУ',
+                    NPS5: 'ЛПДС Бердяуш',
+                    NPS6: 'ЛПДС Георгиевка-ПП',
+                    NPS7: 'ЛПДС Еткуль',
+                    NPS8: 'ЛПДС Калтасы',
+                    NPS9: 'ЛПДС Кропачево',
+                    NPS10: 'ЛПДС Ленинск',
+                    NPS11: 'ЛПДС Медведское',
+                    NPS12: 'ЛПДС Нурлино',
+                    NPS13: 'ЛПДС Петропавловск',
+                    NPS14: 'ЛПДС Салават',
+                    NPS15: 'ЛПДС Субханкулово',
+                    NPS16: 'ЛПДС Суслово',
+                    NPS17: 'ЛПДС Травники',
+                    NPS18: 'ЛПДС Тюрино-ПП',
+                    NPS19: 'ЛПДС Улу-Теляк',
+                    NPS20: 'ЛПДС Хохлы',
+                    NPS21: 'ЛПДС Чекмагуш',
+                    NPS22: 'ЛПДС Челябинск',
+                    NPS23: 'ЛПДС Черкассы',
+                    NPS24: 'ЛПДС Черкассы-2',
+                    NPS25: 'ЛПДС Юргамыш',
+                    NPS26: 'ЛПДС Языково',
+                    NPS27: 'ЛЭПСУ Орск',
+                    NPS28: 'НПС Андреевка-ПП',
+                    NPS29: 'НПС Варгаши',
+                    NPS30: 'НПС Канаши',
+                    NPS31: 'НПС Мишкино',
+                    NPS32: 'НПС Мраково',
+                    NPS33: 'НПС Субханкулово-ПП',
+                    NPS34: 'НПС Черкассы-ПП',
+                    NPS35: 'НПС Чернушка',
+                    NPS36: 'НПС Шкапово',
+                    NPS37: 'ПСП Уфа',
+                    NPS38: 'ЦТТиСТ Курганского НУ',
+                    NPS39: 'Челябинское НУ',
+                },
+                OST_10: {
+                    // Терминал
+                    NPS1: 'Транснефть - Терминал',
+                },
+                OST_11: {
+                    // Сибирь
+                    'NPS1 ': ' АУ ТУМН ',
+                    'NPS2 ': ' АУ УрУМН ',
+                    'NPS3 ': ' АУ УУМН ',
+                    'NPS4 ': ' БПО НвУМН ',
+                    'NPS5 ': ' БПО НУМН ',
+                    'NPS6 ': ' БПО НюУМН ',
+                    'NPS7 ': ' БПО ТобУМН ',
+                    'NPS8 ': ' БПО ТУМН ',
+                    'NPS9 ': ' БПО УрУМН ',
+                    'NPS10 ': ' ГНПС №1 АО "ТСИБ" ',
+                    'NPS11 ': ' ЛАЭС "Ключевская" ',
+                    'NPS12 ': ' ЛАЭС "Ханымей" ',
+                    'NPS13 ': ' ЛПДС "Апрельская" ',
+                    'NPS14 ': ' ЛПДС "Аремзяны" ',
+                    'NPS15 ': ' ЛПДС "Бачкун" ',
+                    'NPS16 ': ' ЛПДС "Березовое" ',
+                    'NPS17 ': ' ЛПДС "Демьянское" ',
+                    'NPS18 ': ' ЛПДС "Им. Чепурского" ',
+                    'NPS19 ': ' ЛПДС "Исетское" ',
+                    'NPS20 ': ' ЛПДС "Каркатеевы" ',
+                    'NPS21 ': ' ЛПДС "Кедровое" ',
+                    'NPS22 ': ' ЛПДС "Конда" ',
+                    'NPS23 ': ' ЛПДС "Муген" ',
+                    'NPS24 ': ' ЛПДС "Нижневартовская" ',
+                    'NPS25 ': ' ЛПДС "Остров" ',
+                    'NPS26 ': ' ЛПДС "Пур-Пе" ',
+                    'NPS27 ': ' ЛПДС "Салым" ',
+                    'NPS28 ': ' ЛПДС "Самотлор" ',
+                    'NPS29 ': ' ЛПДС "Сетово" ',
+                    'NPS30 ': ' ЛПДС "Сосьва" ',
+                    'NPS31 ': ' ЛПДС "Торгили" ',
+                    'NPS32 ': ' ЛПДС "Уват" ',
+                    'NPS33 ': ' ЛПДС "Урьевская" ',
+                    'NPS34 ': ' ЛПДС "Чаши" ',
+                    'NPS35 ': ' ЛПДС "Шаим" ',
+                    'NPS36 ': ' ЛПДС "Юган" ',
+                    'NPS37 ': ' ЛПДС "Южный Балык" ',
+                    'NPS38 ': ' НППС "Тюмень" ',
+                    'NPS39 ': ' НПС "Вынгапур" ',
+                    'NPS40 ': ' НПС "Западный Сургут-3" ',
+                    'NPS41 ': ' НПС "Ильичевка" ',
+                    'NPS42 ': ' НПС "Катыш" ',
+                    'NPS43 ': ' НПС "Красноленинская" ',
+                    'NPS44 ': ' НПС "Крутое" ',
+                    'NPS45 ': ' НПС "Кума" ',
+                    'NPS46 ': ' НПС "Сатарино" ',
+                    'NPS47 ': ' НПС "Сосновка" ',
+                    'NPS48 ': ' НПС "Холмогоры" ',
+                    'NPS49 ': ' НПС "Ягодное" ',
+                    'NPS50 ': ' НПС №2 АО "ТСИБ" ',
+                    'NPS51 ': ' НПС Александровская ',
+                    'NPS52 ': ' НПС Раскино ',
+                    'NPS53 ': ' ППН 221 ',
+                    'NPS54 ': ' ППН 283 ',
+                    'NPS55 ': ' ППН 353 ',
+                    'NPS56 ': ' ППН 415 ',
+                    'NPS57 ': ' ППН 89 ',
+                    'NPS58 ':
+                        ' Реестр ТО МН "Александровское - Анжеро - Судженск» АО "ТСИБ" ',
+                    'NPS59 ': ' Реестр ТО МН "Холмогоры - Клин" АО "ТСИБ" ',
+                    'NPS60 ':
+                        ' ТУ "Александровское – Раскино" МН "А-А-С» АО "ТСИБ" ',
+                    'NPS61 ': ' ТУ "ГНПУ №2 - НПС Пур-Пе" МН "З-ПП" АО "ТСИБ" ',
+                    'NPS62 ':
+                        ' ТУ "Нижневартовская - Южный Балык" МН "НКК" АО "ТСИБ" ',
+                    'NPS63 ':
+                        ' ТУ "Самотлор - Александровское" МН "С-А" АО "ТСИБ" ',
+                    'NPS64 ': ' ЦРС УрУМН ',
+                },
+                OST_12: {
+                    // Север
+                    'NPS1 ': ' НПС Приводино ',
+                    'NPS2 ': ' АО "Транснефть - Север" ',
+                    'NPS3 ': ' НПС Грязовец ',
+                    'NPS4 ': ' НПС Зеленоборск ',
+                    'NPS5 ': ' НПС Микунь ',
+                    'NPS6 ': ' НПС Нюксеница ',
+                    'NPS7 ': ' НПС Печора ',
+                    'NPS8 ': ' НПС Погорелово ',
+                    'NPS9 ': ' НПС Синдор ',
+                    'NPS10 ': ' НПС Сыня ',
+                    'NPS11 ': ' НПС Таежная ',
+                    'NPS12 ': ' НПС Урдома ',
+                    'NPS13 ': ' НПС Уса ',
+                    'NPS14 ': ' НПС Ухта ',
+                    'NPS15 ': ' НПС Чикшино ',
+                    'NPS16 ': ' ПСУ Ухта ',
+                },
+                OST_13: {
+                    //Прикамье
+                    'NPS1 ': ' БПО Альметьевского РНУ ',
+                    'NPS2 ': ' БПО Ромашкинского РНУ ',
+                    'NPS3 ': ' ГПС "Альметьевск"  ',
+                    'NPS4 ': ' ГПС "Нижнекамск-2" ',
+                    'NPS5 ': ' Казанское РНУ ',
+                    'NPS6 ': ' ЛПДС "Лазарево" ',
+                    'NPS7 ': ' ЛПДС "Лысьва" ',
+                    'NPS8 ': ' ЛПДС "Оса" ',
+                    'NPS9 ': ' ЛПДС "Пермь" ',
+                    'NPS10 ': ' ЛПДС "Платина" ',
+                    'NPS11 ': ' НПС "Азнакаево" ',
+                    'NPS12 ': ' НПС "Арбатская" ',
+                    'NPS13 ': ' НПС "Арлеть" ',
+                    'NPS14 ': ' НПС "Белая"  ',
+                    'NPS15 ': ' НПС "Бисер" ',
+                    'NPS16 ': ' НПС "Большая Соснова" ',
+                    'NPS17 ': ' НПС "Дебесы"  ',
+                    'NPS18 ': ' НПС "Елизаветинка"  ',
+                    'NPS19 ': ' НПС "Калейкино"  ',
+                    'NPS20 ': ' НПС "Калиновый Ключ"  ',
+                    'NPS21 ': ' НПС "Киенгоп"  ',
+                    'NPS22 ': ' НПС "Ковали" ',
+                    'NPS23 ': ' НПС "Малая Пурга" ',
+                    'NPS24 ': ' НПС "Михайловка" ',
+                    'NPS25 ': ' НПС "Мостовая" ',
+                    'NPS26 ': ' НПС "Муслюмово" ',
+                    'NPS27 ': ' НПС "Набережные Челны" ',
+                    'NPS28 ': ' НПС "Полазна ',
+                    'NPS29 ': ' НПС "Сюмси"  ',
+                    'NPS30 ': ' НПС "Уральская" ',
+                    'NPS31 ': ' НПС Студенец ',
+                    'NPS32 ': ' НПС Тиньговатово ',
+                    'NPS33 ': ' НПС-3 (АРНУ) ',
+                    'NPS34 ': ' ППС "Ковали" ',
+                    'NPS35 ': ' ППС "Михайловка" ',
+                },
+                OST_14: {
+                    //Приволга
+                    'NPS1 ': ' АУП Самарского РНУ ',
+                    'NPS2 ': ' БПО Бугурусланского РНУ ',
+                    'NPS3 ': ' Бугурусланское РНУ АО "Транснефть - Приволга" ',
+                    'NPS4 ': ' ГНПС Саратов ',
+                    'NPS5 ': ' ГПС Волгоград ',
+                    'NPS6 ': ' ГПС Тингута ',
+                    'NPS7 ': ' ЖДЭ Тингута ',
+                    'NPS8 ': ' ЛПДС Андреяновская ',
+                    'NPS9 ': ' ЛПДС Бавлы ',
+                    'NPS10 ': ' ЛПДС Грачи ',
+                    'NPS11 ': ' ЛПДС Екатериновка ',
+                    'NPS12 ': ' ЛПДС Ефимовка ',
+                    'NPS13 ': ' ЛПДС Караичевская ',
+                    'NPS14 ': ' ЛПДС Красноармейская ',
+                    'NPS15 ': ' ЛПДС Красный Яр ',
+                    'NPS16 ': ' ЛПДС Кротовка ',
+                    'NPS17 ': ' ЛПДС Кузьмичи ',
+                    'NPS18 ': ' ЛПДС Похвистнево ',
+                    'NPS19 ': ' ЛПДС Совхозная ',
+                    'NPS20 ': ' ЛПДС Терновка ',
+                    'NPS21 ': ' ННЭ Кротовка ',
+                    'NPS22 ': ' НПС Астаховская ',
+                    'NPS23 ': ' НПС Большая Черниговка ',
+                    'NPS24 ': ' НПС Бородаевка ',
+                    'NPS25 ': ' НПС Бугуруслан ',
+                    'NPS26 ': ' НПС Ерзовка ',
+                    'NPS27 ': ' НПС Зензеватка ',
+                    'NPS28 ': ' НПС Зимовники ',
+                    'NPS29 ': ' НПС Комсомолец ',
+                    'NPS30 ': ' НПС Любецкая ',
+                    'NPS31 ': ' НПС Муханово ',
+                    'NPS32 ': ' НПС Новомлиновская ',
+                    'NPS33 ': ' НПС Песчанокопская ',
+                    'NPS34 ': ' НПС Покровская ',
+                    'NPS35 ': ' НПС Поповка ',
+                    'NPS36 ': ' НПС Самара-1 ',
+                    'NPS37 ': ' НПС Самара-2 ',
+                    'NPS38 ': ' НПС Сатаровская ',
+                    'NPS39 ': ' НПС Суходольная ',
+                    'NPS40 ': ' НПС Тингутинская ',
+                    'NPS41 ': ' ПСП Саратовский ',
+                    'NPS42 ': ' ПСП Сызранский ',
+                    'NPS43 ': ' ПСП-915 ',
+                    'NPS44 ': ' Самарское РНУ АО "Транснефть - Приволга" ',
+                    'NPS45 ': ' Станция смешения нефти ',
+                    'NPS46 ': ' Цех ТТиСТ Самарского РНУ ',
+                    'NPS47 ': ' ЦРС (ЛПДС Кузьмичи) Волгоградского РНУ ',
+                    'NPS48 ': 'ПСП Волгоградский ',
+                },
+                OST_15: {
+                    //Дружба
+                    'NPS1 ': '  НПС "Малиновка" ',
+                    'NPS2 ': '  НПС "Пенза-1" ',
+                    'NPS3 ': ' АУ Брянское РУ ',
+                    'NPS4 ': ' АУ Куйбышевское РУ ',
+                    'NPS5 ': ' БПО Куйбышевского РУ ',
+                    'NPS6 ': ' ЛПДС "8Н" ',
+                    'NPS7 ': ' ЛПДС "Белгород" ',
+                    'NPS8 ': ' ЛПДС "Воронеж" ',
+                    'NPS9 ': ' ЛПДС "Воскресенка" ',
+                    'NPS10 ': ' ЛПДС "Клин" ',
+                    'NPS11 ': ' ЛПДС "Лопатино" ',
+                    'NPS12 ': ' ЛПДС "Никольское" ',
+                    'NPS13 ': ' ЛПДС "Никольское-1" ',
+                    'NPS14 ': ' ЛПДС "Никулино" ',
+                    'NPS15 ': ' ЛПДС "Пенза-2" ',
+                    'NPS16 ': ' ЛПДС "Прибой" ',
+                    'NPS17 ': ' ЛПДС "Соседка" ',
+                    'NPS18 ': ' ЛПДС "Стальной Конь" ',
+                    'NPS19 ': ' ЛПДС "Становая-1" ',
+                    'NPS20 ': ' ЛПДС "Сызрань" ',
+                    'NPS21 ': ' ЛПДС "Сызрань-1" ',
+                    'NPS22 ': ' ЛПДС "Унеча" ',
+                    'NPS23 ': ' ЛПДС «Журавлинская» ',
+                    'NPS24 ': ' НП "Брянск" ',
+                    'NPS25 ': ' НПС "Аксинино" ',
+                    'NPS26 ': ' НПС "Башмаково" ',
+                    'NPS27 ': ' НПС "Верховье" ',
+                    'NPS28 ': ' НПС "Губино" ',
+                    'NPS29 ': ' НПС "Десна" ',
+                    'NPS30 ': ' НПС "Красноселки" ',
+                    'NPS31 ': ' НПС "Кузнецк" ',
+                    'NPS32 ': ' НПС "Лубна" ',
+                    'NPS33 ': ' НПС "Новозыбков" ',
+                    'NPS34 ': ' НПС "Новоселово" ',
+                    'NPS35 ': ' НПС "Пенза" ',
+                    'NPS36 ': ' НПС "Ростовка" ',
+                    'NPS37 ': ' НПС "Становая" ',
+                    'NPS38 ': ' ППС "1Д" ',
+                    'NPS39 ': ' РУ Куйбышевское ',
+                    'NPS40 ': ' РУ Мичуринское ',
+                },
+                OST_16: {
+                    // Верхняя Волга
+                    'NPS1 ': ' "Станция защиты" ',
+                    'NPS2 ': ' БПО Горьковское РНУ ',
+                    'NPS3 ': ' Володарское РНПУ ',
+                    'NPS4 ': ' ГПС "Второво" ',
+                    'NPS5 ': ' ГПС "Шилово-3" ',
+                    'NPS6 ': ' ЛПДС "Володарская" ',
+                    'NPS7 ': ' ЛПДС "Воротынец" ',
+                    'NPS8 ': ' ЛПДС "Рязань" ',
+                    'NPS9 ': ' ЛПДС "Староликеево" ',
+                    'NPS10 ': ' НПС "Балахониха" ',
+                    'NPS11 ': ' НПС "Горький" ',
+                    'NPS12 ': ' НПС "Дубники" ',
+                    'NPS13 ': ' НПС "Ермишь" ',
+                    'NPS14 ': ' НПС "Залесье" ',
+                    'NPS15 ': ' НПС "Килемары" ',
+                    'NPS16 ': ' НПС "Лобково" ',
+                    'NPS17 ': ' НПС "Макарьево" ',
+                    'NPS18 ': ' НПС "Мелковка" ',
+                    'NPS19 ': ' НПС "Прудки" ',
+                    'NPS20 ': ' НПС "Рязань" ',
+                    'NPS21 ': ' НПС "Степаньково" ',
+                    'NPS22 ': ' НПС "Филино" ',
+                    'NPS23 ': ' НПС "Шилово" ',
+                    'NPS24 ': ' НС "Солнечногорская" ',
+                    'NPS25 ': ' ППС "Коломна" ',
+                    'NPS26 ': ' ППС "Нагорная" ',
+                    'NPS27 ': ' ППС "Плавск" ',
+                },
+                OST_17: {
+                    // Западеная сибирь
+                    'NPS1 ': ' Анжеро-Судженская ЛПДС ',
+                    'NPS2 ': ' АУ Томского РНУ ',
+                    'NPS3 ': ' Ачинская ЛПДС ',
+                    'NPS4 ': ' Барабинская ЛПДС ',
+                    'NPS5 ': ' БПО Ишимского РНУ ',
+                    'NPS6 ': ' БПО Красноярского РНУ ',
+                    'NPS7 ': ' БПО Новосибирского РНУ ',
+                    'NPS8 ': ' БПО Томского РНУ ',
+                    'NPS9 ': ' Ишимское РНУ ',
+                    'NPS10 ': ' Кемчугская НПС ',
+                    'NPS11 ': ' ЛАЭС Герасимовское ',
+                    'NPS12 ': ' ЛАЭС Игольское ',
+                    'NPS13 ': ' ЛАЭС Каргасок ',
+                    'NPS14 ': ' ЛАЭС Лугинецкое ',
+                    'NPS15 ': ' ЛПДС Исилькуль ',
+                    'NPS16 ': ' ЛПДС Москаленки ',
+                    'NPS17 ': ' ЛПДС Омск ',
+                    'NPS18 ': ' ЛПДС Сокур ',
+                    'NPS19 ': ' ЛПДС Татарская ',
+                    'NPS20 ': ' Мариинская НПС ',
+                    'NPS21 ': ' НПС Абатская ',
+                    'NPS22 ': ' НПС Бекишево ',
+                    'NPS23 ': ' НПС Вагай ',
+                    'NPS24 ': ' НПС Вознесенка ',
+                    'NPS25 ': ' НПС Вознесенка-2 ',
+                    'NPS26 ': ' НПС Каштан ',
+                    'NPS27 ': ' НПС Молчаново ',
+                    'NPS28 ': ' НПС Ново-Петрово ',
+                    'NPS29 ': ' НПС Орловка ',
+                    'NPS30 ': ' НПС Парабель ',
+                    'NPS31 ': ' НПС Первомайка ',
+                    'NPS32 ': ' НПС Сокур ',
+                    'NPS33 ': ' НПС Чумановка ',
+                    'NPS34 ': ' Омская ЛПДС ',
+                    'NPS35 ': ' Омское РНУ ',
+                    'NPS36 ': ' Пойменская НПС ',
+                    'NPS37 ': ' ПС Барабинск ',
+                    'NPS38 ': ' ПС Чулым ',
+                    'NPS39 ': ' Рыбинская ЛПДС ',
+                    'NPS40 ': ' Татарская НПС ',
+                    'NPS41 ':
+                        ' ТУ Парабель - Анжеро-Судженск МН А-А-С АО "ТЗС"',
+                    'NPS42 ': ' Чулымская НПС ',
+                    'NPS43 ': ' ТОМЗЭЛ ',
+                },
+                OST_18: {
+                    // Другое
+                    'NPS1 ': ' Другое ',
+                },
+            };
+        </script>
+        <title>Управление</title>
+    </head>
 
-			},
-			'OST_11': { // Сибирь
-				'NPS1 ': ' АУ ТУМН ',
-				'NPS2 ': ' АУ УрУМН ',
-				'NPS3 ': ' АУ УУМН ',
-				'NPS4 ': ' БПО НвУМН ',
-				'NPS5 ': ' БПО НУМН ',
-				'NPS6 ': ' БПО НюУМН ',
-				'NPS7 ': ' БПО ТобУМН ',
-				'NPS8 ': ' БПО ТУМН ',
-				'NPS9 ': ' БПО УрУМН ',
-				'NPS10 ': ' ГНПС №1 АО "ТСИБ" ',
-				'NPS11 ': ' ЛАЭС "Ключевская" ',
-				'NPS12 ': ' ЛАЭС "Ханымей" ',
-				'NPS13 ': ' ЛПДС "Апрельская" ',
-				'NPS14 ': ' ЛПДС "Аремзяны" ',
-				'NPS15 ': ' ЛПДС "Бачкун" ',
-				'NPS16 ': ' ЛПДС "Березовое" ',
-				'NPS17 ': ' ЛПДС "Демьянское" ',
-				'NPS18 ': ' ЛПДС "Им. Чепурского" ',
-				'NPS19 ': ' ЛПДС "Исетское" ',
-				'NPS20 ': ' ЛПДС "Каркатеевы" ',
-				'NPS21 ': ' ЛПДС "Кедровое" ',
-				'NPS22 ': ' ЛПДС "Конда" ',
-				'NPS23 ': ' ЛПДС "Муген" ',
-				'NPS24 ': ' ЛПДС "Нижневартовская" ',
-				'NPS25 ': ' ЛПДС "Остров" ',
-				'NPS26 ': ' ЛПДС "Пур-Пе" ',
-				'NPS27 ': ' ЛПДС "Салым" ',
-				'NPS28 ': ' ЛПДС "Самотлор" ',
-				'NPS29 ': ' ЛПДС "Сетово" ',
-				'NPS30 ': ' ЛПДС "Сосьва" ',
-				'NPS31 ': ' ЛПДС "Торгили" ',
-				'NPS32 ': ' ЛПДС "Уват" ',
-				'NPS33 ': ' ЛПДС "Урьевская" ',
-				'NPS34 ': ' ЛПДС "Чаши" ',
-				'NPS35 ': ' ЛПДС "Шаим" ',
-				'NPS36 ': ' ЛПДС "Юган" ',
-				'NPS37 ': ' ЛПДС "Южный Балык" ',
-				'NPS38 ': ' НППС "Тюмень" ',
-				'NPS39 ': ' НПС "Вынгапур" ',
-				'NPS40 ': ' НПС "Западный Сургут-3" ',
-				'NPS41 ': ' НПС "Ильичевка" ',
-				'NPS42 ': ' НПС "Катыш" ',
-				'NPS43 ': ' НПС "Красноленинская" ',
-				'NPS44 ': ' НПС "Крутое" ',
-				'NPS45 ': ' НПС "Кума" ',
-				'NPS46 ': ' НПС "Сатарино" ',
-				'NPS47 ': ' НПС "Сосновка" ',
-				'NPS48 ': ' НПС "Холмогоры" ',
-				'NPS49 ': ' НПС "Ягодное" ',
-				'NPS50 ': ' НПС №2 АО "ТСИБ" ',
-				'NPS51 ': ' НПС Александровская ',
-				'NPS52 ': ' НПС Раскино ',
-				'NPS53 ': ' ППН 221 ',
-				'NPS54 ': ' ППН 283 ',
-				'NPS55 ': ' ППН 353 ',
-				'NPS56 ': ' ППН 415 ',
-				'NPS57 ': ' ППН 89 ',
-				'NPS58 ': ' Реестр ТО МН "Александровское - Анжеро - Судженск» АО "ТСИБ" ',
-				'NPS59 ': ' Реестр ТО МН "Холмогоры - Клин" АО "ТСИБ" ',
-				'NPS60 ': ' ТУ "Александровское – Раскино" МН "А-А-С» АО "ТСИБ" ',
-				'NPS61 ': ' ТУ "ГНПУ №2 - НПС Пур-Пе" МН "З-ПП" АО "ТСИБ" ',
-				'NPS62 ': ' ТУ "Нижневартовская - Южный Балык" МН "НКК" АО "ТСИБ" ',
-				'NPS63 ': ' ТУ "Самотлор - Александровское" МН "С-А" АО "ТСИБ" ',
-				'NPS64 ': ' ЦРС УрУМН '
-			},
-			'OST_12': { // Север
-				'NPS1 ': ' НПС Приводино ',
-				'NPS2 ': ' АО "Транснефть - Север" ',
-				'NPS3 ': ' НПС Грязовец ',
-				'NPS4 ': ' НПС Зеленоборск ',
-				'NPS5 ': ' НПС Микунь ',
-				'NPS6 ': ' НПС Нюксеница ',
-				'NPS7 ': ' НПС Печора ',
-				'NPS8 ': ' НПС Погорелово ',
-				'NPS9 ': ' НПС Синдор ',
-				'NPS10 ': ' НПС Сыня ',
-				'NPS11 ': ' НПС Таежная ',
-				'NPS12 ': ' НПС Урдома ',
-				'NPS13 ': ' НПС Уса ',
-				'NPS14 ': ' НПС Ухта ',
-				'NPS15 ': ' НПС Чикшино ',
-				'NPS16 ': ' ПСУ Ухта '
-			},
-			'OST_13': { //Прикамье
-				'NPS1 ': ' БПО Альметьевского РНУ ',
-				'NPS2 ': ' БПО Ромашкинского РНУ ',
-				'NPS3 ': ' ГПС "Альметьевск"  ',
-				'NPS4 ': ' ГПС "Нижнекамск-2" ',
-				'NPS5 ': ' Казанское РНУ ',
-				'NPS6 ': ' ЛПДС "Лазарево" ',
-				'NPS7 ': ' ЛПДС "Лысьва" ',
-				'NPS8 ': ' ЛПДС "Оса" ',
-				'NPS9 ': ' ЛПДС "Пермь" ',
-				'NPS10 ': ' ЛПДС "Платина" ',
-				'NPS11 ': ' НПС "Азнакаево" ',
-				'NPS12 ': ' НПС "Арбатская" ',
-				'NPS13 ': ' НПС "Арлеть" ',
-				'NPS14 ': ' НПС "Белая"  ',
-				'NPS15 ': ' НПС "Бисер" ',
-				'NPS16 ': ' НПС "Большая Соснова" ',
-				'NPS17 ': ' НПС "Дебесы"  ',
-				'NPS18 ': ' НПС "Елизаветинка"  ',
-				'NPS19 ': ' НПС "Калейкино"  ',
-				'NPS20 ': ' НПС "Калиновый Ключ"  ',
-				'NPS21 ': ' НПС "Киенгоп"  ',
-				'NPS22 ': ' НПС "Ковали" ',
-				'NPS23 ': ' НПС "Малая Пурга" ',
-				'NPS24 ': ' НПС "Михайловка" ',
-				'NPS25 ': ' НПС "Мостовая" ',
-				'NPS26 ': ' НПС "Муслюмово" ',
-				'NPS27 ': ' НПС "Набережные Челны" ',
-				'NPS28 ': ' НПС "Полазна ',
-				'NPS29 ': ' НПС "Сюмси"  ',
-				'NPS30 ': ' НПС "Уральская" ',
-				'NPS31 ': ' НПС Студенец ',
-				'NPS32 ': ' НПС Тиньговатово ',
-				'NPS33 ': ' НПС-3 (АРНУ) ',
-				'NPS34 ': ' ППС "Ковали" ',
-				'NPS35 ': ' ППС "Михайловка" '
-			},
-			'OST_14': { //Приволга
-				'NPS1 ': ' АУП Самарского РНУ ',
-				'NPS2 ': ' БПО Бугурусланского РНУ ',
-				'NPS3 ': ' Бугурусланское РНУ АО "Транснефть - Приволга" ',
-				'NPS4 ': ' ГНПС Саратов ',
-				'NPS5 ': ' ГПС Волгоград ',
-				'NPS6 ': ' ГПС Тингута ',
-				'NPS7 ': ' ЖДЭ Тингута ',
-				'NPS8 ': ' ЛПДС Андреяновская ',
-				'NPS9 ': ' ЛПДС Бавлы ',
-				'NPS10 ': ' ЛПДС Грачи ',
-				'NPS11 ': ' ЛПДС Екатериновка ',
-				'NPS12 ': ' ЛПДС Ефимовка ',
-				'NPS13 ': ' ЛПДС Караичевская ',
-				'NPS14 ': ' ЛПДС Красноармейская ',
-				'NPS15 ': ' ЛПДС Красный Яр ',
-				'NPS16 ': ' ЛПДС Кротовка ',
-				'NPS17 ': ' ЛПДС Кузьмичи ',
-				'NPS18 ': ' ЛПДС Похвистнево ',
-				'NPS19 ': ' ЛПДС Совхозная ',
-				'NPS20 ': ' ЛПДС Терновка ',
-				'NPS21 ': ' ННЭ Кротовка ',
-				'NPS22 ': ' НПС Астаховская ',
-				'NPS23 ': ' НПС Большая Черниговка ',
-				'NPS24 ': ' НПС Бородаевка ',
-				'NPS25 ': ' НПС Бугуруслан ',
-				'NPS26 ': ' НПС Ерзовка ',
-				'NPS27 ': ' НПС Зензеватка ',
-				'NPS28 ': ' НПС Зимовники ',
-				'NPS29 ': ' НПС Комсомолец ',
-				'NPS30 ': ' НПС Любецкая ',
-				'NPS31 ': ' НПС Муханово ',
-				'NPS32 ': ' НПС Новомлиновская ',
-				'NPS33 ': ' НПС Песчанокопская ',
-				'NPS34 ': ' НПС Покровская ',
-				'NPS35 ': ' НПС Поповка ',
-				'NPS36 ': ' НПС Самара-1 ',
-				'NPS37 ': ' НПС Самара-2 ',
-				'NPS38 ': ' НПС Сатаровская ',
-				'NPS39 ': ' НПС Суходольная ',
-				'NPS40 ': ' НПС Тингутинская ',
-				'NPS41 ': ' ПСП Саратовский ',
-				'NPS42 ': ' ПСП Сызранский ',
-				'NPS43 ': ' ПСП-915 ',
-				'NPS44 ': ' Самарское РНУ АО "Транснефть - Приволга" ',
-				'NPS45 ': ' Станция смешения нефти ',
-				'NPS46 ': ' Цех ТТиСТ Самарского РНУ ',
-				'NPS47 ': ' ЦРС (ЛПДС Кузьмичи) Волгоградского РНУ ',
-				'NPS48 ': 'ПСП Волгоградский '
-			},
-			'OST_15': { //Дружба
-				'NPS1 ': '  НПС "Малиновка" ',
-				'NPS2 ': '  НПС "Пенза-1" ',
-				'NPS3 ': ' АУ Брянское РУ ',
-				'NPS4 ': ' АУ Куйбышевское РУ ',
-				'NPS5 ': ' БПО Куйбышевского РУ ',
-				'NPS6 ': ' ЛПДС "8Н" ',
-				'NPS7 ': ' ЛПДС "Белгород" ',
-				'NPS8 ': ' ЛПДС "Воронеж" ',
-				'NPS9 ': ' ЛПДС "Воскресенка" ',
-				'NPS10 ': ' ЛПДС "Клин" ',
-				'NPS11 ': ' ЛПДС "Лопатино" ',
-				'NPS12 ': ' ЛПДС "Никольское" ',
-				'NPS13 ': ' ЛПДС "Никольское-1" ',
-				'NPS14 ': ' ЛПДС "Никулино" ',
-				'NPS15 ': ' ЛПДС "Пенза-2" ',
-				'NPS16 ': ' ЛПДС "Прибой" ',
-				'NPS17 ': ' ЛПДС "Соседка" ',
-				'NPS18 ': ' ЛПДС "Стальной Конь" ',
-				'NPS19 ': ' ЛПДС "Становая-1" ',
-				'NPS20 ': ' ЛПДС "Сызрань" ',
-				'NPS21 ': ' ЛПДС "Сызрань-1" ',
-				'NPS22 ': ' ЛПДС "Унеча" ',
-				'NPS23 ': ' ЛПДС «Журавлинская» ',
-				'NPS24 ': ' НП "Брянск" ',
-				'NPS25 ': ' НПС "Аксинино" ',
-				'NPS26 ': ' НПС "Башмаково" ',
-				'NPS27 ': ' НПС "Верховье" ',
-				'NPS28 ': ' НПС "Губино" ',
-				'NPS29 ': ' НПС "Десна" ',
-				'NPS30 ': ' НПС "Красноселки" ',
-				'NPS31 ': ' НПС "Кузнецк" ',
-				'NPS32 ': ' НПС "Лубна" ',
-				'NPS33 ': ' НПС "Новозыбков" ',
-				'NPS34 ': ' НПС "Новоселово" ',
-				'NPS35 ': ' НПС "Пенза" ',
-				'NPS36 ': ' НПС "Ростовка" ',
-				'NPS37 ': ' НПС "Становая" ',
-				'NPS38 ': ' ППС "1Д" ',
-				'NPS39 ': ' РУ Куйбышевское ',
-				'NPS40 ': ' РУ Мичуринское '
-			},
-			'OST_16': { // Верхняя Волга
-				'NPS1 ': ' "Станция защиты" ',
-				'NPS2 ': ' БПО Горьковское РНУ ',
-				'NPS3 ': ' Володарское РНПУ ',
-				'NPS4 ': ' ГПС "Второво" ',
-				'NPS5 ': ' ГПС "Шилово-3" ',
-				'NPS6 ': ' ЛПДС "Володарская" ',
-				'NPS7 ': ' ЛПДС "Воротынец" ',
-				'NPS8 ': ' ЛПДС "Рязань" ',
-				'NPS9 ': ' ЛПДС "Староликеево" ',
-				'NPS10 ': ' НПС "Балахониха" ',
-				'NPS11 ': ' НПС "Горький" ',
-				'NPS12 ': ' НПС "Дубники" ',
-				'NPS13 ': ' НПС "Ермишь" ',
-				'NPS14 ': ' НПС "Залесье" ',
-				'NPS15 ': ' НПС "Килемары" ',
-				'NPS16 ': ' НПС "Лобково" ',
-				'NPS17 ': ' НПС "Макарьево" ',
-				'NPS18 ': ' НПС "Мелковка" ',
-				'NPS19 ': ' НПС "Прудки" ',
-				'NPS20 ': ' НПС "Рязань" ',
-				'NPS21 ': ' НПС "Степаньково" ',
-				'NPS22 ': ' НПС "Филино" ',
-				'NPS23 ': ' НПС "Шилово" ',
-				'NPS24 ': ' НС "Солнечногорская" ',
-				'NPS25 ': ' ППС "Коломна" ',
-				'NPS26 ': ' ППС "Нагорная" ',
-				'NPS27 ': ' ППС "Плавск" '
-			},
-			'OST_17': { // Западеная сибирь
-				'NPS1 ': ' Анжеро-Судженская ЛПДС ',
-				'NPS2 ': ' АУ Томского РНУ ',
-				'NPS3 ': ' Ачинская ЛПДС ',
-				'NPS4 ': ' Барабинская ЛПДС ',
-				'NPS5 ': ' БПО Ишимского РНУ ',
-				'NPS6 ': ' БПО Красноярского РНУ ',
-				'NPS7 ': ' БПО Новосибирского РНУ ',
-				'NPS8 ': ' БПО Томского РНУ ',
-				'NPS9 ': ' Ишимское РНУ ',
-				'NPS10 ': ' Кемчугская НПС ',
-				'NPS11 ': ' ЛАЭС Герасимовское ',
-				'NPS12 ': ' ЛАЭС Игольское ',
-				'NPS13 ': ' ЛАЭС Каргасок ',
-				'NPS14 ': ' ЛАЭС Лугинецкое ',
-				'NPS15 ': ' ЛПДС Исилькуль ',
-				'NPS16 ': ' ЛПДС Москаленки ',
-				'NPS17 ': ' ЛПДС Омск ',
-				'NPS18 ': ' ЛПДС Сокур ',
-				'NPS19 ': ' ЛПДС Татарская ',
-				'NPS20 ': ' Мариинская НПС ',
-				'NPS21 ': ' НПС Абатская ',
-				'NPS22 ': ' НПС Бекишево ',
-				'NPS23 ': ' НПС Вагай ',
-				'NPS24 ': ' НПС Вознесенка ',
-				'NPS25 ': ' НПС Вознесенка-2 ',
-				'NPS26 ': ' НПС Каштан ',
-				'NPS27 ': ' НПС Молчаново ',
-				'NPS28 ': ' НПС Ново-Петрово ',
-				'NPS29 ': ' НПС Орловка ',
-				'NPS30 ': ' НПС Парабель ',
-				'NPS31 ': ' НПС Первомайка ',
-				'NPS32 ': ' НПС Сокур ',
-				'NPS33 ': ' НПС Чумановка ',
-				'NPS34 ': ' Омская ЛПДС ',
-				'NPS35 ': ' Омское РНУ ',
-				'NPS36 ': ' Пойменская НПС ',
-				'NPS37 ': ' ПС Барабинск ',
-				'NPS38 ': ' ПС Чулым ',
-				'NPS39 ': ' Рыбинская ЛПДС ',
-				'NPS40 ': ' Татарская НПС ',
-				'NPS41 ': ' ТУ Парабель - Анжеро-Судженск МН А-А-С АО "ТЗС"',
-				'NPS42 ': ' Чулымская НПС ',
-				'NPS43 ': ' ТОМЗЭЛ '
-			},
-			'OST_18': { // Другое
-				'NPS1 ': ' Другое '
-			}
+    <body onload="loadDataFromseSsionStorage();">
+        <a hidden="true"></a>
+        <div class="wrapper">
+            <header class="header">
+                <button id="scroll-to-top-btn" onclick="scrollToTop()">
+                    ↑
+                </button>
+                <div class="container">
+                    <div class="header__row">
+                        <div class="header__buttons">
+                            <form method="get" action="/main_conf.shtml">
+                                <button type="submit" class="header__active">
+                                    Управление
+                                </button>
+                            </form>
+                        </div>
+                        <div class="header__buttons">
+                            <form method="get" action="/config_eth.shtml">
+                                <button type="submit">Ethernet</button>
+                            </form>
+                        </div>
+                        <div class="header__buttons">
+                            <form method="get" action="/calibrate.shtml">
+                                <button type="submit">Калибровка</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="content">
+                <div class="container">
+                    <div class="content__row">
+                        <div class="data">
+                            <h2>Текущие значения параметров</h2>
+                            <form
+                                name="border_param"
+                                method="get"
+                                action="/main_conf.shtml"
+                            ></form>
+                            <table rules="none" width="100%">
+                                <tbody>
+                                    <tr id="tr_RSon">
+                                        <td>
+                                            Cопротивление замкнутых контактов
+                                            геркона, мОм
+                                        </td>
+                                        <td>
+                                            <output id="dataRSon"> </output>
+                                        </td>
+                                    </tr>
+                                    <tr hidden>
+                                        <td>
+                                            Cопротивление замкнутых контактов
+                                            геркона, мОм
+                                        </td>
+                                        <td>
+                                            <output id="dataRSoff"> </output>
+                                        </td>
+                                    </tr>
+                                    <tr id="tr_Disp">
+                                        <td>
+                                            Дисперсия сопротивление контактов
+                                            геркона, мОм
+                                        </td>
+                                        <td>
+                                            <output id="dataDispersion">
+                                            </output>
+                                        </td>
+                                    </tr>
+                                    <tr id="tr_Rstat">
+                                        <td>
+                                            Cопротивление герконового модуля, Ом
+                                        </td>
+                                        <td>
+                                            <output id="dataRstat"> </output>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Магнитное поле, мкТл</td>
+                                        <td>
+                                            <output id="dataField"> </output>
+                                        </td>
+                                    </tr>
+                                    <tr hidden>
+                                        <td>Ток опроса, мА</td>
+                                        <td>
+                                            <output id="dataIwork"> </output>
+                                        </td>
+                                    </tr>
+                                    <tr hidden>
+                                        <td>
+                                            Частота следования тестовых
+                                            импульсов, Гц
+                                        </td>
+                                        <td>
+                                            <output id="dataFreq"> </output>
+                                        </td>
+                                    </tr>
+                                    <tr hidden>
+                                        <td>Ток катушки, мкА</td>
+                                        <td>
+                                            <output id="dataIcoil"> </output>
+                                        </td>
+                                    </tr>
+                                    <tr hidden>
+                                        <td>Время переходного процесса, мкс</td>
+                                        <td>
+                                            <output id="dataTime"> </output>
+                                        </td>
+                                    </tr>
+                                    <tr hidden>
+                                        <td>Тип СУЖ</td>
+                                        <td>
+                                            <output id="dataSUJType"> </output>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Версия программного обеспечения</td>
+                                        <td>
+                                            <output id="dataVersion"> </output>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Текущий статус</td>
+                                        <td>
+                                            <output id="dataStatus"> </output>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Наличие связи</td>
+                                        <td>
+                                            <output id="dataConnect"> </output>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="control">
+                            <table width="100%" height="40">
+                                <tr>
+                                    <td>
+                                        <h2 class="h1">Тестирование</h2>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <div class="control__row">
+                                <div class="control__buttons">
+                                    <form
+                                        method="get"
+                                        action="/main_conf.shtml"
+                                    >
+                                        <button
+                                            type="submit"
+                                            name="single_tststart"
+                                        >
+                                            Запустить однократно
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="control__buttons">
+                                    <form
+                                        method="get"
+                                        action="/main_conf.shtml"
+                                    >
+                                        <button
+                                            type="submit"
+                                            name="cyc_tststart"
+                                        >
+                                            Запустить циклически
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="control__buttons">
+                                    <form
+                                        method="get"
+                                        action="/main_conf.shtml"
+                                    >
+                                        <button
+                                            type="submit"
+                                            id="button__stop"
+                                            name="cyc_tststop"
+                                        >
+                                            Выключить
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="control__row">
+                                <div class="control__buttons">
+                                    <form
+                                        method="get"
+                                        action="/main_conf.shtml"
+                                    >
+                                        <button
+                                            type="submit"
+                                            class="button button-save"
+                                            name="mag_tststart"
+                                        >
+                                            Тестирование поплавка
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="control__buttons">
+                                    <form
+                                        method="get"
+                                        action="/main_conf.shtml"
+                                    >
+                                        <button
+                                            type="submit"
+                                            class="button button-save"
+                                            name="coilon"
+                                        >
+                                            Включить постоянно
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="control__buttons"></div>
+                            </div>
+                            <div class="control__row">
+                                <div class="control__buttons">
+                                    <form
+                                        method="get"
+                                        action="/main_conf.shtml"
+                                    >
+                                        <button
+                                            type="submit"
+                                            class="button button-save"
+                                            name="mag_serch_down"
+                                        >
+                                            Определение макимального магнитного
+                                            поля N ↓
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="control__buttons">
+                                    <form
+                                        method="get"
+                                        action="/main_conf.shtml"
+                                    >
+                                        <button
+                                            type="submit"
+                                            class="button button-save"
+                                            name="mag_serch_up"
+                                        >
+                                            Определение макимального магнитного
+                                            поля N ↑
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="control__buttons">
+                                    <form
+                                        method="get"
+                                        action="/main_conf.shtml"
+                                    >
+                                        <button
+                                            type="submit"
+                                            class="button button-save"
+                                            name="tst_serch"
+                                        >
+                                            Поиск минимального сопротивление
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="param">
+                            <h2>Настройка параметров тестирования</h2>
+                            <form
+                                name="set_param"
+                                method="get"
+                                action="/main_conf.shtml"
+                            >
+                                <table rules="none" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td><p>Ток опроса СУЖ, мА:</p></td>
+                                            <td>
+                                                <select
+                                                    id="soflow"
+                                                    name="rscurr"
+                                                    width="30%"
+                                                >
+                                                    <option
+                                                        value="1"
+                                                        name="parity"
+                                                    >
+                                                        1
+                                                    </option>
+                                                    <option
+                                                        value="50"
+                                                        name="parity"
+                                                    >
+                                                        50
+                                                    </option>
+                                                    <option
+                                                        value="500"
+                                                        name="parity"
+                                                    >
+                                                        500
+                                                    </option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <button
+                                                    class="button button-save"
+                                                    type="submit"
+                                                    value="Test"
+                                                    name="s_rscurr"
+                                                >
+                                                    Установить
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><p>Тип СУЖ:</p></td>
+                                            <td>
+                                                <select
+                                                    id="soflow1"
+                                                    name="suz"
+                                                    width="30%"
+                                                >
+                                                    <option value="0">
+                                                        0-СУЖ ТОМЗЭЛ
+                                                    </option>
+                                                    <option value="1">
+                                                        1-СУЖ Сторонних
+                                                        производителей
+                                                    </option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <button
+                                                    class="button button-save"
+                                                    type="submit"
+                                                    value="Test"
+                                                    name="s_suz"
+                                                >
+                                                    Установить
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                data-tooltip="Диапазон задания частот следования тестовых импульсов 1...100 Гц"
+                                            >
+                                                <p>Частота импульсов, Гц:</p>
+                                            </td>
+                                            <td>
+                                                <input
+                                                    name="freq"
+                                                    class="input"
+                                                    value=""
+                                                    id="testInputId"
+                                                />
+                                            </td>
+                                            <td>
+                                                <button
+                                                    type="submit"
+                                                    name="sfreq"
+                                                    class="button button-save"
+                                                >
+                                                    Установить
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                data-tooltip="Максимальный ток катушки 40000 мкА"
+                                            >
+                                                <p>Ток катушки, мкА:</p>
+                                            </td>
+                                            <td>
+                                                <input
+                                                    name="coilcurr"
+                                                    class="input"
+                                                    value=""
+                                                    id="CurrKatushki"
+                                                />
+                                            </td>
+                                            <td>
+                                                <button
+                                                    type="submit"
+                                                    name="s_coilcurr"
+                                                    class="button button-save"
+                                                >
+                                                    Установить
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                data-tooltip="Значения по умолчанию: 200 мОм"
+                                            >
+                                                <p>
+                                                    Предельное сопротивление,
+                                                    мОм:
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <input
+                                                    name="maxRs"
+                                                    id="maxRs"
+                                                    class="input"
+                                                    value="200"
+                                                />
+                                            </td>
+                                            <td>
+                                                <button
+                                                    type="submit"
+                                                    name="s_maxRs"
+                                                    class="button button-save"
+                                                >
+                                                    Установить
+                                                </button>
+                                            </td>
+                                        </tr>
 
-		};
+                                        <tr>
+                                            <td
+                                                class="td"
+                                                data-tooltip="Значения по умолчанию: 5 мОм"
+                                            >
+                                                <p>
+                                                    Предельная дисперсия, мОм:
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <input
+                                                    name="maxDispersion"
+                                                    id="maxDispersion"
+                                                    class="input"
+                                                    value="5"
+                                                />
+                                            </td>
+                                            <td>
+                                                <button
+                                                    type="submit"
+                                                    name="s_maxDispersion"
+                                                    class="button button-save"
+                                                >
+                                                    Установить
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                data-tooltip="Значение по умолчанию 190"
+                                            >
+                                                <p>
+                                                    Предельное магнитное поле,
+                                                    мкТл:
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <input
+                                                    name="maxHs"
+                                                    id="maxHs"
+                                                    class="input"
+                                                    value="190"
+                                                />
+                                            </td>
+                                            <td>
+                                                <button
+                                                    type="submit"
+                                                    name="s_maxHs"
+                                                    class="button button-save"
+                                                >
+                                                    Установить
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                            <hr />
+                        </div>
+                        <div class="save">
+                            <h2>Настройка сохранения данных</h2>
+                            <form
+                                name="write_border"
+                                method="get"
+                                id="write_border"
+                            >
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <!-- Список ОСТ -->
+                                                <select id="ListOst" required>
+                                                    <option
+                                                        value="OST_1"
+                                                        selected
+                                                    >
+                                                        Запад-Транснефтепродукт
+                                                    </option>
+                                                    <option value="OST_2">
+                                                        Транснефть - Порт
+                                                        Приморск
+                                                    </option>
+                                                    <option value="OST_3">
+                                                        Транснефть - Порт
+                                                        Козьмино
+                                                    </option>
+                                                    <option value="OST_4">
+                                                        Транснефть - Дальний
+                                                        Восток
+                                                    </option>
+                                                    <option value="OST_5">
+                                                        Транснефть - Восток
+                                                    </option>
+                                                    <option value="OST_6">
+                                                        Транснефть - Балтика
+                                                    </option>
+                                                    <option value="OST_7">
+                                                        Тихорецк - Нафта
+                                                    </option>
+                                                    <option value="OST_8">
+                                                        Черномортранснефть
+                                                    </option>
+                                                    <option value="OST_9">
+                                                        Транснефть - Урал
+                                                    </option>
+                                                    <option value="OST_10">
+                                                        Транснефть - Терминал
+                                                    </option>
+                                                    <option value="OST_11">
+                                                        Транснефть - Сибирь
+                                                    </option>
+                                                    <option value="OST_12">
+                                                        Транснефть - Север
+                                                    </option>
+                                                    <option value="OST_13">
+                                                        Транснефть - Прикамье
+                                                    </option>
+                                                    <option value="OST_14">
+                                                        Транснефть - Приволга
+                                                    </option>
+                                                    <option value="OST_15">
+                                                        Транснефть - Дружба
+                                                    </option>
+                                                    <option value="OST_16">
+                                                        Транснефть - Верхняя
+                                                        Волга
+                                                    </option>
+                                                    <option value="OST_17">
+                                                        Транснефть - Западная
+                                                        Сибирь
+                                                    </option>
+                                                    <option value="OST_18">
+                                                        Другое
+                                                    </option>
+                                                </select>
+                                            </td>
 
+                                            <td>
+                                                <select
+                                                    id="ListNps"
+                                                    required
+                                                ></select>
+                                                <!-- Список НПС список-->
+                                                <script type="text/javascript">
+                                                    // Включаем синхронизацию связанных списков
+                                                    syncList1.sync(
+                                                        'ListOst',
+                                                        'ListNps',
+                                                    );
+                                                    //console.log(syncList1.firstSelect.selectedIndex)
+                                                </script>
+                                            </td>
 
-	</script>
-	<title>Управление</title>
-</head>
-
-<body onload="loadDataFromseSsionStorage();">
-	<a hidden="true"></a>
-	<div class="wrapper">
-		<header class="header">
-			<button id = "scroll-to-top-btn" onclick=scrollToTop()>↑</button>
-			<div class="container">
-				<div class="header__row">
-					<div class="header__buttons">
-						<form method="get" action="/main_conf.shtml">
-							<button type="submit" class = "header__active">Управление</button>
-						</form>
-					</div>
-					<div class="header__buttons">
-						<form method="get" action="/config_eth.shtml">
-							<button type="submit">Ethernet</button>
-						</form>
-					</div>
-					<div class="header__buttons">
-						<form method="get" action="/calibrate.shtml">
-							<button type="submit">Калибровка</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</header>
-		<div class="content">
-			<div class="container">
-				<div class="content__row">
-					<div class="data">
-						<h2>Текущие значения параметров</h2>
-						<form name="border_param" method="get" action="/main_conf.shtml"></form>
-						<table rules="none" width="100%">
-							<tbody>
-								<tr id="tr_RSon">
-									<td> Cопротивление замкнутых контактов геркона, мОм</td>
-									<td>
-										<output id="dataRSon"> </output>
-									</td>
-								</tr>
-								<tr hidden>
-									<td> Cопротивление замкнутых контактов геркона, мОм</td>
-									<td>
-										<output id="dataRSoff"> </output>
-									</td>
-								</tr>
-								<tr id="tr_Disp">
-									<td> Дисперсия сопротивление контактов геркона, мОм
-									</td>
-									<td>
-										<output id="dataDispersion"> </output>
-									</td>
-								</tr>
-								<tr id="tr_Rstat">
-									<td> Cопротивление герконового модуля, Ом</td>
-									<td>
-										<output id="dataRstat"> </output>
-									</td>
-								</tr>
-								<tr>
-									<td> Магнитное поле, мкТл</td>
-									<td>
-										<output id="dataField"> </output>
-									</td>
-								</tr>
-								<tr hidden>
-									<td> Ток опроса, мА</td>
-									<td>
-										<output id="dataIwork"> </output>
-									</td>
-								</tr>
-								<tr hidden>
-									<td> Частота следования тестовых импульсов, Гц</td>
-									<td>
-										<output id="dataFreq"> </output>
-									</td>
-								</tr>
-								<tr hidden>
-									<td> Ток катушки, мкА</td>
-									<td>
-										<output id="dataIcoil"> </output>
-									</td>
-								</tr>
-								<tr hidden>
-									<td> Время переходного процесса, мкс</td>
-									<td>
-										<output id="dataTime"> </output>
-									</td>
-								</tr>
-								<tr hidden>
-									<td> Тип СУЖ</td>
-									<td>
-										<output id="dataSUJType"> </output>
-									</td>
-								</tr>
-								<tr>
-									<td> Версия программного обеспечения</td>
-									<td>
-										<output id="dataVersion"> </output>
-									</td>
-								</tr>
-								<tr>
-									<td> Текущий статус</td>
-									<td>
-										<output id="dataStatus"> </output>
-									</td>
-								</tr>
-								<tr>
-									<td> Наличие связи</td>
-									<td>
-										<output id="dataConnect"> </output>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="control">
-						<table width="100%" height="40">
-							<tr>
-								<td>
-									<h2 class="h1">Тестирование</h2>
-								</td>
-								<td>
-									
-								</td>
-							</tr>
-						</table>
-						<div class="control__row">
-							<div class="control__buttons">
-								<form method="get" action="/main_conf.shtml">
-									<button type="submit" name="single_tststart">Запустить однократно</button>
-								</form>
-							</div>
-							<div class="control__buttons">
-								<form method="get" action="/main_conf.shtml">
-									<button type="submit" name="cyc_tststart">Запустить циклически</button>
-								</form>
-							</div>
-							<div class="control__buttons">
-								<form method="get" action="/main_conf.shtml">
-									<button type="submit" id="button__stop" name="cyc_tststop">Выключить</button>
-								</form>
-							</div>
-						</div>
-						<div class="control__row">
-							<div class="control__buttons">
-								<form method="get" action="/main_conf.shtml">
-									<button type="submit" class="button button-save" name="mag_tststart">Тестирование
-										поплавка</button>
-								</form>
-							</div>
-							<div class="control__buttons">
-								<form method="get" action="/main_conf.shtml">
-									<button type="submit" class="button button-save" name="coilon">Включить постоянно</button>
-								</form>
-							</div>
-							<div class="control__buttons">
-
-							</div>
-						</div>
-						<div class="control__row">
-							<div class="control__buttons">
-								<form method="get" action="/main_conf.shtml">
-									<button type="submit" class="button button-save" name="mag_serch_down"> Определение макимального магнитного поля N ↓ </button>
-								</form>
-							</div>
-							<div class="control__buttons">
-								<form method="get" action="/main_conf.shtml">
-									<button type="submit" class="button button-save" name="mag_serch_up">Определение макимального магнитного поля N ↑</button>
-								</form>
-							</div>
-							<div class="control__buttons">
-								<button type="submit" class="button button-save" name="tst_serch">Поиск минимального сопротивление</button>
-							</div>
-						</div>
-					</div>
-					<div class="param">
-						<h2>Настройка параметров тестирования</h2>
-						<form name="set_param" method="get" action="/main_conf.shtml">
-							<table rules="none" width="100%">
-								<tbody>
-									<tr>
-										<td><p>Ток опроса СУЖ, мА:</p></td>
-										<td>
-												<select id="soflow" name="rscurr" width="30%">
-													<option value="1" name="parity">1</option>
-													<option value="50" name="parity">50</option>
-													<option value="500" name="parity">500</option>
-												</select>
-										</td>
-										<td>
-											<button class="button button-save" type="submit" value="Test"
-												name="s_rscurr">Установить</button>
-										</td>
-									</tr>
-									<tr>
-										<td><p>Тип СУЖ:</p></td>
-										<td>
-												<select id="soflow1" name="suz" width="30%">
-													<option value="0">0-СУЖ ТОМЗЭЛ</option>
-													<option value="1">1-СУЖ Сторонних производителей</option>
-												</select>
-										</td>
-										<td>
-											<button class="button button-save" type="submit" value="Test"
-												name="s_suz">Установить</button>
-										</td>
-									</tr>
-									<tr>
-										<td
-											data-tooltip="Диапазон задания частот следования тестовых импульсов 1...100 Гц">
-											<p>Частота импульсов, Гц:</p></td>
-										<td>
-											<input name="freq" class="input" value="" id="testInputId">
-										</td>
-										<td>
-											<button type="submit" name="sfreq"
-												class="button button-save">Установить</button>
-										</td>
-									</tr>
-									<tr>
-										<td data-tooltip="Максимальный ток катушки 40000 мкА"><p>Ток катушки, мкА:</p>
-										</td>
-										<td>
-											<input name="coilcurr" class="input" value="" id="CurrKatushki">
-										</td>
-										<td>
-											<button type="submit" name="s_coilcurr"
-												class="button button-save ">Установить</button>
-										</td>
-									</tr>
-									<tr>
-										<td data-tooltip="Значения по умолчанию: 200 мОм"><p>Предельное
-											сопротивление, мОм:</p></td>
-										<td>
-											<input name="maxRs" id="maxRs" class="input" value="200">
-										</td>
-										<td>
-											<button type="submit" name="s_maxRs"
-												class="button button-save">Установить</button>
-										</td>
-									<tr>
-										<td class="td" data-tooltip="Значения по умолчанию: 5 мОм"><p>Предельная
-											дисперсия, мОм:</p> </td>
-										<td>
-											<input name="maxDispersion" id="maxDispersion" class="input" value="5">
-										</td>
-										<td>
-											<button type="submit" name="s_maxDispersion"
-												class="button button-save">Установить</button>
-										</td>
-									</tr>
-									<tr>
-										<td data-tooltip="Значение по умолчанию 190"><p>Предельное магнитное поле,
-											мкТл:</p></td>
-										<td>
-											<input name="maxHs" id="maxHs" class="input" value="190">
-										</td>
-										<td>
-											<button type="submit" name="s_maxHs"
-												class="button button-save">Установить</button>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-
-						</form>
-						<hr>
-					</div>
-					<div class="save">
-						<h2>Настройка сохранения данных</h2>
-						<form name="write_border" method="get" id="write_border">
-							<table>
-								<tbody>
-									<tr>
-										<td>
-											<!-- Список ОСТ -->
-											<select id="ListOst" required>
-												<option value="OST_1" selected> Запад-Транснефтепродукт</option>
-												<option value="OST_2"> Транснефть - Порт Приморск </option>
-												<option value="OST_3"> Транснефть - Порт Козьмино </option>
-												<option value="OST_4"> Транснефть - Дальний Восток </option>
-												<option value="OST_5"> Транснефть - Восток </option>
-												<option value="OST_6"> Транснефть - Балтика </option>
-												<option value="OST_7"> Тихорецк - Нафта </option>
-												<option value="OST_8"> Черномортранснефть </option>
-												<option value="OST_9"> Транснефть - Урал </option>
-												<option value="OST_10"> Транснефть - Терминал </option>
-												<option value="OST_11"> Транснефть - Сибирь </option>
-												<option value="OST_12"> Транснефть - Север </option>
-												<option value="OST_13"> Транснефть - Прикамье </option>
-												<option value="OST_14"> Транснефть - Приволга </option>
-												<option value="OST_15"> Транснефть - Дружба </option>
-												<option value="OST_16"> Транснефть - Верхняя Волга </option>
-												<option value="OST_17"> Транснефть - Западная Сибирь </option>
-												<option value="OST_18"> Другое </option>
-											</select>
-										<td>
-											<select id="ListNps" required></select>
-											<!-- Список НПС список-->
-											<script type="text/javascript">
-												// Включаем синхронизацию связанных списков
-												syncList1.sync("ListOst", "ListNps");
-												//console.log(syncList1.firstSelect.selectedIndex)
-											</script>
-										<td>
-											<select id="SUZType" name="SUZType" required>
-												<option value="ПМП" selected> ПМП (ООО НПП "Сенсор") </option>
-												<option value="OMUV"> OMUV </option>
-												<option value="СУЖ Красное знамя"> СУЖ (Завод "Красное знамя")</option>
-												<option value="ПТПН-1"> ПТПН-1 (АО "ТОМЗЭЛ")</option>
-												<option value="ДС-СУ"> ДС-СУ (АО "НПО Измерительной техники")</option>
-												<option value="ПДУ"> ПДУ (Овен)</option>
-												<option value="РИЗУР-М-В"> РИЗУР-М-В (ООО "НПО РИЗУР")</option>
-												<option value="Радон СУ-ПМ"> Радон СУ-ПМ (НПП "Интор")</option>
-												<option value="СУГ-М"> СУГ-М (СКБ "Приборы и системы")</option>
-												<option value="ТЭК-МСУ"> ТЭК-МСУ (ООО "ТЭК-СИСТЕМС")</option>
-												<option value="NIVOPOINT"> NIVOPOINT (Росприбор)</option>
-												<option value="Другое"> Другое </option>
-											</select>
-										</td>
-										<!-- ТИП СУЖ -->
-									</tr>
-									<tr>
-										<td>
-											<input name="SUZ_num" id="SUZ_num" class="input" placeholder="Зав. №"
-												width="100%" type="tel" required>
-										</td>
-										<td>
-											<input name="SUZ_god" id="SUZ_god" class="input"
-												placeholder="Год изготовления" type=text required>
-										</td>
-									</tr>
-									<tr>
-										<!-- НОМЕР СУЖ -->
-										<td data-tooltip="Номер считать с головы СУЖ">
-											<select id="ListGerkonNum" required>
-												<option value="Gerkon1" selected> Геркон №1 </option>
-												<option value="Gerkon2"> Геркон №2 </option>
-												<option value="Gerkon3"> Геркон №3 </option>
-												<option value="Gerkon4"> Геркон №4 </option>
-												<option value="Gerkon5"> Геркон №5 </option>
-											</select>
-										</td>
-										<!-- НОМЕР геркона -->
-										<td>
-											<select id="ListTestNum" required>
-												<option value="Test1" selected> Проверка МДС поплавка </option>
-												<option value="Test2"> Проверка динамического сопротивления и
-													дисперсии </option>
-												<option value="Test3"> Проверка статического сопротивления
-												</option>
-												<option value="Test4"> Проверка герконового модуля </option>
-											</select>
-										</td>
-										<!-- НОМЕР проверки -->
-									</tr>
-									<tr>
-										<td>
-											<button type="submit" onclick="buttonSave()"
-												class="button button-save">Сохранить
-												данные тестирования</button>
-										</td>
-										<td>
-										</td>
-										<td>
-											<div class="tooltip" style="text-align:left;">
-												<div class="tooltiptext"><ul>
-													<li>1 Настроить тип СУЖ</li>
-													<li>2 Настроить </li>
-													<li>3 Настроить </li>
-													<li>4 Настроить </li>
-													<li>5 Настроить </li>
-												</ul></div>
-												<svg width="25px" height="25px" viewBox="0 0 24 24" fill="none"
-													xmlns="http://www.w3.org/2000/svg">
-													<path fill-rule="evenodd" clip-rule="evenodd"
-														d="M12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22ZM12 7.75C11.3787 7.75 10.875 8.25368 10.875 8.875C10.875 9.28921 10.5392 9.625 10.125 9.625C9.71079 9.625 9.375 9.28921 9.375 8.875C9.375 7.42525 10.5503 6.25 12 6.25C13.4497 6.25 14.625 7.42525 14.625 8.875C14.625 9.58584 14.3415 10.232 13.883 10.704C13.7907 10.7989 13.7027 10.8869 13.6187 10.9708C13.4029 11.1864 13.2138 11.3753 13.0479 11.5885C12.8289 11.8699 12.75 12.0768 12.75 12.25V13C12.75 13.4142 12.4142 13.75 12 13.75C11.5858 13.75 11.25 13.4142 11.25 13V12.25C11.25 11.5948 11.555 11.0644 11.8642 10.6672C12.0929 10.3733 12.3804 10.0863 12.6138 9.85346C12.6842 9.78321 12.7496 9.71789 12.807 9.65877C13.0046 9.45543 13.125 9.18004 13.125 8.875C13.125 8.25368 12.6213 7.75 12 7.75ZM12 17C12.5523 17 13 16.5523 13 16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 17 12 17Z"
-														fill="#8BC34A" />
-												</svg>
-												
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</form>
-
-					</div>
-				</div>
-			</div>
-		</div>
-		<footer class="footer">
-			<div class="container">
-				<div class="footer__row">
-					<div class="footer__text">
-						<p>
-							Мобильная установка тестирования СУЖ МУ-01 ©️ ТОМЗЭЛ
-						</p>
-						<p>
-							Для связи
-							тел.:(8-3822) 27-64-90,
-							МАТС: (6111) 64-90,
-							E-mail: srv@tom.transneft.ru.
-						</p>
-					</div>
-				</div>
-			</div>
-		</footer>
-	</div>
-
-
-</body>
-
+                                            <td>
+                                                <select
+                                                    id="SUZType"
+                                                    name="SUZType"
+                                                    required
+                                                >
+                                                    <option
+                                                        value="ПМП"
+                                                        selected
+                                                    >
+                                                        ПМП (ООО НПП "Сенсор")
+                                                    </option>
+                                                    <option value="OMUV">
+                                                        OMUV
+                                                    </option>
+                                                    <option
+                                                        value="СУЖ Красное знамя"
+                                                    >
+                                                        СУЖ (Завод "Красное
+                                                        знамя")
+                                                    </option>
+                                                    <option value="ПТПН-1">
+                                                        ПТПН-1 (АО "ТОМЗЭЛ")
+                                                    </option>
+                                                    <option value="ДС-СУ">
+                                                        ДС-СУ (АО "НПО
+                                                        Измерительной техники")
+                                                    </option>
+                                                    <option value="ПДУ">
+                                                        ПДУ (Овен)
+                                                    </option>
+                                                    <option value="РИЗУР-М-В">
+                                                        РИЗУР-М-В (ООО "НПО
+                                                        РИЗУР")
+                                                    </option>
+                                                    <option value="Радон СУ-ПМ">
+                                                        Радон СУ-ПМ (НПП
+                                                        "Интор")
+                                                    </option>
+                                                    <option value="СУГ-М">
+                                                        СУГ-М (СКБ "Приборы и
+                                                        системы")
+                                                    </option>
+                                                    <option value="ТЭК-МСУ">
+                                                        ТЭК-МСУ (ООО
+                                                        "ТЭК-СИСТЕМС")
+                                                    </option>
+                                                    <option value="NIVOPOINT">
+                                                        NIVOPOINT (Росприбор)
+                                                    </option>
+                                                    <option value="Другое">
+                                                        Другое
+                                                    </option>
+                                                </select>
+                                            </td>
+                                            <!-- ТИП СУЖ -->
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input
+                                                    name="SUZ_num"
+                                                    id="SUZ_num"
+                                                    class="input"
+                                                    placeholder="Зав. №"
+                                                    width="100%"
+                                                    type="tel"
+                                                    required
+                                                />
+                                            </td>
+                                            <td>
+                                                <input
+                                                    name="SUZ_god"
+                                                    id="SUZ_god"
+                                                    class="input"
+                                                    placeholder="Год изготовления"
+                                                    type="text"
+                                                    required
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <!-- НОМЕР СУЖ -->
+                                            <td
+                                                data-tooltip="Номер считать с головы СУЖ"
+                                            >
+                                                <select
+                                                    id="ListGerkonNum"
+                                                    required
+                                                >
+                                                    <option
+                                                        value="Gerkon1"
+                                                        selected
+                                                    >
+                                                        Геркон №1
+                                                    </option>
+                                                    <option value="Gerkon2">
+                                                        Геркон №2
+                                                    </option>
+                                                    <option value="Gerkon3">
+                                                        Геркон №3
+                                                    </option>
+                                                    <option value="Gerkon4">
+                                                        Геркон №4
+                                                    </option>
+                                                    <option value="Gerkon5">
+                                                        Геркон №5
+                                                    </option>
+                                                </select>
+                                            </td>
+                                            <!-- НОМЕР геркона -->
+                                            <td>
+                                                <select
+                                                    id="ListTestNum"
+                                                    required
+                                                >
+                                                    <option
+                                                        value="Test1"
+                                                        selected
+                                                    >
+                                                        Проверка МДС поплавка
+                                                    </option>
+                                                    <option value="Test2">
+                                                        Проверка динамического
+                                                        сопротивления и
+                                                        дисперсии
+                                                    </option>
+                                                    <option value="Test3">
+                                                        Проверка статического
+                                                        сопротивления
+                                                    </option>
+                                                    <option value="Test4">
+                                                        Проверка герконового
+                                                        модуля
+                                                    </option>
+                                                </select>
+                                            </td>
+                                            <!-- НОМЕР проверки -->
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button
+                                                    type="submit"
+                                                    onclick="buttonSave()"
+                                                    class="button button-save"
+                                                >
+                                                    Сохранить данные
+                                                    тестирования
+                                                </button>
+                                            </td>
+                                            <td></td>
+                                            <td>
+                                                <div
+                                                    class="tooltip"
+                                                    style="text-align: left"
+                                                >
+                                                    <div class="tooltiptext">
+                                                        <ul>
+                                                            <li>
+                                                                1 Настроить тип
+                                                                СУЖ
+                                                            </li>
+                                                            <li>2 Настроить</li>
+                                                            <li>3 Настроить</li>
+                                                            <li>4 Настроить</li>
+                                                            <li>5 Настроить</li>
+                                                        </ul>
+                                                    </div>
+                                                    <svg
+                                                        width="25px"
+                                                        height="25px"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            fill-rule="evenodd"
+                                                            clip-rule="evenodd"
+                                                            d="M12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22ZM12 7.75C11.3787 7.75 10.875 8.25368 10.875 8.875C10.875 9.28921 10.5392 9.625 10.125 9.625C9.71079 9.625 9.375 9.28921 9.375 8.875C9.375 7.42525 10.5503 6.25 12 6.25C13.4497 6.25 14.625 7.42525 14.625 8.875C14.625 9.58584 14.3415 10.232 13.883 10.704C13.7907 10.7989 13.7027 10.8869 13.6187 10.9708C13.4029 11.1864 13.2138 11.3753 13.0479 11.5885C12.8289 11.8699 12.75 12.0768 12.75 12.25V13C12.75 13.4142 12.4142 13.75 12 13.75C11.5858 13.75 11.25 13.4142 11.25 13V12.25C11.25 11.5948 11.555 11.0644 11.8642 10.6672C12.0929 10.3733 12.3804 10.0863 12.6138 9.85346C12.6842 9.78321 12.7496 9.71789 12.807 9.65877C13.0046 9.45543 13.125 9.18004 13.125 8.875C13.125 8.25368 12.6213 7.75 12 7.75ZM12 17C12.5523 17 13 16.5523 13 16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 17 12 17Z"
+                                                            fill="#8BC34A"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer__row">
+                        <div class="footer__text">
+                            <p>
+                                Мобильная установка тестирования СУЖ МУ-01 ©️
+                                ТОМЗЭЛ
+                            </p>
+                            <p>
+                                Для связи тел.:(8-3822) 27-64-90, МАТС: (6111)
+                                64-90, E-mail: srv@tom.transneft.ru.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </body>
 </html>

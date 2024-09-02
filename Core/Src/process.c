@@ -927,3 +927,19 @@ uint16_t GetCalibHS(){
   else return 0;
   
 }
+
+bool GetPoplovokCalib()
+{
+	return dev_cntrl.calibrateHS;
+}
+
+void SetPoplovokCalib()
+{
+   	SetOnContinuously();            // калибровка катушки под поплавок 
+	dev_cntrl.calibrateHS = true;
+}
+
+void SetFindMinR(bool set)
+{
+	dev_cntrl.findMinR = set;
+}

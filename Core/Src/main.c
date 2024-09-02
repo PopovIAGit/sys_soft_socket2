@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
+ * All rights reserved.</center></h2>
+ *
+ * This software component is licensed by ST under Ultimate Liberty license
+ * SLA0044, the "License"; You may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at:
+ *                             www.st.com/SLA0044
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -25,10 +25,8 @@
 #include "httpd.h"
 #include "analog.h"
 #include "process.h"
-#include "http_server.h"   
+#include "http_server.h"
 
-    
-  
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -85,7 +83,7 @@ static void MX_FMC_Init(void);
 static void SDRAM_Initialization_Sequence(SDRAM_HandleTypeDef *hsdram, FMC_SDRAM_CommandTypeDef *Command);
 static void MX_I2C4_Init(void);
 static void MX_SPI1_Init(void);
-void StartDefaultTask(void const * argument);
+void StartDefaultTask(void const *argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -97,21 +95,20 @@ void StartDefaultTask(void const * argument);
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
-  * @retval int
-  */
+ * @brief  The application entry point.
+ * @retval int
+ */
 int main(void)
 {
   FMC_SDRAM_CommandTypeDef command;
-  
-#define BUFFER_SIZE         ((uint32_t)0x1000)
-#define WRITE_READ_ADDR     ((uint32_t)0x0800)  
-#define SDRAM_BANK_ADDR     ((uint32_t)0xC0000000)
-//uint32_t aTxBuffer[BUFFER_SIZE];
-//uint32_t aRxBuffer[BUFFER_SIZE];
-uint32_t uwIndex = 0;
-__IO uint32_t uwWriteReadStatus = 0;
 
+#define BUFFER_SIZE ((uint32_t)0x1000)
+#define WRITE_READ_ADDR ((uint32_t)0x0800)
+#define SDRAM_BANK_ADDR ((uint32_t)0xC0000000)
+  // uint32_t aTxBuffer[BUFFER_SIZE];
+  // uint32_t aRxBuffer[BUFFER_SIZE];
+  uint32_t uwIndex = 0;
+  __IO uint32_t uwWriteReadStatus = 0;
 
   /* USER CODE BEGIN 1 */
 
@@ -151,42 +148,43 @@ __IO uint32_t uwWriteReadStatus = 0;
   MX_I2C4_Init();
   MX_SPI1_Init();
 
- 
   /* Write data to the SDRAM memory */
 
-//  for (uwIndex = 0; uwIndex < BUFFER_SIZE; uwIndex++)
-//  {
-//    *(__IO uint16_t*) (SDRAM_BANK_ADDR + WRITE_READ_ADDR + 2*uwIndex) = uwIndex;
-//  }
-//
-//  /* Read back data from the SDRAM memory */
-//  for (uwIndex = 0; uwIndex < BUFFER_SIZE; uwIndex++)
-//  {
-//    aRxBuffer[uwIndex] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + WRITE_READ_ADDR + 2*uwIndex);
-//  }
-//  
-//  /*##-3- Checking data integrity ############################################*/
-//  
-//  for (uwIndex = 0; (uwIndex < BUFFER_SIZE) && (uwWriteReadStatus == 0); uwIndex++)
-//  {
-//    if (aRxBuffer[uwIndex] != aTxBuffer[uwIndex])
-//    {
-//      uwWriteReadStatus++;
-//    }
-//  }
-//
-//  
+  //  for (uwIndex = 0; uwIndex < BUFFER_SIZE; uwIndex++)
+  //  {
+  //    *(__IO uint16_t*) (SDRAM_BANK_ADDR + WRITE_READ_ADDR + 2*uwIndex) = uwIndex;
+  //  }
+  //
+  //  /* Read back data from the SDRAM memory */
+  //  for (uwIndex = 0; uwIndex < BUFFER_SIZE; uwIndex++)
+  //  {
+  //    aRxBuffer[uwIndex] = *(__IO uint16_t*) (SDRAM_BANK_ADDR + WRITE_READ_ADDR + 2*uwIndex);
+  //  }
+  //
+  //  /*##-3- Checking data integrity ############################################*/
+  //
+  //  for (uwIndex = 0; (uwIndex < BUFFER_SIZE) && (uwWriteReadStatus == 0); uwIndex++)
+  //  {
+  //    if (aRxBuffer[uwIndex] != aTxBuffer[uwIndex])
+  //    {
+  //      uwWriteReadStatus++;
+  //    }
+  //  }
+  //
+  //
   HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
   HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 0);
   /* USER CODE BEGIN 2 */
   /*reset eth phy*/
   int idx = 1024;
-  HAL_GPIO_WritePin(FEC_nRST_GPIO_Port, FEC_nRST_Pin, GPIO_PIN_RESET); 
-  while(idx--);
+  HAL_GPIO_WritePin(FEC_nRST_GPIO_Port, FEC_nRST_Pin, GPIO_PIN_RESET);
+  while (idx--)
+    ;
   idx = 1024;
-  HAL_GPIO_WritePin(FEC_nRST_GPIO_Port, FEC_nRST_Pin, GPIO_PIN_SET); 
-  while(idx--);
-  
+  HAL_GPIO_WritePin(FEC_nRST_GPIO_Port, FEC_nRST_Pin, GPIO_PIN_SET);
+  while (idx--)
+    ;
+
   /* USER CODE END 2 */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -196,7 +194,7 @@ __IO uint32_t uwWriteReadStatus = 0;
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
- 
+
   /* USER CODE BEGIN RTOS_TIMERS */
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
@@ -211,11 +209,11 @@ __IO uint32_t uwWriteReadStatus = 0;
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   osThreadDef(AlgorithmTask, Algorithm, osPriorityNormal, 0, 1024);
-  AlgorithmHandle = osThreadCreate(osThread(AlgorithmTask), NULL); 
-   
+  AlgorithmHandle = osThreadCreate(osThread(AlgorithmTask), NULL);
+
   osThreadDef(AnalogMeashureTask, AnalogMeashure, osPriorityNormal, 0, 1024);
-  AnalogMeashureHandle = osThreadCreate(osThread(AnalogMeashureTask), NULL);  
-  
+  AnalogMeashureHandle = osThreadCreate(osThread(AnalogMeashureTask), NULL);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   CreateEEPROMSemaphore();
@@ -231,23 +229,22 @@ __IO uint32_t uwWriteReadStatus = 0;
   {
 
     /* USER CODE END WHILE */
-	/*ToDo:
-		Статус состояния (как в светодиодах)
-		Наличие связи С+Js
-		Магнитное поле по модулю от оффсета
-		process.c - константы для уровней герконового модуля
+    /*ToDo:
+      пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+      пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ+Js
+      пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+      process.c - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-*/	
+  */
     /* USER CODE BEGIN 3 */
-    
   }
   /* USER CODE END 3 */
 }
 
 /**
-  * @brief System Clock Configuration
-  * @retval None
-  */
+ * @brief System Clock Configuration
+ * @retval None
+ */
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
@@ -255,18 +252,18 @@ void SystemClock_Config(void)
   RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
 
   /** Configure the main internal regulator output voltage
-  */
+   */
   __HAL_RCC_PWR_CLK_ENABLE();
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
   /** Initializes the RCC Oscillators according to the specified parameters
-  * in the RCC_OscInitTypeDef structure.
-  */ 
+   * in the RCC_OscInitTypeDef structure.
+   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 12; //12
-  RCC_OscInitStruct.PLL.PLLN = 192;//192
+  RCC_OscInitStruct.PLL.PLLM = 12;  // 12
+  RCC_OscInitStruct.PLL.PLLN = 192; // 192
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 2;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -274,15 +271,14 @@ void SystemClock_Config(void)
     Error_Handler();
   }
   /** Activate the Over-Drive mode
-  */
+   */
   if (HAL_PWREx_EnableOverDrive() != HAL_OK)
   {
     Error_Handler();
   }
   /** Initializes the CPU, AHB and APB buses clocks
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+   */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
@@ -292,7 +288,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_I2C1|RCC_PERIPHCLK_I2C4;
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_I2C1 | RCC_PERIPHCLK_I2C4;
   PeriphClkInitStruct.I2c1ClockSelection = RCC_I2C1CLKSOURCE_PCLK1;
   PeriphClkInitStruct.I2c4ClockSelection = RCC_I2C4CLKSOURCE_PCLK1;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
@@ -302,10 +298,10 @@ void SystemClock_Config(void)
 }
 
 /**
-  * @brief ADC1 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief ADC1 Initialization Function
+ * @param None
+ * @retval None
+ */
 
 /*Fadc=833 kHz*/
 static void MX_ADC1_Init(void)
@@ -322,8 +318,8 @@ static void MX_ADC1_Init(void)
 
   /* USER CODE END ADC1_Init 1 */
   /** Common config
-  */
-  
+   */
+
   hadc1.Instance = ADC1;
   hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV6;
   hadc1.Init.Resolution = ADC_RESOLUTION_12B;
@@ -335,22 +331,22 @@ static void MX_ADC1_Init(void)
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc1.Init.NbrOfConversion = 4;
   hadc1.Init.DMAContinuousRequests = ENABLE;
-  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;  
+  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
   {
     Error_Handler();
   }
   /** Configure the ADC multi-mode
-  */
+   */
   multimode.Mode = ADC_DUALMODE_REGSIMULT;
   multimode.DMAAccessMode = ADC_DMAACCESSMODE_2;
-  multimode.TwoSamplingDelay = ADC_TWOSAMPLINGDELAY_5CYCLES;  
+  multimode.TwoSamplingDelay = ADC_TWOSAMPLINGDELAY_5CYCLES;
   if (HAL_ADCEx_MultiModeConfigChannel(&hadc1, &multimode) != HAL_OK)
   {
     Error_Handler();
   }
   /** Configure Regular Channel
-  */
+   */
   sConfig.Channel = ADC_CHANNEL_3;
   sConfig.Rank = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
@@ -359,15 +355,15 @@ static void MX_ADC1_Init(void)
     Error_Handler();
   }
   /** Configure Regular Channel
-  */
-  sConfig.Channel = ADC_CHANNEL_5;  
-  sConfig.Rank = ADC_REGULAR_RANK_2; 
+   */
+  sConfig.Channel = ADC_CHANNEL_5;
+  sConfig.Rank = ADC_REGULAR_RANK_2;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
   }
   /** Configure Regular Channel
-  */
+   */
   sConfig.Channel = ADC_CHANNEL_3;
   sConfig.Rank = ADC_REGULAR_RANK_3;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
@@ -380,18 +376,17 @@ static void MX_ADC1_Init(void)
   {
     Error_Handler();
   }
-  
+
   /* USER CODE BEGIN ADC1_Init 2 */
 
   /* USER CODE END ADC1_Init 2 */
-
 }
 
 /**
-  * @brief ADC2 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief ADC2 Initialization Function
+ * @param None
+ * @retval None
+ */
 
 /*3 samples are token every 5 mks*/
 static void MX_ADC2_Init(void)
@@ -407,7 +402,7 @@ static void MX_ADC2_Init(void)
 
   /* USER CODE END ADC2_Init 1 */
   /** Common config
-  */
+   */
   hadc2.Instance = ADC2;
   hadc2.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV8;
   hadc2.Init.Resolution = ADC_RESOLUTION_12B;
@@ -419,13 +414,13 @@ static void MX_ADC2_Init(void)
   hadc2.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc2.Init.NbrOfConversion = 4;
   hadc2.Init.DMAContinuousRequests = DISABLE;
-  hadc2.Init.EOCSelection = ADC_EOC_SINGLE_CONV;    
+  hadc2.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   if (HAL_ADC_Init(&hadc2) != HAL_OK)
   {
     Error_Handler();
   }
   /** Configure Regular Channel
-  */
+   */
   sConfig.Channel = ADC_CHANNEL_0;
   sConfig.Rank = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
@@ -434,7 +429,7 @@ static void MX_ADC2_Init(void)
     Error_Handler();
   }
   /** Configure Regular Channel
-  */
+   */
   sConfig.Channel = ADC_CHANNEL_6;
   sConfig.Rank = ADC_REGULAR_RANK_2;
   if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
@@ -442,7 +437,7 @@ static void MX_ADC2_Init(void)
     Error_Handler();
   }
   /** Configure Regular Channel
-  */
+   */
   sConfig.Channel = ADC_CHANNEL_0;
   sConfig.Rank = ADC_REGULAR_RANK_3;
   if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
@@ -455,18 +450,17 @@ static void MX_ADC2_Init(void)
   {
     Error_Handler();
   }
-  
+
   /* USER CODE BEGIN ADC2_Init 2 */
 
   /* USER CODE END ADC2_Init 2 */
-
 }
 
 /**
-  * @brief DAC Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief DAC Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_DAC_Init(void)
 {
 
@@ -480,14 +474,14 @@ static void MX_DAC_Init(void)
 
   /* USER CODE END DAC_Init 1 */
   /** DAC Initialization
-  */
+   */
   hdac.Instance = DAC;
   if (HAL_DAC_Init(&hdac) != HAL_OK)
   {
     Error_Handler();
   }
   /** DAC channel OUT1 config
-  */
+   */
   sConfig.DAC_Trigger = DAC_TRIGGER_NONE;
   sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;
   if (HAL_DAC_ConfigChannel(&hdac, &sConfig, DAC_CHANNEL_1) != HAL_OK)
@@ -497,14 +491,13 @@ static void MX_DAC_Init(void)
   /* USER CODE BEGIN DAC_Init 2 */
 
   /* USER CODE END DAC_Init 2 */
-
 }
 
 /**
-  * @brief I2C1 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief I2C1 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_I2C1_Init(void)
 {
 
@@ -529,13 +522,13 @@ static void MX_I2C1_Init(void)
     Error_Handler();
   }
   /** Configure Analogue filter
-  */
+   */
   if (HAL_I2CEx_ConfigAnalogFilter(&hi2c1, I2C_ANALOGFILTER_DISABLE) != HAL_OK)
   {
     Error_Handler();
   }
   /** Configure Digital filter
-  */
+   */
   if (HAL_I2CEx_ConfigDigitalFilter(&hi2c1, 0) != HAL_OK)
   {
     Error_Handler();
@@ -543,14 +536,13 @@ static void MX_I2C1_Init(void)
   /* USER CODE BEGIN I2C1_Init 2 */
 
   /* USER CODE END I2C1_Init 2 */
-
 }
 
 /**
-  * @brief I2C4 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief I2C4 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_I2C4_Init(void)
 {
 
@@ -575,13 +567,13 @@ static void MX_I2C4_Init(void)
     Error_Handler();
   }
   /** Configure Analogue filter
-  */
+   */
   if (HAL_I2CEx_ConfigAnalogFilter(&hi2c4, I2C_ANALOGFILTER_DISABLE) != HAL_OK)
   {
     Error_Handler();
   }
   /** Configure Digital filter
-  */
+   */
   if (HAL_I2CEx_ConfigDigitalFilter(&hi2c4, 0) != HAL_OK)
   {
     Error_Handler();
@@ -589,14 +581,13 @@ static void MX_I2C4_Init(void)
   /* USER CODE BEGIN I2C4_Init 2 */
 
   /* USER CODE END I2C4_Init 2 */
-
 }
 
 /**
-  * @brief TIM1 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief TIM1 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_TIM1_Init(void)
 {
 
@@ -668,13 +659,11 @@ static void MX_TIM1_Init(void)
   /* USER CODE BEGIN TIM1_Init 2 */
 
   /* USER CODE END TIM1_Init 2 */
-
 }
 
-
 /**
-  * Enable DMA controller clock
-  */
+ * Enable DMA controller clock
+ */
 static void MX_DMA_Init(void)
 {
 
@@ -685,12 +674,11 @@ static void MX_DMA_Init(void)
   /* DMA2_Stream0_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 5, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
-
 }
 
 static void SDRAM_Initialization_Sequence(SDRAM_HandleTypeDef *hsdram, FMC_SDRAM_CommandTypeDef *Command)
 {
-  __IO uint32_t tmpmrd =0;
+  __IO uint32_t tmpmrd = 0;
   /* Step 1:  Configure a clock configuration enable command */
   Command->CommandMode = FMC_SDRAM_CMD_CLK_ENABLE;
   Command->CommandTarget = FMC_SDRAM_CMD_TARGET_BANK1;
@@ -723,11 +711,11 @@ static void SDRAM_Initialization_Sequence(SDRAM_HandleTypeDef *hsdram, FMC_SDRAM
   HAL_SDRAM_SendCommand(hsdram, Command, 0x1000);
 
   /* Step 5: Program the external memory mode register */
-  tmpmrd = (uint32_t)SDRAM_MODEREG_BURST_LENGTH_1          |
-                     SDRAM_MODEREG_BURST_TYPE_SEQUENTIAL   |
-                     SDRAM_MODEREG_CAS_LATENCY_3           |
-                     SDRAM_MODEREG_OPERATING_MODE_STANDARD |
-                     SDRAM_MODEREG_WRITEBURST_MODE_SINGLE;
+  tmpmrd = (uint32_t)SDRAM_MODEREG_BURST_LENGTH_1 |
+           SDRAM_MODEREG_BURST_TYPE_SEQUENTIAL |
+           SDRAM_MODEREG_CAS_LATENCY_3 |
+           SDRAM_MODEREG_OPERATING_MODE_STANDARD |
+           SDRAM_MODEREG_WRITEBURST_MODE_SINGLE;
 
   Command->CommandMode = FMC_SDRAM_CMD_LOAD_MODE;
   Command->CommandTarget = FMC_SDRAM_CMD_TARGET_BANK1;
@@ -740,8 +728,7 @@ static void SDRAM_Initialization_Sequence(SDRAM_HandleTypeDef *hsdram, FMC_SDRAM
   /* Step 6: Set the refresh rate counter */
   /* (15.62 us x Freq) - 20 */
   /* Set the device refresh counter */
-  hsdram->Instance->SDRTR |= ((uint32_t)((1292)<< 1));
-
+  hsdram->Instance->SDRTR |= ((uint32_t)((1292) << 1));
 }
 
 /* FMC initialization function */
@@ -759,7 +746,7 @@ static void MX_FMC_Init(void)
   /* USER CODE END FMC_Init 1 */
 
   /** Perform the SDRAM1 memory initialization sequence
-  */
+   */
   hsdram1.Instance = FMC_SDRAM_DEVICE;
   /* hsdram1.Init */
   hsdram1.Init.SDBank = FMC_SDRAM_BANK1;
@@ -783,19 +770,19 @@ static void MX_FMC_Init(void)
 
   if (HAL_SDRAM_Init(&hsdram1, &SdramTiming) != HAL_OK)
   {
-    Error_Handler( );
+    Error_Handler();
   }
 
   /* USER CODE BEGIN FMC_Init 2 */
 
   /* USER CODE END FMC_Init 2 */
-  }
+}
 
 /**
-  * @brief SPI1 Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief SPI1 Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_SPI1_Init(void)
 {
 
@@ -828,14 +815,13 @@ static void MX_SPI1_Init(void)
   /* USER CODE BEGIN SPI1_Init 2 */
 
   /* USER CODE END SPI1_Init 2 */
-
 }
 
 /**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
+ * @brief GPIO Initialization Function
+ * @param None
+ * @retval None
+ */
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
@@ -851,59 +837,57 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   HAL_GPIO_WritePin(PWM_GPIO_Port, PWM_Pin, GPIO_PIN_RESET);
-  
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOF, WDI_Pin|FEC_nRST_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, conn_5R_Pin|SPI_nCS_Pin|EN_COILPWR_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOF, WDI_Pin | FEC_nRST_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, GAIN_2_Pin|GAIN_1_Pin|GAIN_0_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, conn_5R_Pin | SPI_nCS_Pin | EN_COILPWR_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, TESTLED_R_Pin|TESTLED_G_Pin|RSLED_Pin|WRKLED_R_Pin
-                          |WRKLED_G_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, GAIN_2_Pin | GAIN_1_Pin | GAIN_0_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOD, TESTLED_R_Pin | TESTLED_G_Pin | RSLED_Pin | WRKLED_R_Pin | WRKLED_G_Pin, GPIO_PIN_RESET);
   HAL_GPIO_WritePin(SPI_nCS_GPIO_Port, SPI_nCS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pins : WDI_Pin FEC_nRST_Pin */
-  GPIO_InitStruct.Pin = WDI_Pin|FEC_nRST_Pin;
+  GPIO_InitStruct.Pin = WDI_Pin | FEC_nRST_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
 
   /*Configure GPIO pins : conn_5R_Pin SPI_nCS_Pin EN_COILPWR_Pin */
-  GPIO_InitStruct.Pin = conn_5R_Pin|SPI_nCS_Pin|EN_COILPWR_Pin;
+  GPIO_InitStruct.Pin = conn_5R_Pin | SPI_nCS_Pin | EN_COILPWR_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pins : conn_10R_Pin conn_2400R_Pin */
-  GPIO_InitStruct.Pin = conn_10R_Pin|conn_2400R_Pin;
+  GPIO_InitStruct.Pin = conn_10R_Pin | conn_2400R_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
-  
+
   /*Configure GPIO pins : FLOAT_TEST_Pin RS_TEST_Pin */
-  GPIO_InitStruct.Pin = FLOAT_TEST_Pin|RS_TEST_Pin;
+  GPIO_InitStruct.Pin = FLOAT_TEST_Pin | RS_TEST_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
 
   /*Configure GPIO pins : GAIN_2_Pin GAIN_1_Pin GAIN_0_Pin */
-    GPIO_InitStruct.Pin = GAIN_2_Pin|GAIN_1_Pin|GAIN_0_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  GPIO_InitStruct.Pin = GAIN_2_Pin | GAIN_1_Pin | GAIN_0_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : TESTLED_R_Pin TESTLED_G_Pin RSLED_Pin WRKLED_R_Pin
                            WRKLED_G_Pin */
-  GPIO_InitStruct.Pin = TESTLED_R_Pin|TESTLED_G_Pin|RSLED_Pin|WRKLED_R_Pin
-                          |WRKLED_G_Pin;
+  GPIO_InitStruct.Pin = TESTLED_R_Pin | TESTLED_G_Pin | RSLED_Pin | WRKLED_R_Pin | WRKLED_G_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -916,13 +900,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-  
- GPIO_InitStruct.Pin = PWM_Pin;
- GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
- GPIO_InitStruct.Pull = GPIO_NOPULL;
- GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- HAL_GPIO_Init(PWM_GPIO_Port, &GPIO_InitStruct);  
 
+  GPIO_InitStruct.Pin = PWM_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(PWM_GPIO_Port, &GPIO_InitStruct);
 }
 
 /* USER CODE BEGIN 4 */
@@ -931,33 +914,33 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN Header_StartDefaultTask */
 /**
-  * @brief  Function implementing the defaultTask thread.
-  * @param  argument: Not used
-  * @retval None
-  */
+ * @brief  Function implementing the defaultTask thread.
+ * @param  argument: Not used
+ * @retval None
+ */
 /* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void const * argument)
+void StartDefaultTask(void const *argument)
 {
   uint32_t time;
   uint32_t phy_reg;
-  
-  /* init code for LWIP */
-  MX_LWIP_Init(); 
-  
-  osThreadDef(http_serverTask, http_server, osPriorityNormal, 0, 3072);
-  HTTPServerHandle = osThreadCreate(osThread(http_serverTask), NULL);     
-  
-  for(;;){
-     osDelay(10); 
-     HAL_GPIO_TogglePin(WDI_GPIO_Port, WDI_Pin);
-    }
-} 
 
+  /* init code for LWIP */
+  MX_LWIP_Init();
+
+  osThreadDef(http_serverTask, http_server, osPriorityNormal, 0, 3072);
+  HTTPServerHandle = osThreadCreate(osThread(http_serverTask), NULL);
+
+  for (;;)
+  {
+    osDelay(10);
+    HAL_GPIO_TogglePin(WDI_GPIO_Port, WDI_Pin);
+  }
+}
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
+ * @brief  This function is executed in case of error occurrence.
+ * @retval None
+ */
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
@@ -966,14 +949,14 @@ void Error_Handler(void)
   /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
+ * @brief  Reports the name of the source file and the source line number
+ *         where the assert_param error has occurred.
+ * @param  file: pointer to the source file name
+ * @param  line: assert_param error line source number
+ * @retval None
+ */
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
